@@ -1,0 +1,4 @@
+-------------------------------------------------------------------------------
+Test set: fr.theialand.insitu.dataportal.model.service.JsonSchemaGeneratorTest
+-------------------------------------------------------------------------------
+Tests run: 21, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 2.063 s - in fr.theialand.insitu.dataportal.model.service.JsonSchemaGeneratorTest

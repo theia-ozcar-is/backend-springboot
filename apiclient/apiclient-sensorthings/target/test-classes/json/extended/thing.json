@@ -1,0 +1,21 @@
+{
+  "name" : "Installation de suivi eau souterraine quantité",
+  "description" : "GroundWater Quantity Environmental monitoring facility monitoring ground water level",
+  "properties" : {
+    "altitude_point_eau" : {
+      "value" : 86.0,
+      "uom" : "https://data.geoscience.fr/ncl/urf/111"
+    },
+    "altitude_repere" : {
+      "value" : 86.0,
+      "uom" : "https://data.geoscience.fr/ncl/urf/111"
+    },
+    "id" : "https://data.geoscience.fr/id/EMF/GroundwaterQuantity/00626X0025"
+  },
+  "Datastreams@iot.navigationLink" : "https://sensorthings.brgm-rec.fr/SensorThingsGroundWater/v1.1/Things(9)/Datastreams",
+  "MultiDatastreams@iot.navigationLink" : "https://sensorthings.brgm-rec.fr/SensorThingsGroundWater/v1.1/Things(9)/MultiDatastreams",
+  "Locations@iot.navigationLink" : "https://sensorthings.brgm-rec.fr/SensorThingsGroundWater/v1.1/Things(9)/Locations",
+  "HistoricalLocations@iot.navigationLink" : "https://sensorthings.brgm-rec.fr/SensorThingsGroundWater/v1.1/Things(9)/HistoricalLocations",
+  "@iot.id" : 9,
+  "@iot.selfLink" : "https://sensorthings.brgm-rec.fr/SensorThingsGroundWater/v1.1/Things(9)"
+}

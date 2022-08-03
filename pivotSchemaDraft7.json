@@ -1,0 +1,1202 @@
+{
+  "$schema" : "http://json-schema.org/draft-07/schema#",
+  "definitions" : {
+    "AdditionalValue" : {
+      "type" : "object",
+      "properties" : {
+        "columnName" : {
+          "type" : "string",
+          "minLength" : 1
+        },
+        "description" : {
+          "type" : "string",
+          "minLength" : 1
+        },
+        "name" : {
+          "type" : "string",
+          "minLength" : 1
+        },
+        "unit" : {
+          "type" : "string",
+          "minLength" : 1
+        }
+      },
+      "required" : [ "columnName", "name" ],
+      "additionalProperties" : false
+    },
+    "DataConstraint" : {
+      "type" : "object",
+      "properties" : {
+        "accessUseConstraint" : {
+          "type" : "string",
+          "description" : "String mentionning the use constraint of a given dataset. either free text in the file language describing the conditions, or some predefined values",
+          "minLength" : 1
+        },
+        "embargo" : {
+          "allOf" : [ {
+            "$ref" : "#/definitions/Embargo"
+          }, {
+            "description" : "embargo on the data of a given dataset"
+          } ]
+        },
+        "licence" : {
+          "allOf" : [ {
+            "$ref" : "#/definitions/Licence"
+          }, {
+            "description" : "Licence of a given dataset"
+          } ]
+        },
+        "urlDataPolicy" : {
+          "type" : "string",
+          "format" : "uri",
+          "description" : "data policy of a given dataset"
+        }
+      },
+      "required" : [ "accessUseConstraint" ],
+      "additionalProperties" : false
+    },
+    "DataFile" : {
+      "type" : "object",
+      "properties" : {
+        "name" : {
+          "type" : "string",
+          "description" : "The name of the file with the extension, example: temperature_time_serie.csv",
+          "minLength" : 1
+        }
+      },
+      "description" : " A file containing Result",
+      "additionalProperties" : false
+    },
+    "DataProduction" : {
+      "type" : "object",
+      "properties" : {
+        "method" : {
+          "type" : "string",
+          "description" : "Descritpion of the method used for the acquisition of the data",
+          "minLength" : 1
+        },
+        "sensors" : {
+          "description" : "Descritpion of the sensors used for the acquisition of the data",
+          "minItems" : 1,
+          "type" : "array",
+          "items" : {
+            "anyOf" : [ {
+              "$ref" : "#/definitions/PhysicalSensor"
+            }, {
+              "$ref" : "#/definitions/VirtualSensor"
+            } ]
+          }
+        }
+      },
+      "description" : "DataProduction object describing the dataProduction process of the observation",
+      "additionalProperties" : false
+    },
+    "Dataset" : {
+      "type" : "object",
+      "properties" : {
+        "datasetId" : {
+          "type" : "string",
+          "description" : "ID of the dataset. trigramme of the provider plus the number of the dataset separated with underscore ex: AMA_1",
+          "minLength" : 1,
+          "pattern" : "^[A-Z]{4}_DAT_[^\\s]{1,}$"
+        },
+        "metadata" : {
+          "allOf" : [ {
+            "$ref" : "#/definitions/Metadata"
+          }, {
+            "description" : "Metadata object representing the metadata information of the dataset"
+          } ]
+        },
+        "observations" : {
+          "minItems" : 1,
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/Observation"
+          }
+        }
+      },
+      "required" : [ "datasetId", "metadata", "observations" ],
+      "additionalProperties" : false
+    },
+    "Document" : {
+      "type" : "object",
+      "properties" : {
+        "type" : {
+          "allOf" : [ {
+            "$ref" : "#/definitions/EnumDocumentTypes"
+          }, {
+            "description" : "The type of the document"
+          } ]
+        },
+        "url" : {
+          "type" : "string",
+          "format" : "uri",
+          "description" : "Where the document can be found"
+        }
+      },
+      "required" : [ "type", "url" ],
+      "description" : "one of the documents associated to the dataset",
+      "additionalProperties" : false
+    },
+    "Embargo" : {
+      "type" : "object",
+      "properties" : {
+        "duration" : {
+          "type" : "integer",
+          "format" : "int32",
+          "description" : "duration of the embargo in days from the current date",
+          "minimum" : 0
+        },
+        "priviledgedUsers" : {
+          "description" : "Ordered list of user email address that can overstep the embargo",
+          "minItems" : 1,
+          "type" : "array",
+          "items" : {
+            "type" : "string",
+            "minLength" : 1,
+            "format" : "email"
+          }
+        }
+      },
+      "required" : [ "duration", "priviledgedUsers" ],
+      "additionalProperties" : false
+    },
+    "EnumClimates" : {
+      "type" : "string",
+      "enum" : [ "Oceanic climate", "Tropical climate", "Mediterranean climate", "Mountain climate", "Continental climate", "Polar climate", "Arid climate", "Equatorial climate" ]
+    },
+    "EnumContactOrganisationRoles" : {
+      "type" : "string",
+      "const" : "Research group"
+    },
+    "EnumContactPersonRoles" : {
+      "type" : "string",
+      "enum" : [ "Principal investigator", "Project leader", "Project member", "Data manager", "Data collector" ]
+    },
+    "EnumDocumentTypes" : {
+      "type" : "string",
+      "enum" : [ "Publication", "Manual" ]
+    },
+    "EnumFundingTypes" : {
+      "type" : "string",
+      "enum" : [ "French research institutes", "French universities and schools", "Federative structure", "Research program", "Research unit", "Other universities and schools", "Other research institutes", "Other" ]
+    },
+    "EnumGeoJSONTypes" : {
+      "type" : "string",
+      "enum" : [ "FeatureCollection", "Feature", "Point", "MultiPoint", "LineString", "MultiLineString", "Polygon", "MultiPolygon" ]
+    },
+    "EnumGeologies" : {
+      "type" : "string",
+      "enum" : [ "Volcanic rocks", "Plutonic rocks", "Metamorphic rocks", "Carbonate rocks", "Quaternary soils", "Other sedimentary rocks" ]
+    },
+    "EnumInspireTheme" : {
+      "type" : "string",
+      "enum" : [ "Addresses", "Administrative units", "Coordinate reference systems", "Geographical grid systems", "Cadastral parcels", "Geographical names", "Hydrography", "Protected sites", "Transport networks", "Elevation", "Geology", "Land cover", "Orthoimagery", "Agricultural and aquaculture facilities", "Area management/restriction/regulation zones and reporting units", "Atmospheric conditions", "Bio-geographical regions", "Buildings", "Energy resources", "Environmental monitoring facilities", "Habitats and biotopes", "Human health and safety", "Land use", "Mineral resources", "Natural risk zones", "Oceanographic geographical features", "Population distribution — demography", "Production and industrial facilities", "Sea regions", "Soil", "Species distribution", "Statistical units", "Utility and governmental services", "Meteorological geographical features", "Atmospheric Conditions and meteorological geographical features" ]
+    },
+    "EnumProcessingLevels" : {
+      "type" : "string",
+      "enum" : [ "Raw data", "Quality-controlled data", "Derived products" ],
+      "description" : "The processing status characterizes the general processing steps that the data have been subjected to. Depending on the parameters being controlled, several categories of data are defined"
+    },
+    "EnumProducer" : {
+      "type" : "string",
+      "enum" : [ "AGRH", "AURA", "BVET", "CATC", "CRYO", "DRAI", "ERUN", "HPLU", "HYBA", "KARS", "MSEC", "OBSE", "OHGE", "OHMC", "OMER", "OPEA", "ORAC", "OSRC", "REAL", "TOUR", "YZER", "MTRO" ]
+    },
+    "EnumResultDataTypes" : {
+      "type" : "string",
+      "enum" : [ "Numeric", "Text", "Raster", "Vector", "Photo", "Video", "Audio", "Other" ]
+    },
+    "EnumTopicCategory" : {
+      "type" : "string",
+      "enum" : [ "Boundaries", "Biota", "Climatology / Meteorology / Atmosphere", "Economy", "Elevation", "Environment", "Farming", "Geoscientific Information", "Health", "Imagery / Base Maps / Earth Cover", "Inland Waters", "Intelligence / Military", "Location", "Oceans", "Planning / Cadastre", "Society", "Structure", "Transportation", "Utilities / Communication" ]
+    },
+    "FeatureOfInterest" : {
+      "type" : "object",
+      "properties" : {
+        "samplingFeature" : {
+          "anyOf" : [ {
+            "allOf" : [ {
+              "$ref" : "#/definitions/SamplingGeometry"
+            }, {
+              "description" : "Spatial representation of the feature of interest"
+            } ]
+          }, {
+            "allOf" : [ {
+              "$ref" : "#/definitions/SamplingSpecimen"
+            }, {
+              "description" : "Spatial representation of the feature of interest"
+            } ]
+          } ]
+        }
+      },
+      "required" : [ "samplingFeature" ],
+      "description" : "The feature of interest is an abstraction of a real-world object. It's the spatial object sample by the Observation",
+      "additionalProperties" : false
+    },
+    "FundingWithAcronym" : {
+      "type" : "object",
+      "properties" : {
+        "acronym" : {
+          "type" : "string",
+          "description" : "Acronym of the organism affiliated",
+          "minLength" : 1
+        },
+        "idScanR" : {
+          "type" : "string",
+          "minLength" : 1,
+          "pattern" : "[0-9]+[A-Z]?|^$"
+        },
+        "iso3166" : {
+          "type" : "string",
+          "description" : "2-letter code of this organisation's country, according to iso3166",
+          "minLength" : 1,
+          "pattern" : "[a-zA-Z]{2}"
+        },
+        "name" : {
+          "type" : "string",
+          "description" : "Complete name of the affiliation",
+          "minLength" : 1
+        },
+        "type" : {
+          "allOf" : [ {
+            "$ref" : "#/definitions/EnumFundingTypes"
+          }, {
+            "description" : "The organism type according to EnumFundingTypes enumeration"
+          } ]
+        }
+      },
+      "required" : [ "acronym", "iso3166", "type" ],
+      "additionalProperties" : false
+    },
+    "FundingWithName" : {
+      "type" : "object",
+      "properties" : {
+        "acronym" : {
+          "type" : "string",
+          "description" : "Acronym of the organism affiliated",
+          "minLength" : 1
+        },
+        "idScanR" : {
+          "type" : "string",
+          "minLength" : 1,
+          "pattern" : "[0-9]+[A-Z]?|^$"
+        },
+        "iso3166" : {
+          "type" : "string",
+          "description" : "2-letter code of this organisation's country, according to iso3166",
+          "minLength" : 1,
+          "pattern" : "[a-zA-Z]{2}"
+        },
+        "name" : {
+          "type" : "string",
+          "description" : "Complete name of the affiliation",
+          "minLength" : 1
+        },
+        "type" : {
+          "allOf" : [ {
+            "$ref" : "#/definitions/EnumFundingTypes"
+          }, {
+            "description" : "The organism type according to EnumFundingTypes enumeration"
+          } ]
+        }
+      },
+      "required" : [ "iso3166", "name", "type" ],
+      "additionalProperties" : false
+    },
+    "FundingWithScanRiD" : {
+      "type" : "object",
+      "properties" : {
+        "acronym" : {
+          "type" : "string",
+          "description" : "Acronym of the organism affiliated",
+          "minLength" : 1
+        },
+        "idScanR" : {
+          "type" : "string",
+          "minLength" : 1,
+          "pattern" : "[0-9]+[A-Z]?|^$"
+        },
+        "iso3166" : {
+          "type" : "string",
+          "description" : "2-letter code of this organisation's country, according to iso3166",
+          "minLength" : 1,
+          "pattern" : "[a-zA-Z]{2}"
+        },
+        "name" : {
+          "type" : "string",
+          "description" : "Complete name of the affiliation",
+          "minLength" : 1
+        },
+        "type" : {
+          "allOf" : [ {
+            "$ref" : "#/definitions/EnumFundingTypes"
+          }, {
+            "description" : "The organism type according to EnumFundingTypes enumeration"
+          } ]
+        }
+      },
+      "required" : [ "idScanR", "iso3166", "type" ],
+      "additionalProperties" : false
+    },
+    "GcmdKeyword" : {
+      "type" : "object",
+      "properties" : {
+        "category" : {
+          "type" : "string",
+          "minLength" : 1
+        },
+        "term" : {
+          "type" : "string",
+          "minLength" : 1
+        },
+        "topic" : {
+          "type" : "string",
+          "minLength" : 1
+        },
+        "uuid" : {
+          "type" : "string",
+          "minLength" : 1
+        },
+        "variableLevel1" : {
+          "type" : "string",
+          "minLength" : 1
+        },
+        "variableLevel2" : {
+          "type" : "string",
+          "minLength" : 1
+        },
+        "variableLevel3" : {
+          "type" : "string",
+          "minLength" : 1
+        }
+      },
+      "required" : [ "category", "topic" ],
+      "description" : "the hierchical concepts of the GCMD keywords that can be associated to a variable",
+      "additionalProperties" : false
+    },
+    "Keyword" : {
+      "type" : "object",
+      "properties" : {
+        "keyword" : {
+          "type" : "string",
+          "description" : "The keyword",
+          "minLength" : 1
+        },
+        "uri" : {
+          "type" : "string",
+          "format" : "uri",
+          "description" : "URI of the keyword in a published thesaurus"
+        }
+      },
+      "required" : [ "keyword" ],
+      "additionalProperties" : false
+    },
+    "Licence" : {
+      "type" : "object",
+      "properties" : {
+        "title" : {
+          "type" : "string",
+          "description" : "Name of the licence",
+          "minLength" : 1
+        },
+        "url" : {
+          "type" : "string",
+          "format" : "uri",
+          "description" : "url of the description of the licence"
+        }
+      },
+      "required" : [ "title", "url" ],
+      "additionalProperties" : false
+    },
+    "LineageInformation" : {
+      "type" : "object",
+      "properties" : {
+        "processingDate" : {
+          "type" : "string",
+          "format" : "date-time",
+          "description" : "Date when the process has been applid to the observation"
+        },
+        "processingDescription" : {
+          "type" : "string",
+          "description" : "Description of the process applied to the observation",
+          "minLength" : 1
+        }
+      },
+      "required" : [ "processingDescription" ],
+      "additionalProperties" : false
+    },
+    "Metadata" : {
+      "type" : "object",
+      "properties" : {
+        "contacts" : {
+          "description" : "ordered list of contact for the dataset",
+          "minItems" : 1,
+          "type" : "array",
+          "items" : {
+            "anyOf" : [ {
+              "$ref" : "#/definitions/Person"
+            }, {
+              "$ref" : "#/definitions/Organisation"
+            } ]
+          }
+        },
+        "dataConstraint" : {
+          "allOf" : [ {
+            "$ref" : "#/definitions/DataConstraint"
+          }, {
+            "description" : "A DataConstraint objet representing access and use constraint on the dataset"
+          } ]
+        },
+        "datasetLineage" : {
+          "type" : "string",
+          "description" : "Description of the previous processing that the dataset underwent",
+          "minLength" : 1
+        },
+        "description" : {
+          "type" : "string",
+          "description" : "Short description, abstract, description of the dataset",
+          "minLength" : 1
+        },
+        "documents" : {
+          "description" : "A list of Document objects for the dataset.The list can contain a maxium of 2 elements since only two types of documents are possible in the EnumDocumentTypes enumeration",
+          "minItems" : 1,
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/Document"
+          }
+        },
+        "inspireTheme" : {
+          "allOf" : [ {
+            "$ref" : "#/definitions/EnumInspireTheme"
+          }, {
+            "description" : "Inspire theme for the dataset."
+          } ]
+        },
+        "keywords" : {
+          "description" : "A list of Keyword objects for the dataset",
+          "minItems" : 1,
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/Keyword"
+          }
+        },
+        "objective" : {
+          "type" : "string",
+          "description" : "Optional description of the objective",
+          "minLength" : 1
+        },
+        "onlineResource" : {
+          "allOf" : [ {
+            "$ref" : "#/definitions/OnlineResource"
+          }, {
+            "description" : "A OnlineResource object representing the online resource for the dataset"
+          } ]
+        },
+        "portalSearchCriteria" : {
+          "allOf" : [ {
+            "$ref" : "#/definitions/PortalSearchCriteria"
+          }, {
+            "description" : "A PortalSearchCriteria object that represents the some search criteria on the dataset to be used by the portal."
+          } ]
+        },
+        "spatialExtent" : {
+          "allOf" : [ {
+            "$ref" : "#/definitions/SpatialExtent"
+          }, {
+            "description" : "The spatialExtent of the dataset. This must be a bounding box or several bouding boxes."
+          } ]
+        },
+        "title" : {
+          "type" : "string",
+          "description" : "Title of the dataset. It should be a unique name that can reference the geographical area covered",
+          "minLength" : 1
+        },
+        "topicCategories" : {
+          "description" : "Ordered list of thematic catégories for the dataset",
+          "minItems" : 1,
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/EnumTopicCategory"
+          }
+        }
+      },
+      "required" : [ "contacts", "dataConstraint", "datasetLineage", "description", "inspireTheme", "portalSearchCriteria", "spatialExtent", "title", "topicCategories" ],
+      "additionalProperties" : false
+    },
+    "NumericalResult" : {
+      "type" : "object",
+      "properties" : {
+        "additionalValues" : {
+          "description" : "List of additional value that can be set for each time step. For exemple, incertitude calculation, error,sensor params",
+          "minItems" : 1,
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/AdditionalValue"
+          }
+        },
+        "dataFile" : {
+          "allOf" : [ {
+            "$ref" : "#/definitions/DataFile"
+          }, {
+            "description" : "DataFile object representing the file containing the data of the observation"
+          } ]
+        },
+        "missingValue" : {
+          "type" : "string",
+          "description" : "character String of missing data value in the output file",
+          "minLength" : 1
+        },
+        "qualityFlags" : {
+          "description" : "List of QualityFlag object describing the quality flag of the observation",
+          "minItems" : 1,
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/QualityFlag"
+          }
+        }
+      },
+      "required" : [ "dataFile" ],
+      "description" : "Class representing the numerical result of an observation. The result of an observation is an estimate value of a property of the feature of interest",
+      "additionalProperties" : false
+    },
+    "Observation" : {
+      "type" : "object",
+      "properties" : {
+        "dataType" : {
+          "allOf" : [ {
+            "$ref" : "#/definitions/EnumResultDataTypes"
+          }, {
+            "description" : "The type of the result"
+          } ]
+        },
+        "featureOfInterest" : {
+          "allOf" : [ {
+            "$ref" : "#/definitions/FeatureOfInterest"
+          }, {
+            "description" : "The feature of interest is an abstraction of a real-world object. It's the spatial object sample by the Observation"
+          } ]
+        },
+        "observationId" : {
+          "type" : "string",
+          "description" : "Id of the observation. Corresponds to the trigramme of the provider, the number of the dataset, and the number of the observation of the dataset separated by underscores (ex: CATC_2_36",
+          "minLength" : 1,
+          "pattern" : "^[A-Z]{4}_OBS_[^\\s]{1,}$"
+        },
+        "observedProperty" : {
+          "allOf" : [ {
+            "$ref" : "#/definitions/ObservedProperty"
+          }, {
+            "description" : "characteristic of the feature of interest. It identifies or describes the phenomenon for which the observation is made"
+          } ]
+        },
+        "procedure" : {
+          "allOf" : [ {
+            "$ref" : "#/definitions/Procedure"
+          }, {
+            "description" : "the description of the processus used to produce the result from an observed property of the feature of interest"
+          } ]
+        },
+        "processingLevel" : {
+          "allOf" : [ {
+            "$ref" : "#/definitions/EnumProcessingLevels"
+          }, {
+            "description" : "The level of processing for the data of the observation"
+          } ]
+        },
+        "result" : {
+          "allOf" : [ {
+            "$ref" : "#/definitions/NumericalResult"
+          }, {
+            "description" : "The result of an observation is an estimate value of a property of the feature of interest"
+          } ]
+        },
+        "temporalExtent" : {
+          "allOf" : [ {
+            "$ref" : "#/definitions/TemporalExtent"
+          }, {
+            "description" : "For result that are not time series, the date acquisition of the observation is precised. For results that are not temporal (e.g. geological map the date of acquisition of the observation is precised followed by a 31-12-9999 00:00:00"
+          } ]
+        },
+        "timeSerie" : {
+          "type" : "boolean",
+          "description" : "boolean in order to know if the result is a time serie or not"
+        }
+      },
+      "required" : [ "dataType", "featureOfInterest", "observationId", "observedProperty", "result", "temporalExtent", "timeSerie" ],
+      "additionalProperties" : false
+    },
+    "ObservedProperty" : {
+      "type" : "object",
+      "properties" : {
+        "description" : {
+          "type" : "string",
+          "description" : "Short description of the variable",
+          "minLength" : 1
+        },
+        "gcmdKeywords" : {
+          "description" : "Gcmd Keywords that the scientist wants to associate to the variable. All the association made by the Theia/OZCAR team will be associated later",
+          "minItems" : 1,
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/GcmdKeyword"
+          }
+        },
+        "name" : {
+          "type" : "string",
+          "description" : "Name of the variable",
+          "minLength" : 1
+        },
+        "theiaCategories" : {
+          "description" : "A list of URI of Theia categories to be associated",
+          "minItems" : 1,
+          "type" : "array",
+          "items" : {
+            "type" : "string",
+            "format" : "uri"
+          }
+        },
+        "unit" : {
+          "type" : "string",
+          "description" : "Unit of the variable, or 'N/A' for Not Applicable",
+          "minLength" : 1
+        }
+      },
+      "required" : [ "name", "theiaCategories", "unit" ],
+      "description" : "The observed property is a characteristic of the feature of interest. It identifies or describes the phenomenon for which the observation is made.\n",
+      "additionalProperties" : false
+    },
+    "OnlineResource" : {
+      "type" : "object",
+      "properties" : {
+        "doi" : {
+          "type" : "string",
+          "description" : "Link to a website with information relative to the data and the producer",
+          "minLength" : 1,
+          "pattern" : "\\d{2}.\\d+/.*"
+        },
+        "urlDownload" : {
+          "type" : "string",
+          "format" : "uri",
+          "description" : "Link to a data portal that enable the data download"
+        },
+        "urlInfo" : {
+          "type" : "string",
+          "format" : "uri",
+          "description" : "Link to a website with information relative to the data and the producer"
+        },
+        "webservices" : {
+          "description" : "Various web services related to the inter operability of the data producer",
+          "minItems" : 1,
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/Webservice"
+          }
+        }
+      },
+      "additionalProperties" : false
+    },
+    "Organisation" : {
+      "anyOf" : [ {
+        "$ref" : "#/definitions/OrganisationWithName"
+      }, {
+        "$ref" : "#/definitions/OrganisationWithAcronym"
+      }, {
+        "$ref" : "#/definitions/OrganisationWithScanRiD"
+      } ]
+    },
+    "OrganisationWithAcronym" : {
+      "type" : "object",
+      "properties" : {
+        "acronym" : {
+          "type" : "string",
+          "description" : "Acronym of the organism",
+          "minLength" : 1
+        },
+        "idScanR" : {
+          "type" : "string",
+          "minLength" : 1,
+          "pattern" : "[0-9]+[A-Z]?"
+        },
+        "iso3166" : {
+          "type" : "string",
+          "description" : "2-letter code of this organisation's country, according to iso3166",
+          "minLength" : 1,
+          "pattern" : "[a-zA-Z]{2}"
+        },
+        "name" : {
+          "type" : "string",
+          "description" : "Complete name of the organisation",
+          "minLength" : 1
+        },
+        "role" : {
+          "allOf" : [ {
+            "$ref" : "#/definitions/EnumContactOrganisationRoles"
+          }, {
+            "description" : "Currently, the only available role is Research Group"
+          } ]
+        }
+      },
+      "required" : [ "acronym", "iso3166", "role" ],
+      "additionalProperties" : false
+    },
+    "OrganisationWithName" : {
+      "type" : "object",
+      "properties" : {
+        "acronym" : {
+          "type" : "string",
+          "description" : "Acronym of the organism",
+          "minLength" : 1
+        },
+        "idScanR" : {
+          "type" : "string",
+          "minLength" : 1,
+          "pattern" : "[0-9]+[A-Z]?"
+        },
+        "iso3166" : {
+          "type" : "string",
+          "description" : "2-letter code of this organisation's country, according to iso3166",
+          "minLength" : 1,
+          "pattern" : "[a-zA-Z]{2}"
+        },
+        "name" : {
+          "type" : "string",
+          "description" : "Complete name of the organisation",
+          "minLength" : 1
+        },
+        "role" : {
+          "allOf" : [ {
+            "$ref" : "#/definitions/EnumContactOrganisationRoles"
+          }, {
+            "description" : "Currently, the only available role is Research Group"
+          } ]
+        }
+      },
+      "required" : [ "iso3166", "name", "role" ],
+      "additionalProperties" : false
+    },
+    "OrganisationWithScanRiD" : {
+      "type" : "object",
+      "properties" : {
+        "acronym" : {
+          "type" : "string",
+          "description" : "Acronym of the organism",
+          "minLength" : 1
+        },
+        "idScanR" : {
+          "type" : "string",
+          "minLength" : 1,
+          "pattern" : "[0-9]+[A-Z]?"
+        },
+        "iso3166" : {
+          "type" : "string",
+          "description" : "2-letter code of this organisation's country, according to iso3166",
+          "minLength" : 1,
+          "pattern" : "[a-zA-Z]{2}"
+        },
+        "name" : {
+          "type" : "string",
+          "description" : "Complete name of the organisation",
+          "minLength" : 1
+        },
+        "role" : {
+          "allOf" : [ {
+            "$ref" : "#/definitions/EnumContactOrganisationRoles"
+          }, {
+            "description" : "Currently, the only available role is Research Group"
+          } ]
+        }
+      },
+      "required" : [ "idScanR", "iso3166", "role" ],
+      "additionalProperties" : false
+    },
+    "Person" : {
+      "type" : "object",
+      "properties" : {
+        "email" : {
+          "type" : "string",
+          "minLength" : 1,
+          "format" : "email"
+        },
+        "firstName" : {
+          "type" : "string",
+          "minLength" : 1
+        },
+        "lastName" : {
+          "type" : "string",
+          "minLength" : 1
+        },
+        "orcId" : {
+          "type" : "string",
+          "description" : "The ORC ID (Open Researcher and Contributor ID) of the Person if it has one",
+          "minLength" : 1,
+          "pattern" : "\\w{4}-\\w{4}-\\w{4}-\\w{4}"
+        },
+        "organisation" : {
+          "anyOf" : [ {
+            "allOf" : [ {
+              "$ref" : "#/definitions/OrganisationWithName"
+            }, {
+              "description" : "the organisation where the Person belongs if it is relevant. If so, one of name, idScanR, or acronym must be populated"
+            } ]
+          }, {
+            "allOf" : [ {
+              "$ref" : "#/definitions/OrganisationWithAcronym"
+            }, {
+              "description" : "the organisation where the Person belongs if it is relevant. If so, one of name, idScanR, or acronym must be populated"
+            } ]
+          }, {
+            "allOf" : [ {
+              "$ref" : "#/definitions/OrganisationWithScanRiD"
+            }, {
+              "description" : "the organisation where the Person belongs if it is relevant. If so, one of name, idScanR, or acronym must be populated"
+            } ]
+          } ]
+        },
+        "role" : {
+          "allOf" : [ {
+            "$ref" : "#/definitions/EnumContactPersonRoles"
+          }, {
+            "description" : "The role of this person, such as Project Leadr or Data Managr"
+          } ]
+        }
+      },
+      "required" : [ "email", "firstName", "lastName", "role" ],
+      "additionalProperties" : false
+    },
+    "PhysicalSensor" : {
+      "type" : "object",
+      "properties" : {
+        "activityPeriods" : {
+          "minItems" : 1,
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/TemporalExtent"
+          }
+        },
+        "calibration" : {
+          "type" : "string",
+          "description" : "calibration description of the sensor",
+          "minLength" : 1
+        },
+        "documents" : {
+          "description" : "related publications and notices",
+          "minItems" : 1,
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/Document"
+          }
+        },
+        "manufacturer" : {
+          "type" : "string",
+          "description" : "manufacturer of the sensor",
+          "minLength" : 1
+        },
+        "model" : {
+          "type" : "string",
+          "description" : "model of the sensor",
+          "minLength" : 1
+        },
+        "operationalMode" : {
+          "type" : "string",
+          "minLength" : 1
+        },
+        "sensorType" : {
+          "type" : "string",
+          "description" : "type of the sensor",
+          "minLength" : 1
+        },
+        "serialNumber" : {
+          "type" : "string",
+          "description" : "serial number of the sensor",
+          "minLength" : 1
+        }
+      },
+      "required" : [ "manufacturer", "model" ],
+      "additionalProperties" : false
+    },
+    "PortalSearchCriteria" : {
+      "type" : "object",
+      "properties" : {
+        "climates" : {
+          "description" : "Ordered list of climate according to EnumClimates values",
+          "minItems" : 1,
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/EnumClimates"
+          }
+        },
+        "geologies" : {
+          "description" : "Ordered list of geologies according to EnumGeologies values",
+          "minItems" : 1,
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/EnumGeologies"
+          }
+        }
+      },
+      "required" : [ "climates", "geologies" ],
+      "description" : "representing Portal search critera parameter to be used for the portal for dataset discovery",
+      "additionalProperties" : false
+    },
+    "Procedure" : {
+      "type" : "object",
+      "properties" : {
+        "dataProduction" : {
+          "allOf" : [ {
+            "$ref" : "#/definitions/DataProduction"
+          }, {
+            "description" : "object describing the dataProduction process of the observation"
+          } ]
+        },
+        "lineageInformations" : {
+          "description" : "List of the LineageInformation object describing the diffrent processes the observation underwent before to present the final result",
+          "minItems" : 1,
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/LineageInformation"
+          }
+        }
+      },
+      "description" : "The procedure, or observation process, is the description of the processus used to produce the result from an observed property of the feature of interest",
+      "additionalProperties" : false
+    },
+    "Producer" : {
+      "type" : "object",
+      "properties" : {
+        "contacts" : {
+          "description" : "List of Contacts (persons) - with at least a project leader and recommended, a Data manager",
+          "minItems" : 1,
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/Person"
+          }
+        },
+        "description" : {
+          "type" : "string",
+          "description" : "Short description of the Producer",
+          "minLength" : 1
+        },
+        "email" : {
+          "type" : "string",
+          "description" : "Mail address for the Producer",
+          "minLength" : 1,
+          "format" : "email"
+        },
+        "fundings" : {
+          "description" : "List of funders for the Producer",
+          "minItems" : 1,
+          "type" : "array",
+          "items" : {
+            "anyOf" : [ {
+              "$ref" : "#/definitions/FundingWithName"
+            }, {
+              "$ref" : "#/definitions/FundingWithAcronym"
+            }, {
+              "$ref" : "#/definitions/FundingWithScanRiD"
+            } ]
+          }
+        },
+        "measuredVariables" : {
+          "type" : "string",
+          "description" : "Short descruiption of the variables measured by the producer",
+          "minLength" : 1
+        },
+        "name" : {
+          "type" : "string",
+          "description" : "Acronym of the Producer. ex AMMA-CATCH",
+          "minLength" : 1
+        },
+        "objectives" : {
+          "type" : "string",
+          "description" : "Short description of the objectives of the producer",
+          "minLength" : 1
+        },
+        "onlineResource" : {
+          "allOf" : [ {
+            "$ref" : "#/definitions/OnlineResource"
+          }, {
+            "description" : "Online resources of the producer"
+          } ]
+        },
+        "producerId" : {
+          "allOf" : [ {
+            "$ref" : "#/definitions/EnumProducer"
+          }, {
+            "description" : "4-letters ID of the Producer as defined by Theia/OZCAR comity, like CATC, CRYO..."
+          } ]
+        },
+        "title" : {
+          "type" : "string",
+          "description" : "Title of the Producer",
+          "minLength" : 1
+        }
+      },
+      "required" : [ "contacts", "description", "fundings", "name", "producerId", "title" ],
+      "additionalProperties" : false
+    },
+    "Properties" : {
+      "type" : "object",
+      "additionalProperties" : false
+    },
+    "QualityFlag" : {
+      "type" : "object",
+      "properties" : {
+        "code" : {
+          "type" : "string",
+          "minLength" : 1
+        },
+        "description" : {
+          "type" : "string",
+          "minLength" : 1
+        }
+      },
+      "required" : [ "code", "description" ],
+      "additionalProperties" : false
+    },
+    "SamplingGeometry" : {
+      "type" : "object",
+      "properties" : {
+        "geometry" : {
+          "$ref" : "https://in-situ.theia-land.fr/json-schema/geoJsonSchemaDraft7.json"
+        },
+        "name" : {
+          "type" : "string",
+          "description" : "The name of the feature. i.e. the name of the station",
+          "minLength" : 1
+        },
+        "properties" : {
+          "$ref" : "#/definitions/Properties"
+        },
+        "type" : {
+          "type" : "string",
+          "minLength" : 1
+        }
+      },
+      "required" : [ "geometry" ],
+      "additionalProperties" : false
+    },
+    "SamplingSpecimen" : {
+      "type" : "object",
+      "properties" : {
+        "name" : {
+          "type" : "string",
+          "description" : "The name of the feature. i.e. the name of the station",
+          "minLength" : 1
+        },
+        "properties" : {
+          "$ref" : "#/definitions/Properties"
+        },
+        "type" : {
+          "type" : "string",
+          "minLength" : 1
+        }
+      },
+      "additionalProperties" : false
+    },
+    "SpatialExtent" : {
+      "type" : "object",
+      "properties" : {
+        "geometry" : {
+          "$ref" : "https://in-situ.theia-land.fr/json-schema/geoJsonSchemaDraft7.json"
+        },
+        "properties" : {
+          "allOf" : [ {
+            "$ref" : "#/definitions/Properties"
+          }, {
+            "description" : "a GeoJson mandatory field. can(must?) be empty"
+          } ]
+        },
+        "type" : {
+          "allOf" : [ {
+            "$ref" : "#/definitions/EnumGeoJSONTypes"
+          }, {
+            "description" : "a GeoJson mandatory field. only Feature is currently supported"
+          } ]
+        }
+      },
+      "required" : [ "geometry", "properties", "type" ],
+      "description" : "This spatial extent is either a bounding box or several bounding boxes",
+      "additionalProperties" : false
+    },
+    "TemporalExtent" : {
+      "type" : "object",
+      "properties" : {
+        "dateBeg" : {
+          "type" : "string",
+          "format" : "date-time"
+        },
+        "dateEnd" : {
+          "type" : "string",
+          "format" : "date-time"
+        }
+      },
+      "required" : [ "dateBeg", "dateEnd" ],
+      "additionalProperties" : false
+    },
+    "VirtualSensor" : {
+      "type" : "object",
+      "properties" : {
+        "documents" : {
+          "description" : "related publications and notices",
+          "minItems" : 1,
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/Document"
+          }
+        },
+        "name" : {
+          "type" : "string",
+          "description" : "The name of the model",
+          "minLength" : 1
+        },
+        "parametrisationDescription" : {
+          "type" : "string",
+          "description" : "The descirption of the paramter and different forcing for the observation",
+          "minLength" : 1
+        }
+      },
+      "required" : [ "name" ],
+      "additionalProperties" : false
+    },
+    "Webservice" : {
+      "type" : "object",
+      "properties" : {
+        "description" : {
+          "type" : "string",
+          "description" : "Description of the service name",
+          "minLength" : 1
+        },
+        "url" : {
+          "type" : "string",
+          "format" : "uri",
+          "description" : "url of the service"
+        }
+      },
+      "required" : [ "description", "url" ],
+      "description" : "Class representing a webservice for a dataset",
+      "additionalProperties" : false
+    }
+  },
+  "type" : "object",
+  "properties" : {
+    "datasets" : {
+      "minItems" : 1,
+      "type" : "array",
+      "items" : {
+        "$ref" : "#/definitions/Dataset"
+      }
+    },
+    "producer" : {
+      "$ref" : "#/definitions/Producer"
+    },
+    "version" : {
+      "type" : "string",
+      "minLength" : 1,
+      "pattern" : "\\d+.\\d+$"
+    }
+  },
+  "required" : [ "datasets", "producer", "version" ],
+  "$id" : "https://in-situ.theia-land.fr/json-schema/pivotSchemaDraft7.json",
+  "description" : "Main definition file for a producer data",
+  "additionalProperties" : false
+}

@@ -1,0 +1,57 @@
+openapi: 3.0.0
+info:
+  description: openAPI definition for koppen-climate API. The API is queried using a location and return the Koppen climate corresponding to the location. Koppen climates come from Hylke E. Beck et al. 2018. https://doi.org/10.1038/sdata.2018.214. The dataset used is Beck_KG_V1_present_conf_0p0083.tif that represents the present-day (1980–2016) Köppen-Geiger climate classification at a spacial resolution of 0.0083°.
+  version: "0.1"
+  title: koppen-climate
+paths:
+  /climate:
+    get:
+      tags:
+        - koppenClimate
+      operationId: getClimate
+      description: |
+        Returns the koppen climate code at one (latitude,longitude) point.
+      parameters:
+        - in: query
+          description: Location in latitude, longitude format, similar to the Google Elevation API
+          name: location
+          required: true
+          example: 10,10
+          schema:
+            type: string
+      responses:
+        "200":
+          description: A JSON object with a single result containing latitude, longitude and koppenClimate.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/LocationKoppenClimateDTO"
+components:
+  schemas:
+    KoppenClimateCodeLiteral:
+      type: "object"
+      properties:
+        code:
+          type: "string"
+        literal:
+          type: "string"
+    KoppenClimate:
+      properties:
+        classification:
+          $ref: "#/components/schemas/KoppenClimateCodeLiteral"
+        mainGroup:
+          $ref: "#/components/schemas/KoppenClimateCodeLiteral"
+        seasonalPrecipitationSubGroup:
+          $ref: "#/components/schemas/KoppenClimateCodeLiteral"
+        temperatureSubGroup:
+          $ref: "#/components/schemas/KoppenClimateCodeLiteral"
+    LocationKoppenClimateDTO:
+      properties:
+        latitude:
+          type: number
+          format: double
+        longitude:
+          type: number
+          format: double
+        koppenClimate:
+          $ref: "#/components/schemas/KoppenClimate"

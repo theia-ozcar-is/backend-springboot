@@ -1,0 +1,7 @@
+fr/theialand/insitu/dataportal/api/sparql/exeception/InvalidCategoryUriException.class
+fr/theialand/insitu/dataportal/api/sparql/query/RDFQueryClientImpl.class
+fr/theialand/insitu/dataportal/api/sparql/query/RDFQueryClient.class
+fr/theialand/insitu/dataportal/api/sparql/exeception/InvalidUriException.class
+fr/theialand/insitu/dataportal/api/sparql/update/RDFUpdateClient.class
+fr/theialand/insitu/dataportal/api/sparql/AbstractRDFClient.class
+fr/theialand/insitu/dataportal/api/sparql/update/RDFUpdateClientImpl.class

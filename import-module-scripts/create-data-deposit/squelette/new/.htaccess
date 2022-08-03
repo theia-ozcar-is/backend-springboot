@@ -1,0 +1,6 @@
+AuthType Basic
+AuthName "Espace privé #SNO#"
+AuthUserFile "/var/www/.htpasswd"
+<Limit GET POST PUT DELETE>
+  Require user #SNO#
+</Limit>

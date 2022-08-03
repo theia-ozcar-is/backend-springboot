@@ -1,0 +1,4 @@
+AuthType Basic
+AuthName "Espace privé #SNO#"
+AuthUserFile "/var/www/.htpasswd"
+Require user #SNO#

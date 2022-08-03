@@ -1,0 +1,4347 @@
+{
+	"swagger": "2.0",
+	"info": {
+		"description": "Api Documentation",
+		"version": "1.0",
+		"title": "Api Documentation",
+		"termsOfService": "urn:tos",
+		"contact": {},
+		"license": {
+			"name": "Apache 2.0",
+			"url": "http://www.apache.org/licenses/LICENSE-2.0"
+		}
+	},
+	"host": "scanr-api.enseignementsup-recherche.gouv.fr",
+	"basePath": "/api",
+	"schemes":["https","http"],
+	"tags": [{
+		"name": "structure",
+		"description": "Structure Api"
+	}, {
+		"name": "count",
+		"description": "Count Api"
+	}, {
+		"name": "person",
+		"description": "Person Api"
+	}, {
+		"name": "publication",
+		"description": "Publication Api"
+	}, {
+		"name": "project",
+		"description": "Project Api"
+	}],
+	"paths": {
+		"/services/counts": {
+			"get": {
+				"tags": ["count"],
+				"summary": "get",
+				"operationId": "get",
+				"consumes": ["application/json"],
+				"produces": ["*/*"],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"$ref": "#/definitions/CountReport"
+						}
+					}
+				}
+			}
+		},
+		"/v2/persons/like": {
+			"post": {
+				"tags": ["person"],
+				"summary": "Finds FullPerson with given fields similar to given texts or fields of FullPerson of given id",
+				"operationId": "likePerson",
+				"consumes": ["application/json"],
+				"produces": ["application/json;charset=UTF-8"],
+				"parameters": [{
+					"in": "body",
+					"name": "searchRequest",
+					"description": "searchRequest",
+					"required": true,
+					"schema": {
+						"$ref": "#/definitions/v2.LikeRequest"
+					}
+				}],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"$ref": "#/definitions/LikeResponseOfv2.FullPerson"
+						}
+					}
+				}
+			}
+		},
+		"/v2/persons/persons/near/{id}": {
+			"get": {
+				"tags": ["person"],
+				"summary": "Find persons near the given one (default to 20 nearest ones, max 100). Does an Elasticsearch geo_distance query in FullPerson.affiliations.(light)structure.(main)address, see https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl-geo-distance-query.htmlIn v2 was rather in MongoDB",
+				"description": "Distance in km",
+				"operationId": "searchPersonClosedTo",
+				"consumes": ["application/json"],
+				"produces": ["application/json;charset=UTF-8"],
+				"parameters": [{
+					"name": "id",
+					"in": "path",
+					"description": "id",
+					"required": true,
+					"type": "string"
+				}, {
+					"name": "distance",
+					"in": "query",
+					"description": "distance",
+					"required": true,
+					"type": "number",
+					"format": "double"
+				}, {
+					"name": "nb",
+					"in": "query",
+					"description": "nb",
+					"required": false,
+					"type": "integer",
+					"default": 20,
+					"format": "int32"
+				}],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"type": "array",
+							"items": {
+								"$ref": "#/definitions/v2.FullPerson"
+							}
+						}
+					}
+				}
+			}
+		},
+		"/v2/persons/search": {
+			"post": {
+				"tags": ["person"],
+				"summary": "searchPerson",
+				"operationId": "searchPerson",
+				"consumes": ["application/json"],
+				"produces": ["application/json;charset=UTF-8"],
+				"parameters": [{
+					"in": "body",
+					"name": "searchRequest",
+					"description": "searchRequest",
+					"required": true,
+					"schema": {
+						"$ref": "#/definitions/v2.SearchRequest"
+					}
+				}],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"$ref": "#/definitions/SearchResponseOfv2.FullPerson"
+						}
+					}
+				}
+			}
+		},
+		"/v2/persons/search/export": {
+			"get": {
+				"tags": ["person"],
+				"summary": "Excel export of the search (produces content type application/vnd.ms-excel).",
+				"operationId": "exportPersonSearch",
+				"consumes": ["application/json"],
+				"produces": ["application/vnd.ms-excel"],
+				"parameters": [{
+					"name": "request",
+					"in": "query",
+					"description": "request",
+					"required": false,
+					"type": "string"
+				}, {
+					"name": "requestPath",
+					"in": "query",
+					"description": "requestPath",
+					"required": false,
+					"type": "string"
+				}],
+				"responses": {
+					"200": {
+						"description": "OK"
+					}
+				}
+			}
+		},
+		"/v2/persons/search/georesults": {
+			"post": {
+				"tags": ["person"],
+				"summary": "Return all results for the current FullStructure search (no paging, all results using scroll) in Elasticsearch with geo coordinates, in order to build the maps : \n<br/>- of structures, by extracting all (label, address.gps filtered on main one) pairs \n<br/>- of projects, by extracting all (projects.project.label, address.gps filtered on main one) pairs \n<br/>- of persons, by extracting all (persons.person.fullName, address.gps filtered on main one) pairs.",
+				"operationId": "geoSearch",
+				"consumes": ["application/json"],
+				"produces": ["application/json;charset=UTF-8"],
+				"parameters": [{
+					"in": "body",
+					"name": "searchRequest",
+					"description": "searchRequest",
+					"required": true,
+					"schema": {
+						"$ref": "#/definitions/v2.SearchRequest"
+					}
+				}],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"$ref": "#/definitions/SearchResponseOfv2.FullPerson"
+						}
+					}
+				}
+			}
+		},
+		"/v2/persons/statistics": {
+			"post": {
+				"tags": ["person"],
+				"summary": "statistique",
+				"operationId": "statistique",
+				"consumes": ["application/json"],
+				"produces": ["application/json;charset=UTF-8"],
+				"parameters": [{
+					"name": "startDate",
+					"in": "query",
+					"description": "startDate",
+					"required": false,
+					"type": "string"
+				}, {
+					"name": "endDate",
+					"in": "query",
+					"description": "endDate",
+					"required": false,
+					"type": "string"
+				}],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"$ref": "#/definitions/Statistique"
+						}
+					}
+				}
+			}
+		},
+		"/v2/persons/{id}": {
+			"get": {
+				"tags": ["person"],
+				"summary": "Gets by id in Elasticsearch",
+				"operationId": "getPerson",
+				"consumes": ["application/json"],
+				"produces": ["application/json;charset=UTF-8"],
+				"parameters": [{
+					"name": "id",
+					"in": "path",
+					"description": "id",
+					"required": true,
+					"type": "string"
+				}],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"$ref": "#/definitions/v2.FullPerson"
+						}
+					}
+				}
+			}
+		},
+		"/v2/projects/like": {
+			"post": {
+				"tags": ["project"],
+				"summary": "Finds FullProject with given fields similar to given texts or fields of FullProject of given id",
+				"operationId": "likeProject",
+				"consumes": ["application/json"],
+				"produces": ["application/json;charset=UTF-8"],
+				"parameters": [{
+					"in": "body",
+					"name": "searchRequest",
+					"description": "searchRequest",
+					"required": true,
+					"schema": {
+						"$ref": "#/definitions/v2.LikeRequest"
+					}
+				}],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"$ref": "#/definitions/LikeResponseOfv2.FullProject"
+						}
+					}
+				}
+			}
+		},
+		"/v2/projects/near/{id}": {
+			"get": {
+				"tags": ["project"],
+				"summary": "Find projects near the given one (default to 20 nearest ones, max 100). Does an Elasticsearch geo_distance query in FullProject.participants.(light)structure.(main)address, see https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl-geo-distance-query.htmlIn v2 was rather in MongoDB",
+				"description": "Distance in km",
+				"operationId": "searchProjectClosedTo",
+				"consumes": ["application/json"],
+				"produces": ["application/json;charset=UTF-8"],
+				"parameters": [{
+					"name": "id",
+					"in": "path",
+					"description": "id",
+					"required": true,
+					"type": "string"
+				}, {
+					"name": "distance",
+					"in": "query",
+					"description": "distance",
+					"required": true,
+					"type": "number",
+					"format": "double"
+				}, {
+					"name": "nb",
+					"in": "query",
+					"description": "nb",
+					"required": false,
+					"type": "integer",
+					"default": 20,
+					"format": "int32"
+				}],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"type": "array",
+							"items": {
+								"$ref": "#/definitions/v2.FullProject"
+							}
+						}
+					}
+				}
+			}
+		},
+		"/v2/projects/search": {
+			"post": {
+				"tags": ["project"],
+				"summary": "searchProject",
+				"operationId": "searchProject",
+				"consumes": ["application/json"],
+				"produces": ["application/json;charset=UTF-8"],
+				"parameters": [{
+					"in": "body",
+					"name": "searchRequest",
+					"description": "searchRequest",
+					"required": true,
+					"schema": {
+						"$ref": "#/definitions/v2.SearchRequest"
+					}
+				}],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"$ref": "#/definitions/SearchResponseOfv2.FullProject"
+						}
+					}
+				}
+			}
+		},
+		"/v2/projects/search/export": {
+			"get": {
+				"tags": ["project"],
+				"summary": "Excel export of the search (produces content type application/vnd.ms-excel).",
+				"operationId": "exportProjectSearch",
+				"consumes": ["application/json"],
+				"produces": ["application/vnd.ms-excel"],
+				"parameters": [{
+					"name": "request",
+					"in": "query",
+					"description": "request",
+					"required": false,
+					"type": "string"
+				}, {
+					"name": "requestPath",
+					"in": "query",
+					"description": "requestPath",
+					"required": false,
+					"type": "string"
+				}],
+				"responses": {
+					"200": {
+						"description": "OK"
+					}
+				}
+			}
+		},
+		"/v2/projects/search/georesults": {
+			"post": {
+				"tags": ["project"],
+				"summary": "Return all results for the current FullStructure search (no paging, all results using scroll) in Elasticsearch with geo coordinates, in order to build the maps : \n<br/>- of structures, by extracting all (label, address.gps filtered on main one) pairs \n<br/>- of projects, by extracting all (projects.project.label, address.gps filtered on main one) pairs \n<br/>- of persons, by extracting all (persons.person.fullName, address.gps filtered on main one) pairs.",
+				"operationId": "geoSearch_1",
+				"consumes": ["application/json"],
+				"produces": ["application/json;charset=UTF-8"],
+				"parameters": [{
+					"in": "body",
+					"name": "searchRequest",
+					"description": "searchRequest",
+					"required": true,
+					"schema": {
+						"$ref": "#/definitions/v2.SearchRequest"
+					}
+				}],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"$ref": "#/definitions/SearchResponseOfv2.FullProject"
+						}
+					}
+				}
+			}
+		},
+		"/v2/projects/statistics": {
+			"post": {
+				"tags": ["project"],
+				"summary": "statistique",
+				"operationId": "statistique_1",
+				"consumes": ["application/json"],
+				"produces": ["application/json;charset=UTF-8"],
+				"parameters": [{
+					"name": "startDate",
+					"in": "query",
+					"description": "startDate",
+					"required": false,
+					"type": "string"
+				}, {
+					"name": "endDate",
+					"in": "query",
+					"description": "endDate",
+					"required": false,
+					"type": "string"
+				}],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"$ref": "#/definitions/Statistique"
+						}
+					}
+				}
+			}
+		},
+		"/v2/projects/{id}": {
+			"get": {
+				"tags": ["project"],
+				"summary": "Gets by id in Elasticsearch",
+				"operationId": "getProject",
+				"consumes": ["application/json"],
+				"produces": ["application/json;charset=UTF-8"],
+				"parameters": [{
+					"name": "id",
+					"in": "path",
+					"description": "id",
+					"required": true,
+					"type": "string"
+				}],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"$ref": "#/definitions/v2.FullProject"
+						}
+					}
+				}
+			}
+		},
+		"/v2/publications/like": {
+			"post": {
+				"tags": ["publication"],
+				"summary": "Finds FullPublication with given fields similar to given texts or fields of FullPublication of given id",
+				"operationId": "likePublication",
+				"consumes": ["application/json"],
+				"produces": ["application/json;charset=UTF-8"],
+				"parameters": [{
+					"in": "body",
+					"name": "searchRequest",
+					"description": "searchRequest",
+					"required": true,
+					"schema": {
+						"$ref": "#/definitions/v2.LikeRequest"
+					}
+				}],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"$ref": "#/definitions/LikeResponseOfv2.FullPublication"
+						}
+					}
+				}
+			}
+		},
+		"/v2/publications/near/{id}": {
+			"get": {
+				"tags": ["publication"],
+				"summary": "Find publications near the given one (default to 20 nearest ones, max 100). Does an Elasticsearch geo_distance query in FullPublication.authors.affiliations.(light)structure.(main)address (NB. could instead use ...authors.(light)person...), see https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl-geo-distance-query.htmlIn v2 was rather in MongoDB",
+				"description": "Distance in km",
+				"operationId": "searchPublicationClosedTo",
+				"consumes": ["application/json"],
+				"produces": ["application/json;charset=UTF-8"],
+				"parameters": [{
+					"name": "id",
+					"in": "path",
+					"description": "id",
+					"required": true,
+					"type": "string"
+				}, {
+					"name": "distance",
+					"in": "query",
+					"description": "distance",
+					"required": true,
+					"type": "number",
+					"format": "double"
+				}, {
+					"name": "nb",
+					"in": "query",
+					"description": "nb",
+					"required": false,
+					"type": "integer",
+					"default": 20,
+					"format": "int32"
+				}],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"type": "array",
+							"items": {
+								"$ref": "#/definitions/v2.FullPublication"
+							}
+						}
+					}
+				}
+			}
+		},
+		"/v2/publications/search": {
+			"post": {
+				"tags": ["publication"],
+				"summary": "searchPublication",
+				"operationId": "searchPublication",
+				"consumes": ["application/json"],
+				"produces": ["application/json;charset=UTF-8"],
+				"parameters": [{
+					"in": "body",
+					"name": "searchRequest",
+					"description": "searchRequest",
+					"required": true,
+					"schema": {
+						"$ref": "#/definitions/v2.SearchRequest"
+					}
+				}],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"$ref": "#/definitions/SearchResponseOfv2.FullPublication"
+						}
+					}
+				}
+			}
+		},
+		"/v2/publications/search/export": {
+			"get": {
+				"tags": ["publication"],
+				"summary": "Excel export of the search (produces content type application/vnd.ms-excel).",
+				"operationId": "exportPublicationSearch",
+				"consumes": ["application/json"],
+				"produces": ["application/vnd.ms-excel"],
+				"parameters": [{
+					"name": "request",
+					"in": "query",
+					"description": "request",
+					"required": false,
+					"type": "string"
+				}, {
+					"name": "requestPath",
+					"in": "query",
+					"description": "requestPath",
+					"required": false,
+					"type": "string"
+				}],
+				"responses": {
+					"200": {
+						"description": "OK"
+					}
+				}
+			}
+		},
+		"/v2/publications/search/georesults": {
+			"post": {
+				"tags": ["publication"],
+				"summary": "Return all results for the current FullStructure search (no paging, all results using scroll) in Elasticsearch with geo coordinates, in order to build the maps : \n<br/>- of structures, by extracting all (label, address.gps filtered on main one) pairs \n<br/>- of projects, by extracting all (projects.project.label, address.gps filtered on main one) pairs \n<br/>- of persons, by extracting all (persons.person.fullName, address.gps filtered on main one) pairs.",
+				"operationId": "geoSearch_2",
+				"consumes": ["application/json"],
+				"produces": ["application/json;charset=UTF-8"],
+				"parameters": [{
+					"in": "body",
+					"name": "searchRequest",
+					"description": "searchRequest",
+					"required": true,
+					"schema": {
+						"$ref": "#/definitions/v2.SearchRequest"
+					}
+				}],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"$ref": "#/definitions/SearchResponseOfv2.FullPublication"
+						}
+					}
+				}
+			}
+		},
+		"/v2/publications/statistics": {
+			"post": {
+				"tags": ["publication"],
+				"summary": "statistique",
+				"operationId": "statistique_2",
+				"consumes": ["application/json"],
+				"produces": ["application/json;charset=UTF-8"],
+				"parameters": [{
+					"name": "startDate",
+					"in": "query",
+					"description": "startDate",
+					"required": false,
+					"type": "string"
+				}, {
+					"name": "endDate",
+					"in": "query",
+					"description": "endDate",
+					"required": false,
+					"type": "string"
+				}],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"$ref": "#/definitions/Statistique"
+						}
+					}
+				}
+			}
+		},
+		"/v2/publications/{id}": {
+			"get": {
+				"tags": ["publication"],
+				"summary": "Gets by id in Elasticsearch",
+				"operationId": "getPublication",
+				"consumes": ["application/json"],
+				"produces": ["application/json;charset=UTF-8"],
+				"parameters": [{
+					"name": "id",
+					"in": "path",
+					"description": "id",
+					"required": true,
+					"type": "string"
+				}],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"$ref": "#/definitions/v2.FullPublication"
+						}
+					}
+				}
+			}
+		},
+		"/v2/structures/like": {
+			"post": {
+				"tags": ["structure"],
+				"summary": "Finds FullStructure with given fields similar to given texts or fields of FullStructure of given id",
+				"operationId": "likeStructure",
+				"consumes": ["application/json"],
+				"produces": ["application/json;charset=UTF-8"],
+				"parameters": [{
+					"in": "body",
+					"name": "searchRequest",
+					"description": "searchRequest",
+					"required": true,
+					"schema": {
+						"$ref": "#/definitions/v2.LikeRequest"
+					}
+				}],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"$ref": "#/definitions/LikeResponseOfv2.FullStructure"
+						}
+					}
+				}
+			}
+		},
+		"/v2/structures/near/{id}": {
+			"get": {
+				"tags": ["structure"],
+				"summary": "Find structures near the given one (default to 20 nearest ones, max 100). Does an Elasticsearch geo_distance query in FullStructure.(main)address, see https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl-geo-distance-query.html In v2 was rather in MongoDB",
+				"description": "Distance in km",
+				"operationId": "searchStructureClosedTo",
+				"consumes": ["application/json"],
+				"produces": ["application/json;charset=UTF-8"],
+				"parameters": [{
+					"name": "id",
+					"in": "path",
+					"description": "id",
+					"required": true,
+					"type": "string"
+				}, {
+					"name": "distance",
+					"in": "query",
+					"description": "distance",
+					"required": true,
+					"type": "number",
+					"format": "double"
+				}, {
+					"name": "nb",
+					"in": "query",
+					"description": "nb",
+					"required": false,
+					"type": "integer",
+					"default": 20,
+					"format": "int32"
+				}],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"type": "array",
+							"items": {
+								"$ref": "#/definitions/v2.Structure"
+							}
+						}
+					}
+				}
+			}
+		},
+		"/v2/structures/screenshot/{id}": {
+			"get": {
+				"tags": ["structure"],
+				"summary": "screenshot",
+				"operationId": "screenshot",
+				"consumes": ["application/json"],
+				"produces": ["image/png"],
+				"parameters": [{
+					"name": "id",
+					"in": "path",
+					"description": "id",
+					"required": true,
+					"type": "string"
+				}],
+				"responses": {
+					"200": {
+						"description": "OK"
+					}
+				}
+			}
+		},
+		"/v2/structures/search": {
+			"post": {
+				"tags": ["structure"],
+				"summary": "searchStructure",
+				"operationId": "searchStructure",
+				"consumes": ["application/json"],
+				"produces": ["application/json;charset=UTF-8"],
+				"parameters": [{
+					"in": "body",
+					"name": "searchRequest",
+					"description": "searchRequest",
+					"required": true,
+					"schema": {
+						"$ref": "#/definitions/v2.SearchRequest"
+					}
+				}],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"$ref": "#/definitions/SearchResponseOfv2.FullStructure"
+						}
+					}
+				}
+			}
+		},
+		"/v2/structures/search/export": {
+			"get": {
+				"tags": ["structure"],
+				"summary": "Excel export of the search (produces content type application/vnd.ms-excel).",
+				"operationId": "exportStructureSearch",
+				"consumes": ["application/json"],
+				"produces": ["application/vnd.ms-excel"],
+				"parameters": [{
+					"name": "request",
+					"in": "query",
+					"description": "request",
+					"required": false,
+					"type": "string"
+				}, {
+					"name": "requestPath",
+					"in": "query",
+					"description": "requestPath",
+					"required": false,
+					"type": "string"
+				}],
+				"responses": {
+					"200": {
+						"description": "OK"
+					}
+				}
+			}
+		},
+		"/v2/structures/search/georesults": {
+			"post": {
+				"tags": ["structure"],
+				"summary": "Return all results for the current FullStructure search (no paging, all results using scroll) in Elasticsearch with geo coordinates, in order to build the maps : \n<br/>- of structures, by extracting all (label, address.gps filtered on main one) pairs \n<br/>- of projects, by extracting all (projects.project.label, address.gps filtered on main one) pairs \n<br/>- of persons, by extracting all (persons.person.fullName, address.gps filtered on main one) pairs.",
+				"operationId": "geoSearchStructure",
+				"consumes": ["application/json"],
+				"produces": ["application/json;charset=UTF-8"],
+				"parameters": [{
+					"in": "body",
+					"name": "searchRequest",
+					"description": "searchRequest",
+					"required": true,
+					"schema": {
+						"$ref": "#/definitions/v2.SearchRequest"
+					}
+				}],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"$ref": "#/definitions/SearchResponseOfv2.FullStructure"
+						}
+					}
+				}
+			}
+		},
+		"/v2/structures/statistics": {
+			"post": {
+				"tags": ["structure"],
+				"summary": "statistique",
+				"operationId": "statistique_3",
+				"consumes": ["application/json"],
+				"produces": ["application/json;charset=UTF-8"],
+				"parameters": [{
+					"name": "startDate",
+					"in": "query",
+					"description": "startDate",
+					"required": false,
+					"type": "string"
+				}, {
+					"name": "endDate",
+					"in": "query",
+					"description": "endDate",
+					"required": false,
+					"type": "string"
+				}],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"$ref": "#/definitions/Statistique"
+						}
+					}
+				}
+			}
+		},
+		"/v2/structures/structure/{id}": {
+			"get": {
+				"tags": ["structure"],
+				"summary": "Gets by id in Elasticsearch",
+				"operationId": "getStructure",
+				"consumes": ["application/json"],
+				"produces": ["application/json;charset=UTF-8"],
+				"parameters": [{
+					"name": "id",
+					"in": "path",
+					"description": "id",
+					"required": true,
+					"type": "string"
+				}],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"$ref": "#/definitions/v2.FullStructure"
+						}
+					}
+				}
+			}
+		}
+	},
+	"definitions": {
+		"SimilarTypedObjectOfv2.Person": {
+			"type": "object",
+			"properties": {
+				"score": {
+					"type": "string"
+				},
+				"target": {
+					"description": "Light fields in Full object, else only id",
+					"$ref": "#/definitions/v2.Person"
+				}
+			}
+		},
+		"v2.Aggregation": {
+			"type": "object",
+			"properties": {
+				"field": {
+					"type": "string",
+					"description": "Name of the field to aggregate on"
+				},
+				"filters": {
+					"type": "object",
+					"description": "In the case of a \"filters\" aggregation : named filters, each defining a bucket or bin, see https://www.elastic.co/guide/en/elasticsearch/reference/current/search-aggregations-bucket-filters-aggregation.html)",
+					"additionalProperties": {
+						"$ref": "#/definitions/v2.SearchFilter"
+					}
+				},
+				"filtersMapValueTypeDummy": {
+					"$ref": "#/definitions/v2.SearchFilter"
+				},
+				"min_doc_count": {
+					"type": "integer",
+					"format": "int32",
+					"description": "In the case of a \"terms\" aggregation (each value defining dynamically a separate bucket or bin), see https://www.elastic.co/guide/en/elasticsearch/reference/current/search-aggregations-bucket-terms-aggregation.html)"
+				},
+				"order": {
+					"description": "In the case of a \"terms\" aggregation (each value defining dynamically a separate bucket or bin), see https://www.elastic.co/guide/en/elasticsearch/reference/current/search-aggregations-bucket-terms-aggregation.html)",
+					"$ref": "#/definitions/v2.AggregationTermsOrder"
+				},
+				"size": {
+					"type": "integer",
+					"format": "int32",
+					"description": "In the case of a \"terms\" aggregation (each value defining dynamically a separate bucket or bin), see https://www.elastic.co/guide/en/elasticsearch/reference/current/search-aggregations-bucket-terms-aggregation.html)"
+				}
+			}
+		},
+		"v2.Badge": {
+			"type": "object",
+			"properties": {
+				"code": {
+					"type": "string",
+					"example": "pcrdt",
+					"description": "used for indexation and generate image name"
+				},
+				"label": {
+					"type": "object",
+					"description": "since v2 i18n",
+					"additionalProperties": {
+						"type": "string"
+					}
+				}
+			},
+			"description": "Represent different badges associated with a structure (hdr, anr, ...) or any other root object."
+		},
+		"SearchResultOfv2.FullPerson": {
+			"type": "object",
+			"properties": {
+				"highlights": {
+					"type": "array",
+					"items": {
+						"$ref": "#/definitions/HighlightItem"
+					}
+				},
+				"score": {
+					"type": "object",
+					"description": "TODO float as in Elastisearch ?"
+				},
+				"value": {
+					"$ref": "#/definitions/v2.FullPerson"
+				}
+			}
+		},
+		"v2.FullProject": {
+			"type": "object",
+			"properties": {
+				"acronym": {
+					"type": "object",
+					"description": "i18n since v2",
+					"additionalProperties": {
+						"type": "string"
+					}
+				},
+				"action": {
+					"description": "since v2",
+					"$ref": "#/definitions/v2.ProjectAction"
+				},
+				"associatedProjects": {
+					"type": "array",
+					"description": "in FullProject Light fields, outside only id",
+					"items": {
+						"$ref": "#/definitions/v2.Project"
+					}
+				},
+				"badges": {
+					"type": "array",
+					"items": {
+						"$ref": "#/definitions/v2.Badge"
+					}
+				},
+				"budgetFinanced": {
+					"type": "number",
+					"format": "float",
+					"description": "since v2"
+				},
+				"budgetTotal": {
+					"type": "number",
+					"format": "float",
+					"description": "budget before v2"
+				},
+				"call": {
+					"$ref": "#/definitions/v2.ProjectCall"
+				},
+				"createdAt": {
+					"type": "string",
+					"format": "date-time"
+				},
+				"createdDate": {
+					"type": "string",
+					"format": "date-time"
+				},
+				"description": {
+					"type": "object",
+					"description": "i18n since v2",
+					"additionalProperties": {
+						"type": "string"
+					}
+				},
+				"domains": {
+					"type": "array",
+					"items": {
+						"$ref": "#/definitions/v2.Domain"
+					}
+				},
+				"duration": {
+					"type": "integer",
+					"format": "int32",
+					"description": "in month"
+				},
+				"endDate": {
+					"type": "string",
+					"format": "date-time",
+					"description": "since v2"
+				},
+				"focus": {
+					"type": "array",
+					"description": "since v2",
+					"items": {
+						"type": "string"
+					}
+				},
+				"id": {
+					"type": "string"
+				},
+				"keywords": {
+					"type": "object",
+					"description": "une liste de termes par langue (fr, en), fourni par MESRI",
+					"additionalProperties": {
+						"$ref": "#/definitions/List"
+					}
+				},
+				"label": {
+					"type": "object",
+					"description": "i18n since v2",
+					"additionalProperties": {
+						"type": "string"
+					}
+				},
+				"lastUpdated": {
+					"type": "string",
+					"format": "date-time"
+				},
+				"participantCount": {
+					"type": "integer",
+					"format": "int32"
+				},
+				"participants": {
+					"type": "array",
+					"description": "project's participating structures (scanr structures or external structures). In FullStructure Light fields, outside only id",
+					"items": {
+						"$ref": "#/definitions/v2.ProjectStructureRelation"
+					}
+				},
+				"persons": {
+					"type": "array",
+					"description": "since v2. Only id, firstName, lastName, email, plus Light fields in FullProject",
+					"items": {
+						"$ref": "#/definitions/v2.PersonRelation"
+					}
+				},
+				"projectUrl": {
+					"type": "string",
+					"description": "since v2"
+				},
+				"publications": {
+					"type": "array",
+					"description": "Only in Full. Champ alimenté par le champ \"projects\" présent dans le schéma \"Publication\" (recherche des publications liées au projet)",
+					"items": {
+						"$ref": "#/definitions/v2.Publication"
+					}
+				},
+				"removedAt": {
+					"type": "string",
+					"format": "date-time"
+				},
+				"signatureDate": {
+					"type": "string",
+					"format": "date-time",
+					"description": "since v2"
+				},
+				"similarProjects": {
+					"type": "array",
+					"items": {
+						"$ref": "#/definitions/SimilarTypedObjectOfv2.Project"
+					}
+				},
+				"startDate": {
+					"type": "string",
+					"format": "date-time",
+					"description": "since v2"
+				},
+				"type": {
+					"type": "string"
+				},
+				"url": {
+					"type": "string",
+					"description": "project's url"
+				},
+				"year": {
+					"type": "integer",
+					"format": "int32",
+					"description": "project's year"
+				}
+			}
+		},
+		"v2.PublicationSource": {
+			"type": "object",
+			"properties": {
+				"articleNumber": {
+					"type": "string",
+					"description": "Article number inside the source as complementary info"
+				},
+				"isInDoaj": {
+					"type": "boolean"
+				},
+				"isOa": {
+					"type": "boolean"
+				},
+				"issue": {
+					"type": "string"
+				},
+				"journalIssns": {
+					"type": "array",
+					"items": {
+						"type": "string"
+					}
+				},
+				"pagination": {
+					"type": "string",
+					"example": "512-518",
+					"description": "pages information"
+				},
+				"publisher": {
+					"type": "string"
+				},
+				"subtitle": {
+					"type": "string"
+				},
+				"title": {
+					"type": "string",
+					"description": "Title of the source, may be null if part of a collection"
+				},
+				"type": {
+					"type": "string",
+					"description": "Type of the source, if COLLECTION then collection may contain collection data",
+					"enum": ["PROCEEDINGS", "EVENT", "BOOK", "COLLECTION", "ARTICLE"]
+				}
+			}
+		},
+		"v2.StructurePersonInverseRelation": {
+			"type": "object",
+			"properties": {
+				"endDate": {
+					"type": "string",
+					"format": "date-time"
+				},
+				"person": {
+					"$ref": "#/definitions/v2.Person"
+				},
+				"role": {
+					"type": "string"
+				},
+				"source": {
+					"type": "array",
+					"items": {
+						"type": "string"
+					}
+				},
+				"startDate": {
+					"type": "string",
+					"format": "date-time"
+				}
+			},
+			"description": "Inverse relation of Person.affiliations, in Full only"
+		},
+		"v2.Person": {
+			"type": "object",
+			"properties": {
+				"affiliations": {
+					"type": "array",
+					"description": "diffère de FullPerson.publications.affiliations",
+					"items": {
+						"$ref": "#/definitions/v2.PublicationPersonAffiliation"
+					}
+				},
+				"awards": {
+					"type": "array",
+					"items": {
+						"$ref": "#/definitions/v2.Award"
+					}
+				},
+				"badges": {
+					"type": "array",
+					"description": "since v2",
+					"items": {
+						"$ref": "#/definitions/v2.Badge"
+					}
+				},
+				"birthDate": {
+					"type": "string",
+					"format": "date-time"
+				},
+				"certifications": {
+					"type": "array",
+					"items": {
+						"$ref": "#/definitions/v2.Certification"
+					}
+				},
+				"coContributors": {
+					"type": "array",
+					"description": "Light fields in Full objects, else only id of Persons that are Publication.coContributors.",
+					"items": {
+						"$ref": "#/definitions/v2.Person"
+					}
+				},
+				"createdAt": {
+					"type": "string",
+					"format": "date-time"
+				},
+				"createdDate": {
+					"type": "string",
+					"format": "date-time"
+				},
+				"dataSources": {
+					"type": "array",
+					"items": {
+						"type": "string"
+					}
+				},
+				"deathDate": {
+					"type": "string",
+					"format": "date-time"
+				},
+				"description": {
+					"type": "object",
+					"additionalProperties": {
+						"type": "string"
+					}
+				},
+				"domains": {
+					"type": "array",
+					"items": {
+						"$ref": "#/definitions/v2.Domain"
+					}
+				},
+				"email": {
+					"type": "string"
+				},
+				"externalIds": {
+					"type": "array",
+					"description": "Map of external id name (idref, orcid, idhal ?) to value",
+					"items": {
+						"$ref": "#/definitions/ExternalId"
+					}
+				},
+				"firstName": {
+					"type": "string"
+				},
+				"focus": {
+					"type": "array",
+					"description": "since v2",
+					"items": {
+						"type": "string"
+					}
+				},
+				"fullName": {
+					"type": "string"
+				},
+				"gender": {
+					"type": "string"
+				},
+				"id": {
+					"type": "string"
+				},
+				"keywords": {
+					"type": "object",
+					"description": "une liste de termes par langue (fr, en), fourni par MESRI",
+					"additionalProperties": {
+						"$ref": "#/definitions/List"
+					}
+				},
+				"lastName": {
+					"type": "string"
+				},
+				"lastUpdated": {
+					"type": "string",
+					"format": "date-time"
+				},
+				"links": {
+					"type": "array",
+					"description": "collection of linkType : url. Including twitter, wikipedia",
+					"items": {
+						"$ref": "#/definitions/v2.Link"
+					}
+				},
+				"maidenName": {
+					"type": "string"
+				},
+				"orcidCreationDate": {
+					"type": "string",
+					"format": "date-time"
+				},
+				"removedAt": {
+					"type": "string",
+					"format": "date-time"
+				},
+				"roles": {
+					"type": "array",
+					"description": "roles génériques, pas de lien avec employeurs, fourni",
+					"items": {
+						"$ref": "#/definitions/v2.PersonRole"
+					}
+				},
+				"similarPersons": {
+					"type": "array",
+					"items": {
+						"$ref": "#/definitions/SimilarTypedObjectOfv2.Person"
+					}
+				},
+				"website": {
+					"type": "string"
+				}
+			}
+		},
+		"SearchResponseOfv2.FullPublication": {
+			"type": "object",
+			"properties": {
+				"facets": {
+					"type": "array",
+					"description": "Computed buckets or bins for each named aggregation",
+					"items": {
+						"$ref": "#/definitions/FacetResult"
+					}
+				},
+				"histogramsMapValueTypeDummy": {
+					"$ref": "#/definitions/FacetResult"
+				},
+				"request": {
+					"description": "Search request that provided this response's results",
+					"$ref": "#/definitions/v2.SearchRequest"
+				},
+				"results": {
+					"type": "array",
+					"description": "Found objects",
+					"items": {
+						"$ref": "#/definitions/SearchResultOfv2.FullPublication"
+					}
+				},
+				"total": {
+					"type": "integer",
+					"format": "int64"
+				}
+			}
+		},
+		"v2.Certification": {
+			"type": "object",
+			"properties": {
+				"date": {
+					"type": "string",
+					"format": "date-time"
+				},
+				"label": {
+					"type": "string"
+				}
+			},
+			"description": "in Person, Publication"
+		},
+		"v2.AggregationTermsOrder": {
+			"type": "object",
+			"properties": {
+				"direction": {
+					"type": "string",
+					"enum": ["ASC", "DESC"]
+				},
+				"type": {
+					"type": "string",
+					"enum": ["COUNT", "KEY"]
+				}
+			}
+		},
+		"GeoPoint": {
+			"type": "object",
+			"properties": {
+				"fragment": {
+					"type": "boolean"
+				},
+				"geohash": {
+					"type": "string"
+				},
+				"lat": {
+					"type": "number",
+					"format": "double"
+				},
+				"lon": {
+					"type": "number",
+					"format": "double"
+				}
+			}
+		},
+		"v2.ProjectAction": {
+			"type": "object",
+			"properties": {
+				"id": {
+					"type": "string"
+				},
+				"label": {
+					"type": "object",
+					"additionalProperties": {
+						"type": "string"
+					}
+				},
+				"level": {
+					"type": "string"
+				}
+			}
+		},
+		"v2.StructureSpinoff": {
+			"type": "object",
+			"properties": {
+				"label": {
+					"type": "string",
+					"description": "label of the company spinoff"
+				},
+				"project": {
+					"description": "Project originating, if known at least id",
+					"$ref": "#/definitions/v2.Project"
+				},
+				"structure": {
+					"description": "Spin off company (SIREN), if known at least id",
+					"$ref": "#/definitions/v2.Structure"
+				},
+				"type": {
+					"type": "string",
+					"description": "Type of the spinoff, most commonly a program"
+				},
+				"yearClosing": {
+					"type": "integer",
+					"format": "int32",
+					"description": "optional year when this spinoff has been closed"
+				}
+			},
+			"description": "Spinoff of an RNSR structure"
+		},
+		"LikeResponseOfv2.FullPublication": {
+			"type": "object",
+			"properties": {
+				"facets": {
+					"type": "array",
+					"description": "Computed buckets or bins for each named aggregation",
+					"items": {
+						"$ref": "#/definitions/FacetResult"
+					}
+				},
+				"request": {
+					"description": "Like request that provided this response's results",
+					"$ref": "#/definitions/v2.LikeRequest"
+				},
+				"results": {
+					"type": "array",
+					"description": "Found objects",
+					"items": {
+						"$ref": "#/definitions/SearchResultOfv2.FullPublication"
+					}
+				},
+				"total": {
+					"type": "integer",
+					"format": "int64"
+				}
+			}
+		},
+		"v2.SocialAccount": {
+			"type": "object",
+			"properties": {
+				"account": {
+					"type": "string"
+				},
+				"profilePictureUrl": {
+					"type": "string"
+				},
+				"score": {
+					"type": "number",
+					"format": "double"
+				}
+			}
+		},
+		"v2.AssociationCode": {
+			"type": "object",
+			"properties": {
+				"normalized": {
+					"type": "string",
+					"example": "UMR 8896"
+				},
+				"number": {
+					"type": "string",
+					"example": "8896"
+				},
+				"type": {
+					"type": "string",
+					"example": "UMR"
+				}
+			}
+		},
+		"v2.RolePatent": {
+			"type": "object",
+			"properties": {
+				"description": {
+					"type": "string"
+				},
+				"endDate": {
+					"type": "string",
+					"format": "date-time"
+				},
+				"role": {
+					"type": "string"
+				},
+				"startDate": {
+					"type": "string",
+					"format": "date-time"
+				}
+			},
+			"description": "in Publication"
+		},
+		"v2.Address": {
+			"type": "object",
+			"properties": {
+				"address": {
+					"type": "string",
+					"description": "Anything not in other fields, especially city and country."
+				},
+				"city": {
+					"type": "string",
+					"example": "Paris"
+				},
+				"citycode": {
+					"type": "string",
+					"example": "75009"
+				},
+				"country": {
+					"type": "string",
+					"description": "since v2"
+				},
+				"gps": {
+					"description": "Geo position, in Elasticsearch GeoPoint (lat, lon). NB. in v1, was Spring Data Mongo Point (longitude, latitude), so no more need for specific Mongo deserialization or indexing",
+					"$ref": "#/definitions/GeoPoint"
+				},
+				"localisationSuggestions": {
+					"type": "array",
+					"description": "Gathers addres, city... fields to provide autocompletion in a single \"place\" input using Elasticsearch suggest API. Computed by ScanESR on all Address instances.",
+					"items": {
+						"type": "string"
+					}
+				},
+				"main": {
+					"type": "boolean"
+				},
+				"postcode": {
+					"type": "string"
+				},
+				"provider": {
+					"type": "string",
+					"description": "Address information provider. Since v2"
+				},
+				"score": {
+					"type": "string",
+					"description": "Score relatif au provider des informations liées à l'adresse. Since v2"
+				},
+				"urbanUnitCode": {
+					"type": "string",
+					"description": "Provided to OpenStreetMap ?"
+				},
+				"urbanUnitLabel": {
+					"type": "string",
+					"description": "Provided to OpenStreetMap for display ?"
+				}
+			}
+		},
+		"v2.PublicationPersonAffiliation": {
+			"type": "object",
+			"properties": {
+				"endDate": {
+					"type": "string",
+					"format": "date-time"
+				},
+				"label": {
+					"type": "string",
+					"description": "Label brute de la structure fourni par MESRI"
+				},
+				"role": {
+					"type": "string"
+				},
+				"sources": {
+					"type": "array",
+					"items": {
+						"type": "string"
+					}
+				},
+				"startDate": {
+					"type": "string",
+					"format": "date-time"
+				},
+				"structure": {
+					"description": "The structure where the person is affiliated in if in scanr, only id outside Full object.",
+					"$ref": "#/definitions/v2.Structure"
+				}
+			},
+			"description": "Affiliation relation of a publication's author. Used in Person"
+		},
+		"v2.ProjectCall": {
+			"type": "object",
+			"properties": {
+				"id": {
+					"type": "string"
+				},
+				"label": {
+					"type": "string"
+				}
+			}
+		},
+		"v2.SpinoffFromInverseRelation": {
+			"type": "object",
+			"properties": {
+				"structure": {
+					"description": "Structure that did the spinoff. NB. pas multivaluée (car Structure.spinoffs.project ne l'est pas)",
+					"$ref": "#/definitions/v2.Structure"
+				},
+				"type": {
+					"type": "string"
+				}
+			},
+			"description": "Inverse relation from spinned to spinner Structure."
+		},
+		"v2.LinkedProduction": {
+			"type": "object",
+			"properties": {
+				"authors": {
+					"type": "array",
+					"items": {
+						"$ref": "#/definitions/v2.PublicationAuthor"
+					}
+				},
+				"doi": {
+					"type": "string"
+				},
+				"link": {
+					"type": "string"
+				},
+				"production": {
+					"$ref": "#/definitions/v2.Publication"
+				},
+				"productionType": {
+					"type": "string"
+				},
+				"publicationDate": {
+					"type": "string",
+					"format": "date-time"
+				},
+				"source": {
+					"type": "string"
+				},
+				"title": {
+					"type": "string"
+				},
+				"typeCitation": {
+					"type": "string"
+				}
+			},
+			"description": "in Publication"
+		},
+		"v2.StructureOffer": {
+			"type": "object",
+			"properties": {
+				"address": {
+					"$ref": "#/definitions/v2.Address"
+				},
+				"description": {
+					"type": "string"
+				},
+				"details": {
+					"type": "string"
+				},
+				"domains": {
+					"type": "array",
+					"items": {
+						"$ref": "#/definitions/v2.Domain"
+					}
+				},
+				"kind": {
+					"type": "string"
+				},
+				"name": {
+					"type": "string"
+				},
+				"sourceUrl": {
+					"type": "string"
+				}
+			}
+		},
+		"v2.Domain": {
+			"type": "object",
+			"properties": {
+				"code": {
+					"type": "string",
+					"description": "code interne du domaine"
+				},
+				"label": {
+					"type": "object",
+					"description": "since v2 i18n",
+					"additionalProperties": {
+						"type": "string"
+					}
+				},
+				"level": {
+					"type": "string"
+				},
+				"score": {
+					"type": "string"
+				},
+				"type": {
+					"type": "string",
+					"description": "not constrained"
+				},
+				"url": {
+					"type": "string"
+				}
+			},
+			"description": "Domain of research of Structure and its offers, Person, Publication"
+		},
+		"HighlightItem": {
+			"type": "object",
+			"properties": {
+				"type": {
+					"type": "string"
+				},
+				"value": {
+					"type": "string"
+				}
+			}
+		},
+		"v2.Structure": {
+			"type": "object",
+			"properties": {
+				"acronym": {
+					"type": "object",
+					"description": "Acronym of the structure. I18n since v2",
+					"additionalProperties": {
+						"type": "string"
+					}
+				},
+				"activities": {
+					"type": "array",
+					"description": "All activity labels that are affected to this structure (with or without a nomenclature)",
+					"items": {
+						"$ref": "#/definitions/v2.StructureActivity"
+					}
+				},
+				"address": {
+					"type": "array",
+					"description": "In Light only main one, since v2 multivalued",
+					"items": {
+						"$ref": "#/definitions/v2.Address"
+					}
+				},
+				"alias": {
+					"type": "array",
+					"description": "Alternative labels for search (other names for research structures...)",
+					"items": {
+						"type": "string"
+					}
+				},
+				"badges": {
+					"type": "array",
+					"description": "List of badges (HDR. ILab...). Badges are associated with symbols and displayed in the front end. Before v2 was tags.",
+					"items": {
+						"$ref": "#/definitions/v2.Badge"
+					}
+				},
+				"commercialBrands": {
+					"type": "array",
+					"description": "Alternative commercial label for companies. Before v2 commercialLabel and single valued",
+					"items": {
+						"type": "string"
+					}
+				},
+				"createdAt": {
+					"type": "string",
+					"format": "date-time"
+				},
+				"createdDate": {
+					"type": "string",
+					"format": "date-time"
+				},
+				"creationYear": {
+					"type": "integer",
+					"format": "int32"
+				},
+				"description": {
+					"type": "object",
+					"description": "since v2",
+					"additionalProperties": {
+						"type": "string"
+					}
+				},
+				"domains": {
+					"type": "array",
+					"description": "Domain of research",
+					"items": {
+						"$ref": "#/definitions/v2.Domain"
+					}
+				},
+				"email": {
+					"type": "string",
+					"description": "Mail de la structure, since v2"
+				},
+				"employeesInfo": {
+					"$ref": "#/definitions/v2.StructureEmployeesInfo"
+				},
+				"endDate": {
+					"type": "string",
+					"format": "date-time",
+					"description": "Date de fin de la structure, since v2"
+				},
+				"evaluations": {
+					"type": "array",
+					"items": {
+						"$ref": "#/definitions/v2.StructureEvaluation"
+					}
+				},
+				"externalIds": {
+					"type": "array",
+					"description": "collection of idName : idValue",
+					"items": {
+						"$ref": "#/definitions/ExternalId"
+					}
+				},
+				"finance": {
+					"$ref": "#/definitions/v2.StructureFinance"
+				},
+				"focus": {
+					"type": "array",
+					"description": "since v2",
+					"items": {
+						"type": "string"
+					}
+				},
+				"id": {
+					"type": "string",
+					"description": "RNSR ID for research structures (UAI ex. 0755361V), SIREN for public and private companies (ex. 18007003901803)"
+				},
+				"institutions": {
+					"type": "array",
+					"description": "(Public only) Related institutions aka Tutelles",
+					"items": {
+						"$ref": "#/definitions/v2.Institution"
+					}
+				},
+				"isFrench": {
+					"type": "boolean",
+					"example": false,
+					"description": "Whether this is a French structure. Since v2"
+				},
+				"isPublic": {
+					"type": "boolean",
+					"example": false,
+					"description": "Whether this is a public structure. Since v2"
+				},
+				"keywords": {
+					"type": "object",
+					"description": "une liste de termes par langue (fr, en), fourni par MESRI",
+					"additionalProperties": {
+						"$ref": "#/definitions/List"
+					}
+				},
+				"kind": {
+					"type": "array",
+					"description": "Structure Kind, not Enum since v2",
+					"items": {
+						"type": "string"
+					}
+				},
+				"label": {
+					"type": "object",
+					"description": "Full label of the structure. I18n since v2 (e.g. Laboratoire d'Informatique de Grenoble)",
+					"additionalProperties": {
+						"type": "string"
+					}
+				},
+				"lastUpdated": {
+					"type": "string",
+					"format": "date-time"
+				},
+				"leaders": {
+					"type": "array",
+					"description": "List of all leading people of the structure",
+					"items": {
+						"$ref": "#/definitions/v2.PersonRelation"
+					}
+				},
+				"legalCategory": {
+					"description": "Since v2",
+					"$ref": "#/definitions/v2.LegalCategory"
+				},
+				"level": {
+					"type": "string",
+					"description": "public structure level label, before v2 was integer"
+				},
+				"links": {
+					"type": "array",
+					"items": {
+						"$ref": "#/definitions/v2.Link"
+					}
+				},
+				"logo": {
+					"type": "string",
+					"description": "logo URL, can be null"
+				},
+				"nature": {
+					"type": "string",
+					"example": "5400 / Société à responsabilité limitée",
+					"description": "in v2 merges nature and companyType"
+				},
+				"offers": {
+					"type": "array",
+					"items": {
+						"$ref": "#/definitions/v2.StructureOffer"
+					}
+				},
+				"parents": {
+					"type": "array",
+					"description": "in v2 renamed from parent",
+					"items": {
+						"$ref": "#/definitions/v2.StructureParentRelation"
+					}
+				},
+				"phone": {
+					"type": "string",
+					"description": "Téléphone de la structure, since v2"
+				},
+				"predecessors": {
+					"type": "array",
+					"description": "History of the research structure (merge and name changes). In v2 renamed from history and multivalued",
+					"items": {
+						"$ref": "#/definitions/v2.StructurePredecessorRelation"
+					}
+				},
+				"relations": {
+					"type": "array",
+					"description": "All foreign structural relations with this structure (e.g. COMUE, École Doctorales...)",
+					"items": {
+						"$ref": "#/definitions/v2.StructureRelation"
+					}
+				},
+				"removedAt": {
+					"type": "string",
+					"format": "date-time"
+				},
+				"socialMedias": {
+					"type": "array",
+					"description": "type SocialMedia, since v2. Differs from crawled Website.SocialAccount",
+					"items": {
+						"$ref": "#/definitions/v2.SocialMedia"
+					}
+				},
+				"spinoffs": {
+					"type": "array",
+					"description": "List of spinoff of this RNSR lab.",
+					"items": {
+						"$ref": "#/definitions/v2.StructureSpinoff"
+					}
+				},
+				"startDate": {
+					"type": "string",
+					"format": "date-time",
+					"description": "Date de début de la structure, since v2"
+				},
+				"status": {
+					"type": "string",
+					"description": "si la Structure est toujours existante ou non (Active, Old), since v2"
+				}
+			}
+		},
+		"v2.StructureEvaluation": {
+			"type": "object",
+			"properties": {
+				"evaluator": {
+					"type": "string",
+					"description": "entité mais pas Structure ScanESR"
+				},
+				"url": {
+					"type": "string"
+				},
+				"year": {
+					"type": "integer",
+					"format": "int32",
+					"description": "2016"
+				}
+			}
+		},
+		"v2.DateRangeFilter": {
+			"type": "object",
+			"properties": {
+				"max": {
+					"type": "string",
+					"format": "date-time"
+				},
+				"min": {
+					"type": "string",
+					"format": "date-time"
+				},
+				"missing": {
+					"type": "boolean"
+				}
+			}
+		},
+		"SimilarTypedObjectOfv2.Project": {
+			"type": "object",
+			"properties": {
+				"score": {
+					"type": "string"
+				},
+				"target": {
+					"description": "Light fields in Full object, else only id",
+					"$ref": "#/definitions/v2.Project"
+				}
+			}
+		},
+		"v2.SearchFilter": {
+			"type": "object"
+		},
+		"SearchResultOfv2.FullProject": {
+			"type": "object",
+			"properties": {
+				"highlights": {
+					"type": "array",
+					"items": {
+						"$ref": "#/definitions/HighlightItem"
+					}
+				},
+				"score": {
+					"type": "object",
+					"description": "TODO float as in Elastisearch ?"
+				},
+				"value": {
+					"$ref": "#/definitions/v2.FullProject"
+				}
+			}
+		},
+		"FacetResult": {
+			"type": "object",
+			"properties": {
+				"entries": {
+					"type": "array",
+					"items": {
+						"$ref": "#/definitions/FacetResultEntry"
+					}
+				},
+				"id": {
+					"type": "string"
+				}
+			}
+		},
+		"v2.PublicationAuthor": {
+			"type": "object",
+			"properties": {
+				"affiliations": {
+					"type": "array",
+					"items": {
+						"$ref": "#/definitions/v2.PublicationStructureAffiliation"
+					}
+				},
+				"city": {
+					"type": "string"
+				},
+				"country": {
+					"type": "string"
+				},
+				"firstName": {
+					"type": "string"
+				},
+				"fullName": {
+					"type": "string"
+				},
+				"gender": {
+					"type": "string"
+				},
+				"lastName": {
+					"type": "string"
+				},
+				"person": {
+					"description": "Person reference : Light fields in FullPublication, else only id",
+					"$ref": "#/definitions/v2.Person"
+				},
+				"postcode": {
+					"type": "string"
+				},
+				"role": {
+					"type": "string"
+				},
+				"rolePatent": {
+					"type": "array",
+					"items": {
+						"$ref": "#/definitions/v2.RolePatent"
+					}
+				},
+				"typeParticipant": {
+					"type": "string"
+				}
+			},
+			"description": "Author relation of a publication"
+		},
+		"CountReport": {
+			"type": "object",
+			"properties": {
+				"fullPersons": {
+					"type": "integer",
+					"format": "int64"
+				},
+				"fullProjects": {
+					"type": "integer",
+					"format": "int64"
+				},
+				"fullPublications": {
+					"type": "integer",
+					"format": "int64"
+				},
+				"fullStructures": {
+					"type": "integer",
+					"format": "int64"
+				}
+			}
+		},
+		"SearchResponseOfv2.FullProject": {
+			"type": "object",
+			"properties": {
+				"facets": {
+					"type": "array",
+					"description": "Computed buckets or bins for each named aggregation",
+					"items": {
+						"$ref": "#/definitions/FacetResult"
+					}
+				},
+				"histogramsMapValueTypeDummy": {
+					"$ref": "#/definitions/FacetResult"
+				},
+				"request": {
+					"description": "Search request that provided this response's results",
+					"$ref": "#/definitions/v2.SearchRequest"
+				},
+				"results": {
+					"type": "array",
+					"description": "Found objects",
+					"items": {
+						"$ref": "#/definitions/SearchResultOfv2.FullProject"
+					}
+				},
+				"total": {
+					"type": "integer",
+					"format": "int64"
+				}
+			}
+		},
+		"WebPage": {
+			"type": "object",
+			"properties": {
+				"content": {
+					"type": "string"
+				},
+				"title": {
+					"type": "string"
+				}
+			}
+		},
+		"v2.StructureFinance": {
+			"type": "object",
+			"properties": {
+				"date": {
+					"type": "string",
+					"format": "date-time",
+					"description": "Date of the information"
+				},
+				"operatingIncome": {
+					"type": "string",
+					"description": "Mere string (with currency ?), not used in aggregations"
+				},
+				"revenue": {
+					"type": "string",
+					"description": "Mere string (with currency ?)"
+				}
+			},
+			"description": "Financial and statistical data about the structure"
+		},
+		"v2.LegalCategory": {
+			"type": "object",
+			"properties": {
+				"code": {
+					"type": "string"
+				},
+				"label": {
+					"type": "string"
+				}
+			}
+		},
+		"v2.Award": {
+			"type": "object",
+			"properties": {
+				"amount": {
+					"type": "string",
+					"description": "including currency"
+				},
+				"date": {
+					"type": "string",
+					"format": "date-time"
+				},
+				"description": {
+					"type": "string"
+				},
+				"label": {
+					"type": "string"
+				},
+				"structure": {
+					"description": "in Light version when included in a Full object",
+					"$ref": "#/definitions/v2.Structure"
+				},
+				"structureName": {
+					"type": "string",
+					"description": "Label brut de l'institution liée, fourni par MESRI"
+				},
+				"url": {
+					"type": "string"
+				}
+			},
+			"description": "Used in Person (all fields), Publication (only label, date).En Light uniquement label (et non prize), date."
+		},
+		"v2.PublicationStructureAffiliation": {
+			"type": "object",
+			"properties": {
+				"address": {
+					"$ref": "#/definitions/v2.Address"
+				},
+				"institutionLabel": {
+					"type": "string"
+				},
+				"label": {
+					"type": "string"
+				},
+				"structure": {
+					"type": "string"
+				}
+			},
+			"description": "Affiliation relation of a publication affiliation. Used in Publication"
+		},
+		"v2.StructurePublicationInverseRelation": {
+			"type": "object",
+			"properties": {
+				"endDate": {
+					"type": "string",
+					"format": "date-time"
+				},
+				"publication": {
+					"$ref": "#/definitions/v2.Publication"
+				},
+				"role": {
+					"type": "string"
+				},
+				"source": {
+					"type": "array",
+					"items": {
+						"type": "string"
+					}
+				},
+				"startDate": {
+					"type": "string",
+					"format": "date-time"
+				}
+			},
+			"description": "Inverse relation of Publication.authors.affiliations, in Full only"
+		},
+		"v2.PersonRole": {
+			"type": "object",
+			"properties": {
+				"description": {
+					"type": "string"
+				},
+				"endDate": {
+					"type": "string",
+					"format": "date-time"
+				},
+				"role": {
+					"type": "string"
+				},
+				"startDate": {
+					"type": "string",
+					"format": "date-time"
+				}
+			}
+		},
+		"v2.FullPersonProject": {
+			"type": "object",
+			"properties": {
+				"project": {
+					"description": "Light version of Project",
+					"$ref": "#/definitions/v2.Project"
+				},
+				"role": {
+					"type": "string"
+				}
+			},
+			"description": "Inverse relation to project from FullPerson"
+		},
+		"v2.StructurePredecessorRelation": {
+			"type": "object",
+			"properties": {
+				"eventType": {
+					"type": "string",
+					"example": "fusion",
+					"description": "Type of the event"
+				},
+				"eventYear": {
+					"type": "integer",
+					"format": "int32",
+					"example": 2008,
+					"description": "Year of the event"
+				},
+				"label": {
+					"type": "string",
+					"description": "If id of structure not found"
+				},
+				"structure": {
+					"description": "Structure impacted by the event, if known only id outside Full",
+					"$ref": "#/definitions/v2.Structure"
+				}
+			},
+			"description": "Historical modification of a research structure."
+		},
+		"FacetResultEntry": {
+			"type": "object",
+			"properties": {
+				"count": {
+					"type": "integer",
+					"format": "int64"
+				},
+				"subFacets": {
+					"type": "array",
+					"items": {
+						"$ref": "#/definitions/FacetResult"
+					}
+				},
+				"value": {
+					"type": "string"
+				}
+			}
+		},
+		"v2.StructureActivity": {
+			"type": "object",
+			"properties": {
+				"code": {
+					"type": "string"
+				},
+				"label": {
+					"type": "object",
+					"additionalProperties": {
+						"type": "string"
+					}
+				},
+				"secondary": {
+					"type": "boolean",
+					"example": false,
+					"description": "true for secondary activities"
+				},
+				"type": {
+					"type": "string",
+					"description": "ex. NAF / Domaine scientifique / Discipline ERC / Thème, before v2 was \"type\" and Enum"
+				}
+			}
+		},
+		"v2.Patent": {
+			"type": "object",
+			"properties": {
+				"applicationDate": {
+					"type": "string",
+					"format": "date-time"
+				},
+				"applicationNumber": {
+					"type": "string"
+				},
+				"grantedDate": {
+					"type": "string",
+					"format": "date-time"
+				},
+				"id": {
+					"type": "string"
+				},
+				"internatApplicationNumber": {
+					"type": "string"
+				},
+				"ipType": {
+					"type": "string"
+				},
+				"isPriority": {
+					"type": "boolean"
+				},
+				"links": {
+					"type": "array",
+					"items": {
+						"$ref": "#/definitions/v2.Link"
+					}
+				},
+				"office": {
+					"type": "string"
+				},
+				"publicationDate": {
+					"type": "string",
+					"format": "date-time"
+				},
+				"publicationNumber": {
+					"type": "string"
+				},
+				"regionalApplicationNumber": {
+					"type": "string"
+				}
+			},
+			"description": "in Publication"
+		},
+		"v2.FullPublication": {
+			"type": "object",
+			"properties": {
+				"affiliations": {
+					"type": "array",
+					"items": {
+						"$ref": "#/definitions/v2.Structure"
+					}
+				},
+				"alternativeSummary": {
+					"type": "object",
+					"description": "alternative summary of the publication (often the english summary), since v2 i18n",
+					"additionalProperties": {
+						"type": "string"
+					}
+				},
+				"apc": {
+					"type": "number",
+					"format": "float",
+					"description": "Article processing charge, amount of currency"
+				},
+				"authors": {
+					"type": "array",
+					"items": {
+						"$ref": "#/definitions/v2.PublicationAuthor"
+					}
+				},
+				"authorsCount": {
+					"type": "integer",
+					"format": "int32"
+				},
+				"awards": {
+					"type": "array",
+					"items": {
+						"$ref": "#/definitions/v2.Award"
+					}
+				},
+				"badges": {
+					"type": "array",
+					"description": "since v2",
+					"items": {
+						"$ref": "#/definitions/v2.Badge"
+					}
+				},
+				"certifications": {
+					"type": "array",
+					"items": {
+						"$ref": "#/definitions/v2.Certification"
+					}
+				},
+				"citations": {
+					"type": "array",
+					"description": "in FullPublication Light fields, outside only id",
+					"items": {
+						"$ref": "#/definitions/v2.Publication"
+					}
+				},
+				"citedBy": {
+					"type": "array",
+					"description": "in FullPublication Light fields and only the first 10 publications, outside only id",
+					"items": {
+						"$ref": "#/definitions/v2.Publication"
+					}
+				},
+				"citedByCount": {
+					"type": "integer",
+					"format": "int32",
+					"description": "Count of all members of the citedBy relationship"
+				},
+				"createdAt": {
+					"type": "string",
+					"format": "date-time"
+				},
+				"createdDate": {
+					"type": "string",
+					"format": "date-time"
+				},
+				"doiUrl": {
+					"type": "string"
+				},
+				"domains": {
+					"type": "array",
+					"items": {
+						"$ref": "#/definitions/v2.Domain"
+					}
+				},
+				"externalIds": {
+					"type": "array",
+					"items": {
+						"$ref": "#/definitions/ExternalId"
+					}
+				},
+				"focus": {
+					"type": "array",
+					"description": "since v2",
+					"items": {
+						"type": "string"
+					}
+				},
+				"grantedDate": {
+					"type": "string",
+					"format": "date-time"
+				},
+				"id": {
+					"type": "string"
+				},
+				"inpadocFamily": {
+					"type": "string"
+				},
+				"inventionKind": {
+					"type": "string"
+				},
+				"isFrench": {
+					"type": "boolean"
+				},
+				"isInternational": {
+					"type": "boolean"
+				},
+				"isOa": {
+					"type": "boolean",
+					"example": false,
+					"description": "is in Open Access publishing"
+				},
+				"isOeb": {
+					"type": "boolean"
+				},
+				"keywords": {
+					"type": "object",
+					"description": "une liste de termes par langue (fr, en), fourni par MESRI",
+					"additionalProperties": {
+						"$ref": "#/definitions/List"
+					}
+				},
+				"language": {
+					"type": "string",
+					"example": "fr"
+				},
+				"lastUpdated": {
+					"type": "string",
+					"format": "date-time"
+				},
+				"linkedProductions": {
+					"type": "array",
+					"items": {
+						"$ref": "#/definitions/v2.LinkedProduction"
+					}
+				},
+				"links": {
+					"type": "array",
+					"description": "collection of link type (twitter, wikipedia) to url",
+					"items": {
+						"$ref": "#/definitions/v2.Link"
+					}
+				},
+				"oaEvidence": {
+					"$ref": "#/definitions/v2.PublicationOaEvidence"
+				},
+				"patents": {
+					"type": "array",
+					"items": {
+						"$ref": "#/definitions/v2.Patent"
+					}
+				},
+				"productionType": {
+					"type": "string"
+				},
+				"projects": {
+					"type": "array",
+					"items": {
+						"$ref": "#/definitions/v2.Project"
+					}
+				},
+				"publicationDate": {
+					"type": "string",
+					"format": "date-time",
+					"description": "Known publication date (may be null)"
+				},
+				"references": {
+					"type": "array",
+					"items": {
+						"type": "string"
+					}
+				},
+				"referencesCount": {
+					"type": "integer",
+					"format": "int32"
+				},
+				"removedAt": {
+					"type": "string",
+					"format": "date-time"
+				},
+				"similarPublications": {
+					"type": "array",
+					"items": {
+						"$ref": "#/definitions/SimilarTypedObjectOfv2.Publication"
+					}
+				},
+				"source": {
+					"description": "Where the publication has been published (journal, event...)",
+					"$ref": "#/definitions/v2.PublicationSource"
+				},
+				"submissionDate": {
+					"type": "string",
+					"format": "date-time"
+				},
+				"subtitle": {
+					"type": "object",
+					"description": "since v2 i18n",
+					"additionalProperties": {
+						"type": "string"
+					}
+				},
+				"summary": {
+					"type": "object",
+					"description": "since v2 i18n",
+					"additionalProperties": {
+						"type": "string"
+					}
+				},
+				"title": {
+					"type": "object",
+					"description": "since v2 i18n",
+					"additionalProperties": {
+						"type": "string"
+					}
+				},
+				"type": {
+					"type": "string",
+					"description": "Publication Type"
+				},
+				"year": {
+					"type": "integer",
+					"format": "int32"
+				}
+			}
+		},
+		"SearchResponseOfv2.FullStructure": {
+			"type": "object",
+			"properties": {
+				"facets": {
+					"type": "array",
+					"description": "Computed buckets or bins for each named aggregation",
+					"items": {
+						"$ref": "#/definitions/FacetResult"
+					}
+				},
+				"histogramsMapValueTypeDummy": {
+					"$ref": "#/definitions/FacetResult"
+				},
+				"request": {
+					"description": "Search request that provided this response's results",
+					"$ref": "#/definitions/v2.SearchRequest"
+				},
+				"results": {
+					"type": "array",
+					"description": "Found objects",
+					"items": {
+						"$ref": "#/definitions/SearchResultOfv2.FullStructure"
+					}
+				},
+				"total": {
+					"type": "integer",
+					"format": "int64"
+				}
+			}
+		},
+		"v2.Link": {
+			"type": "object",
+			"properties": {
+				"id": {
+					"type": "string"
+				},
+				"label": {
+					"type": "string"
+				},
+				"mode": {
+					"type": "string",
+					"enum": ["SINGLE_PAGE", "SUBPATH", "FULL_DOMAIN"]
+				},
+				"type": {
+					"type": "string",
+					"description": "Not Enum since v2, ex. main, repository, team, personal, wikipedia, hceres, rnsr"
+				},
+				"url": {
+					"type": "string"
+				}
+			}
+		},
+		"v2.StructureChildInverseRelation": {
+			"type": "object",
+			"properties": {
+				"fromDate": {
+					"type": "string",
+					"format": "date-time"
+				},
+				"relationType": {
+					"type": "string",
+					"description": "Type of parent relation (including whether exclusive)"
+				},
+				"structure": {
+					"$ref": "#/definitions/v2.Structure"
+				}
+			},
+			"description": "Inverse relation of Structure.parents, in Full only"
+		},
+		"v2.StructureProjectInverseRelation": {
+			"type": "object",
+			"properties": {
+				"funding": {
+					"type": "string",
+					"description": "Funding amount in the project"
+				},
+				"project": {
+					"$ref": "#/definitions/v2.Project"
+				},
+				"role": {
+					"type": "string"
+				}
+			},
+			"description": "Inverse relation of Project.participants, in Full only"
+		},
+		"LikeResponseOfv2.FullProject": {
+			"type": "object",
+			"properties": {
+				"facets": {
+					"type": "array",
+					"description": "Computed buckets or bins for each named aggregation",
+					"items": {
+						"$ref": "#/definitions/FacetResult"
+					}
+				},
+				"request": {
+					"description": "Like request that provided this response's results",
+					"$ref": "#/definitions/v2.LikeRequest"
+				},
+				"results": {
+					"type": "array",
+					"description": "Found objects",
+					"items": {
+						"$ref": "#/definitions/SearchResultOfv2.FullProject"
+					}
+				},
+				"total": {
+					"type": "integer",
+					"format": "int64"
+				}
+			}
+		},
+		"v2.LikeRequest": {
+			"type": "object",
+			"properties": {
+				"fields": {
+					"type": "array",
+					"description": "Fields where to look up for similarity in",
+					"items": {
+						"type": "string"
+					}
+				},
+				"lang": {
+					"type": "string",
+					"description": "Language ex. \"fr\", before v2 was not used"
+				},
+				"likeIds": {
+					"type": "array",
+					"description": "Ids of objects for results to be similar to",
+					"items": {
+						"type": "string"
+					}
+				},
+				"likeTexts": {
+					"type": "array",
+					"description": "Texts for results to be similar to",
+					"items": {
+						"type": "string"
+					}
+				},
+				"page": {
+					"type": "integer",
+					"format": "int32",
+					"description": "Page"
+				},
+				"pageSize": {
+					"type": "integer",
+					"format": "int32",
+					"description": "Number of results by page"
+				}
+			}
+		},
+		"v2.PersonRelation": {
+			"type": "object",
+			"properties": {
+				"email": {
+					"type": "string",
+					"description": "Only in a Project"
+				},
+				"firstName": {
+					"type": "string"
+				},
+				"fromDate": {
+					"type": "string",
+					"description": "Only in a Structure"
+				},
+				"fullName": {
+					"type": "string",
+					"description": "Only in a Publication"
+				},
+				"lastName": {
+					"type": "string"
+				},
+				"person": {
+					"description": "Light fields in Full objects, else only id",
+					"$ref": "#/definitions/v2.Person"
+				},
+				"role": {
+					"type": "string",
+					"description": "Role of the person in the object that is source of the relation"
+				},
+				"title": {
+					"type": "string",
+					"description": "Only in a Structure"
+				}
+			},
+			"description": "Structure (leaders), Project or Publication relation to Person"
+		},
+		"v2.RssFeed": {
+			"type": "object",
+			"properties": {
+				"freq": {
+					"type": "number",
+					"format": "float"
+				},
+				"url": {
+					"type": "string"
+				}
+			}
+		},
+		"v2.FullPersonPublication": {
+			"type": "object",
+			"properties": {
+				"publication": {
+					"description": "Light version of Publication",
+					"$ref": "#/definitions/v2.Publication"
+				},
+				"role": {
+					"type": "string"
+				}
+			},
+			"description": "Inverse relation to Publication from FullPerson"
+		},
+		"SearchResultOfv2.FullStructure": {
+			"type": "object",
+			"properties": {
+				"highlights": {
+					"type": "array",
+					"items": {
+						"$ref": "#/definitions/HighlightItem"
+					}
+				},
+				"score": {
+					"type": "object",
+					"description": "TODO float as in Elastisearch ?"
+				},
+				"value": {
+					"$ref": "#/definitions/v2.FullStructure"
+				}
+			}
+		},
+		"v2.ProjectStructureRelation": {
+			"type": "object",
+			"properties": {
+				"funding": {
+					"type": "string",
+					"description": "Funding amount in the project"
+				},
+				"label": {
+					"type": "object",
+					"description": "label of the project structure if this structure is not in scanr",
+					"additionalProperties": {
+						"type": "string"
+					}
+				},
+				"role": {
+					"type": "string"
+				},
+				"structure": {
+					"description": "in FullProject also Light fields, else only id",
+					"$ref": "#/definitions/v2.Structure"
+				},
+				"url": {
+					"type": "string",
+					"description": "url of the project structure if this structure is not in scanr"
+				}
+			},
+			"description": "Relation of Structures that are members in a Project."
+		},
+		"v2.SearchRequest": {
+			"type": "object",
+			"properties": {
+				"aggregations": {
+					"type": "object",
+					"description": "Aggregations whose buckets or bins are to be computed and returned",
+					"additionalProperties": {
+						"$ref": "#/definitions/v2.Aggregation"
+					}
+				},
+				"aggregationsMapValueTypeDummy": {
+					"$ref": "#/definitions/v2.Aggregation"
+				},
+				"filters": {
+					"type": "object",
+					"description": "Map of field names to (multi value, date, long, geo grid) search filters. Field names can be dotted to specify subfields.",
+					"additionalProperties": {
+						"$ref": "#/definitions/v2.SearchFilter"
+					}
+				},
+				"filtersMapValueTypeDateRangeDummy": {
+					"$ref": "#/definitions/v2.DateRangeFilter"
+				},
+				"filtersMapValueTypeDummy": {
+					"$ref": "#/definitions/v2.SearchFilter"
+				},
+				"filtersMapValueTypeGeoGridDummy": {
+					"$ref": "#/definitions/v2.GeoGridFilter"
+				},
+				"filtersMapValueTypeLongRangeDummy": {
+					"$ref": "#/definitions/v2.LongRangeFilter"
+				},
+				"filtersMapValueTypeMultiValueDummy": {
+					"$ref": "#/definitions/v2.MultiValueSearchFilter"
+				},
+				"lang": {
+					"type": "string",
+					"description": "Language ex. \"fr\", before v2 was not used"
+				},
+				"page": {
+					"type": "integer",
+					"format": "int32"
+				},
+				"pageSize": {
+					"type": "integer",
+					"format": "int32"
+				},
+				"query": {
+					"type": "string"
+				},
+				"searchFields": {
+					"type": "array",
+					"description": "Fields where to look up the query in",
+					"items": {
+						"type": "string"
+					}
+				},
+				"sort": {
+					"type": "object",
+					"description": "For each field or \"score\", sort order to apply, in the specified order",
+					"additionalProperties": {
+						"type": "string"
+					}
+				},
+				"sortMapValueTypeDummy": {
+					"type": "string",
+					"enum": ["ASC", "DESC"]
+				},
+				"sourceFields": {
+					"type": "array",
+					"description": "Fields to be included in result",
+					"items": {
+						"type": "string"
+					}
+				}
+			}
+		},
+		"LikeResponseOfv2.FullStructure": {
+			"type": "object",
+			"properties": {
+				"facets": {
+					"type": "array",
+					"description": "Computed buckets or bins for each named aggregation",
+					"items": {
+						"$ref": "#/definitions/FacetResult"
+					}
+				},
+				"request": {
+					"description": "Like request that provided this response's results",
+					"$ref": "#/definitions/v2.LikeRequest"
+				},
+				"results": {
+					"type": "array",
+					"description": "Found objects",
+					"items": {
+						"$ref": "#/definitions/SearchResultOfv2.FullStructure"
+					}
+				},
+				"total": {
+					"type": "integer",
+					"format": "int64"
+				}
+			}
+		},
+		"v2.FullPerson": {
+			"type": "object",
+			"properties": {
+				"affiliations": {
+					"type": "array",
+					"description": "diffère de FullPerson.publications.affiliations",
+					"items": {
+						"$ref": "#/definitions/v2.PublicationPersonAffiliation"
+					}
+				},
+				"awards": {
+					"type": "array",
+					"items": {
+						"$ref": "#/definitions/v2.Award"
+					}
+				},
+				"badges": {
+					"type": "array",
+					"description": "since v2",
+					"items": {
+						"$ref": "#/definitions/v2.Badge"
+					}
+				},
+				"birthDate": {
+					"type": "string",
+					"format": "date-time"
+				},
+				"certifications": {
+					"type": "array",
+					"items": {
+						"$ref": "#/definitions/v2.Certification"
+					}
+				},
+				"coContributors": {
+					"type": "array",
+					"description": "Light fields in Full objects, else only id of Persons that are Publication.coContributors.",
+					"items": {
+						"$ref": "#/definitions/v2.Person"
+					}
+				},
+				"createdAt": {
+					"type": "string",
+					"format": "date-time"
+				},
+				"createdDate": {
+					"type": "string",
+					"format": "date-time"
+				},
+				"dataSources": {
+					"type": "array",
+					"items": {
+						"type": "string"
+					}
+				},
+				"deathDate": {
+					"type": "string",
+					"format": "date-time"
+				},
+				"description": {
+					"type": "object",
+					"additionalProperties": {
+						"type": "string"
+					}
+				},
+				"domains": {
+					"type": "array",
+					"items": {
+						"$ref": "#/definitions/v2.Domain"
+					}
+				},
+				"email": {
+					"type": "string"
+				},
+				"externalIds": {
+					"type": "array",
+					"description": "Map of external id name (idref, orcid, idhal ?) to value",
+					"items": {
+						"$ref": "#/definitions/ExternalId"
+					}
+				},
+				"firstName": {
+					"type": "string"
+				},
+				"focus": {
+					"type": "array",
+					"description": "since v2",
+					"items": {
+						"type": "string"
+					}
+				},
+				"fullName": {
+					"type": "string"
+				},
+				"gender": {
+					"type": "string"
+				},
+				"id": {
+					"type": "string"
+				},
+				"keywords": {
+					"type": "object",
+					"description": "une liste de termes par langue (fr, en), fourni par MESRI",
+					"additionalProperties": {
+						"$ref": "#/definitions/List"
+					}
+				},
+				"lastName": {
+					"type": "string"
+				},
+				"lastUpdated": {
+					"type": "string",
+					"format": "date-time"
+				},
+				"links": {
+					"type": "array",
+					"description": "collection of linkType : url. Including twitter, wikipedia",
+					"items": {
+						"$ref": "#/definitions/v2.Link"
+					}
+				},
+				"maidenName": {
+					"type": "string"
+				},
+				"orcidCreationDate": {
+					"type": "string",
+					"format": "date-time"
+				},
+				"projects": {
+					"type": "array",
+					"description": "Only in Full. Champ alimenté par le champ \"persons\" présent dans le schéma \"Project\"",
+					"items": {
+						"$ref": "#/definitions/v2.FullPersonProject"
+					}
+				},
+				"publications": {
+					"type": "array",
+					"description": "Only in Full. Champ alimenté par le champ \"authors\" présent dans le schéma \"Publication\", diffère de Person.affiliations",
+					"items": {
+						"$ref": "#/definitions/v2.FullPersonPublication"
+					}
+				},
+				"removedAt": {
+					"type": "string",
+					"format": "date-time"
+				},
+				"roles": {
+					"type": "array",
+					"description": "roles génériques, pas de lien avec employeurs, fourni",
+					"items": {
+						"$ref": "#/definitions/v2.PersonRole"
+					}
+				},
+				"similarPersons": {
+					"type": "array",
+					"items": {
+						"$ref": "#/definitions/SimilarTypedObjectOfv2.Person"
+					}
+				},
+				"website": {
+					"type": "string"
+				}
+			}
+		},
+		"v2.StructureEmployeesInfo": {
+			"type": "object",
+			"properties": {
+				"date": {
+					"type": "string",
+					"format": "date-time",
+					"description": "Date of the information"
+				},
+				"ecNb": {
+					"type": "string",
+					"description": "enseignants-chercheurs nb, as a complete string field to be displayed as is in the interface"
+				},
+				"employeeNbSlice": {
+					"type": "string",
+					"description": "Slice of the number of employees ex. 1000-1500, as a complete string field to be displayed as is in the interface"
+				},
+				"employeesNb": {
+					"type": "integer",
+					"format": "int32"
+				},
+				"hdrNb": {
+					"type": "string",
+					"description": "number of HDR (habilité à diriger les recherches) person, as a complete string field to be displayed as is in the interface"
+				}
+			},
+			"description": "Information and statistics on employees of a structure (public or private)"
+		},
+		"v2.MultiValueSearchFilter": {
+			"type": "object",
+			"properties": {
+				"op": {
+					"type": "string",
+					"enum": ["all", "any", "none", "not_all", "exists"]
+				},
+				"values": {
+					"type": "array",
+					"items": {
+						"type": "string"
+					}
+				}
+			}
+		},
+		"ExternalId": {
+			"type": "object",
+			"properties": {
+				"id": {
+					"type": "string"
+				},
+				"type": {
+					"type": "string"
+				}
+			}
+		},
+		"v2.SocialMedia": {
+			"type": "object",
+			"properties": {
+				"account": {
+					"type": "string"
+				},
+				"language": {
+					"type": "string",
+					"example": "fr",
+					"description": "locale (en, fr) of the account"
+				},
+				"type": {
+					"type": "string"
+				},
+				"url": {
+					"type": "string"
+				}
+			}
+		},
+		"v2.LongRangeFilter": {
+			"type": "object",
+			"properties": {
+				"max": {
+					"type": "integer",
+					"format": "int64"
+				},
+				"min": {
+					"type": "integer",
+					"format": "int64"
+				},
+				"missing": {
+					"type": "boolean"
+				}
+			}
+		},
+		"v2.Website": {
+			"type": "object",
+			"properties": {
+				"baseURL": {
+					"type": "string"
+				},
+				"canonical": {
+					"type": "boolean"
+				},
+				"contactForms": {
+					"type": "array",
+					"items": {
+						"type": "string"
+					}
+				},
+				"crawlMode": {
+					"type": "string",
+					"enum": ["SINGLE_PAGE", "SUBPATH", "FULL_DOMAIN"]
+				},
+				"createdDate": {
+					"type": "string",
+					"format": "date-time"
+				},
+				"dailymotion": {
+					"type": "array",
+					"items": {
+						"$ref": "#/definitions/v2.SocialAccount"
+					}
+				},
+				"description": {
+					"type": "string"
+				},
+				"ecommerce": {
+					"type": "boolean"
+				},
+				"extractedProjects": {
+					"type": "array",
+					"items": {
+						"type": "string"
+					}
+				},
+				"extractedPublications": {
+					"type": "array",
+					"items": {
+						"type": "string"
+					}
+				},
+				"facebook": {
+					"type": "array",
+					"items": {
+						"$ref": "#/definitions/v2.SocialAccount"
+					}
+				},
+				"googlePlus": {
+					"type": "array",
+					"items": {
+						"$ref": "#/definitions/v2.SocialAccount"
+					}
+				},
+				"id": {
+					"type": "string"
+				},
+				"instagram": {
+					"type": "array",
+					"items": {
+						"$ref": "#/definitions/v2.SocialAccount"
+					}
+				},
+				"lastCompletion": {
+					"type": "string",
+					"format": "date-time"
+				},
+				"lastUpdated": {
+					"type": "string",
+					"format": "date-time"
+				},
+				"linkedIn": {
+					"type": "array",
+					"items": {
+						"$ref": "#/definitions/v2.SocialAccount"
+					}
+				},
+				"metaDescription": {
+					"type": "string"
+				},
+				"mobile": {
+					"type": "boolean"
+				},
+				"monitoring": {
+					"type": "array",
+					"items": {
+						"type": "string"
+					}
+				},
+				"pageCount": {
+					"type": "integer",
+					"format": "int32"
+				},
+				"platforms": {
+					"type": "array",
+					"items": {
+						"type": "string"
+					}
+				},
+				"quality": {
+					"type": "number",
+					"format": "double"
+				},
+				"resolvedPublications": {
+					"type": "array",
+					"items": {
+						"type": "string"
+					}
+				},
+				"responsive": {
+					"type": "boolean"
+				},
+				"rss": {
+					"type": "array",
+					"items": {
+						"$ref": "#/definitions/v2.RssFeed"
+					}
+				},
+				"twitter": {
+					"type": "array",
+					"items": {
+						"$ref": "#/definitions/v2.SocialAccount"
+					}
+				},
+				"viadeo": {
+					"type": "array",
+					"items": {
+						"$ref": "#/definitions/v2.SocialAccount"
+					}
+				},
+				"vimeo": {
+					"type": "array",
+					"items": {
+						"$ref": "#/definitions/v2.SocialAccount"
+					}
+				},
+				"webPages": {
+					"type": "array",
+					"items": {
+						"$ref": "#/definitions/WebPage"
+					}
+				},
+				"youtube": {
+					"type": "array",
+					"items": {
+						"$ref": "#/definitions/v2.SocialAccount"
+					}
+				}
+			},
+			"description": "Same as v1"
+		},
+		"v2.GeoGridFilter": {
+			"type": "object",
+			"properties": {
+				"bottomRight": {
+					"$ref": "#/definitions/GeoPoint"
+				},
+				"topLeft": {
+					"$ref": "#/definitions/GeoPoint"
+				}
+			},
+			"description": "Allows an Elasticsearch geo_bounding_box query, see https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl-geo-bounding-box-query.html"
+		},
+		"Statistique": {
+			"type": "object",
+			"properties": {
+				"diffCreationDeleted": {
+					"type": "integer",
+					"format": "int64"
+				},
+				"nbCreated": {
+					"type": "integer",
+					"format": "int64"
+				},
+				"nbDeleted": {
+					"type": "integer",
+					"format": "int64"
+				}
+			}
+		},
+		"v2.FullStructure": {
+			"type": "object",
+			"properties": {
+				"acronym": {
+					"type": "object",
+					"description": "Acronym of the structure. I18n since v2",
+					"additionalProperties": {
+						"type": "string"
+					}
+				},
+				"activities": {
+					"type": "array",
+					"description": "All activity labels that are affected to this structure (with or without a nomenclature)",
+					"items": {
+						"$ref": "#/definitions/v2.StructureActivity"
+					}
+				},
+				"address": {
+					"type": "array",
+					"description": "In Light only main one, since v2 multivalued",
+					"items": {
+						"$ref": "#/definitions/v2.Address"
+					}
+				},
+				"alias": {
+					"type": "array",
+					"description": "Alternative labels for search (other names for research structures...)",
+					"items": {
+						"type": "string"
+					}
+				},
+				"badges": {
+					"type": "array",
+					"description": "List of badges (HDR. ILab...). Badges are associated with symbols and displayed in the front end. Before v2 was tags.",
+					"items": {
+						"$ref": "#/definitions/v2.Badge"
+					}
+				},
+				"children": {
+					"type": "array",
+					"description": "LightStructure children of this structure, à partir de la relation inverse Structure.parents, avec métas de relation",
+					"items": {
+						"$ref": "#/definitions/v2.StructureChildInverseRelation"
+					}
+				},
+				"commercialBrands": {
+					"type": "array",
+					"description": "Alternative commercial label for companies. Before v2 commercialLabel and single valued",
+					"items": {
+						"type": "string"
+					}
+				},
+				"createdAt": {
+					"type": "string",
+					"format": "date-time"
+				},
+				"createdDate": {
+					"type": "string",
+					"format": "date-time"
+				},
+				"creationYear": {
+					"type": "integer",
+					"format": "int32"
+				},
+				"description": {
+					"type": "object",
+					"description": "since v2",
+					"additionalProperties": {
+						"type": "string"
+					}
+				},
+				"domains": {
+					"type": "array",
+					"description": "Domain of research",
+					"items": {
+						"$ref": "#/definitions/v2.Domain"
+					}
+				},
+				"email": {
+					"type": "string",
+					"description": "Mail de la structure, since v2"
+				},
+				"employeesInfo": {
+					"$ref": "#/definitions/v2.StructureEmployeesInfo"
+				},
+				"endDate": {
+					"type": "string",
+					"format": "date-time",
+					"description": "Date de fin de la structure, since v2"
+				},
+				"evaluations": {
+					"type": "array",
+					"items": {
+						"$ref": "#/definitions/v2.StructureEvaluation"
+					}
+				},
+				"externalIds": {
+					"type": "array",
+					"description": "collection of idName : idValue",
+					"items": {
+						"$ref": "#/definitions/ExternalId"
+					}
+				},
+				"finance": {
+					"$ref": "#/definitions/v2.StructureFinance"
+				},
+				"focus": {
+					"type": "array",
+					"description": "since v2",
+					"items": {
+						"type": "string"
+					}
+				},
+				"graph": {
+					"type": "array",
+					"description": "Graph Elements of this structure (relationships towards other structures)",
+					"items": {
+						"$ref": "#/definitions/v2.Website"
+					}
+				},
+				"id": {
+					"type": "string",
+					"description": "RNSR ID for research structures (UAI ex. 0755361V), SIREN for public and private companies (ex. 18007003901803)"
+				},
+				"institutions": {
+					"type": "array",
+					"description": "(Public only) Related institutions aka Tutelles",
+					"items": {
+						"$ref": "#/definitions/v2.Institution"
+					}
+				},
+				"isFrench": {
+					"type": "boolean",
+					"example": false,
+					"description": "Whether this is a French structure. Since v2"
+				},
+				"isPublic": {
+					"type": "boolean",
+					"example": false,
+					"description": "Whether this is a public structure. Since v2"
+				},
+				"keywords": {
+					"type": "object",
+					"description": "une liste de termes par langue (fr, en), fourni par MESRI",
+					"additionalProperties": {
+						"$ref": "#/definitions/List"
+					}
+				},
+				"kind": {
+					"type": "array",
+					"description": "Structure Kind, not Enum since v2",
+					"items": {
+						"type": "string"
+					}
+				},
+				"label": {
+					"type": "object",
+					"description": "Full label of the structure. I18n since v2 (e.g. Laboratoire d'Informatique de Grenoble)",
+					"additionalProperties": {
+						"type": "string"
+					}
+				},
+				"lastUpdated": {
+					"type": "string",
+					"format": "date-time"
+				},
+				"leaders": {
+					"type": "array",
+					"description": "List of all leading people of the structure",
+					"items": {
+						"$ref": "#/definitions/v2.PersonRelation"
+					}
+				},
+				"legalCategory": {
+					"description": "Since v2",
+					"$ref": "#/definitions/v2.LegalCategory"
+				},
+				"level": {
+					"type": "string",
+					"description": "public structure level label, before v2 was integer"
+				},
+				"links": {
+					"type": "array",
+					"items": {
+						"$ref": "#/definitions/v2.Link"
+					}
+				},
+				"logo": {
+					"type": "string",
+					"description": "logo URL, can be null"
+				},
+				"nature": {
+					"type": "string",
+					"example": "5400 / Société à responsabilité limitée",
+					"description": "in v2 merges nature and companyType"
+				},
+				"offers": {
+					"type": "array",
+					"items": {
+						"$ref": "#/definitions/v2.StructureOffer"
+					}
+				},
+				"parents": {
+					"type": "array",
+					"description": "in v2 renamed from parent",
+					"items": {
+						"$ref": "#/definitions/v2.StructureParentRelation"
+					}
+				},
+				"persons": {
+					"type": "array",
+					"description": "à partir de la relation inverse Person/affiliations/id, avec les métas de relation",
+					"items": {
+						"$ref": "#/definitions/v2.StructurePersonInverseRelation"
+					}
+				},
+				"phone": {
+					"type": "string",
+					"description": "Téléphone de la structure, since v2"
+				},
+				"predecessors": {
+					"type": "array",
+					"description": "History of the research structure (merge and name changes). In v2 renamed from history and multivalued",
+					"items": {
+						"$ref": "#/definitions/v2.StructurePredecessorRelation"
+					}
+				},
+				"projects": {
+					"type": "array",
+					"description": "Inverse relation of LightProjects attached to the structure",
+					"items": {
+						"$ref": "#/definitions/v2.StructureProjectInverseRelation"
+					}
+				},
+				"publications": {
+					"type": "array",
+					"description": "Inverse relation of LightPublications attached to the structure. NB. pas aussi LightPerson et LightStructure car LightPublication contient les 3 premiers authors",
+					"items": {
+						"$ref": "#/definitions/v2.StructurePublicationInverseRelation"
+					}
+				},
+				"relations": {
+					"type": "array",
+					"description": "All foreign structural relations with this structure (e.g. COMUE, École Doctorales...)",
+					"items": {
+						"$ref": "#/definitions/v2.StructureRelation"
+					}
+				},
+				"removedAt": {
+					"type": "string",
+					"format": "date-time"
+				},
+				"socialMedias": {
+					"type": "array",
+					"description": "type SocialMedia, since v2. Differs from crawled Website.SocialAccount",
+					"items": {
+						"$ref": "#/definitions/v2.SocialMedia"
+					}
+				},
+				"spinoffFrom": {
+					"type": "array",
+					"description": "Since v2",
+					"items": {
+						"$ref": "#/definitions/v2.SpinoffFromInverseRelation"
+					}
+				},
+				"spinoffs": {
+					"type": "array",
+					"description": "List of spinoff of this RNSR lab.",
+					"items": {
+						"$ref": "#/definitions/v2.StructureSpinoff"
+					}
+				},
+				"startDate": {
+					"type": "string",
+					"format": "date-time",
+					"description": "Date de début de la structure, since v2"
+				},
+				"status": {
+					"type": "string",
+					"description": "si la Structure est toujours existante ou non (Active, Old), since v2"
+				},
+				"websites": {
+					"type": "array",
+					"description": "list of crawled websites informations for the websites of this structure.",
+					"items": {
+						"$ref": "#/definitions/v2.Website"
+					}
+				}
+			}
+		},
+		"v2.Project": {
+			"type": "object",
+			"properties": {
+				"acronym": {
+					"type": "object",
+					"description": "i18n since v2",
+					"additionalProperties": {
+						"type": "string"
+					}
+				},
+				"action": {
+					"description": "since v2",
+					"$ref": "#/definitions/v2.ProjectAction"
+				},
+				"associatedProjects": {
+					"type": "array",
+					"description": "in FullProject Light fields, outside only id",
+					"items": {
+						"$ref": "#/definitions/v2.Project"
+					}
+				},
+				"badges": {
+					"type": "array",
+					"items": {
+						"$ref": "#/definitions/v2.Badge"
+					}
+				},
+				"budgetFinanced": {
+					"type": "number",
+					"format": "float",
+					"description": "since v2"
+				},
+				"budgetTotal": {
+					"type": "number",
+					"format": "float",
+					"description": "budget before v2"
+				},
+				"call": {
+					"$ref": "#/definitions/v2.ProjectCall"
+				},
+				"createdAt": {
+					"type": "string",
+					"format": "date-time"
+				},
+				"createdDate": {
+					"type": "string",
+					"format": "date-time"
+				},
+				"description": {
+					"type": "object",
+					"description": "i18n since v2",
+					"additionalProperties": {
+						"type": "string"
+					}
+				},
+				"domains": {
+					"type": "array",
+					"items": {
+						"$ref": "#/definitions/v2.Domain"
+					}
+				},
+				"duration": {
+					"type": "integer",
+					"format": "int32",
+					"description": "in month"
+				},
+				"endDate": {
+					"type": "string",
+					"format": "date-time",
+					"description": "since v2"
+				},
+				"focus": {
+					"type": "array",
+					"description": "since v2",
+					"items": {
+						"type": "string"
+					}
+				},
+				"id": {
+					"type": "string"
+				},
+				"keywords": {
+					"type": "object",
+					"description": "une liste de termes par langue (fr, en), fourni par MESRI",
+					"additionalProperties": {
+						"$ref": "#/definitions/List"
+					}
+				},
+				"label": {
+					"type": "object",
+					"description": "i18n since v2",
+					"additionalProperties": {
+						"type": "string"
+					}
+				},
+				"lastUpdated": {
+					"type": "string",
+					"format": "date-time"
+				},
+				"participantCount": {
+					"type": "integer",
+					"format": "int32"
+				},
+				"participants": {
+					"type": "array",
+					"description": "project's participating structures (scanr structures or external structures). In FullStructure Light fields, outside only id",
+					"items": {
+						"$ref": "#/definitions/v2.ProjectStructureRelation"
+					}
+				},
+				"persons": {
+					"type": "array",
+					"description": "since v2. Only id, firstName, lastName, email, plus Light fields in FullProject",
+					"items": {
+						"$ref": "#/definitions/v2.PersonRelation"
+					}
+				},
+				"projectUrl": {
+					"type": "string",
+					"description": "since v2"
+				},
+				"removedAt": {
+					"type": "string",
+					"format": "date-time"
+				},
+				"signatureDate": {
+					"type": "string",
+					"format": "date-time",
+					"description": "since v2"
+				},
+				"similarProjects": {
+					"type": "array",
+					"items": {
+						"$ref": "#/definitions/SimilarTypedObjectOfv2.Project"
+					}
+				},
+				"startDate": {
+					"type": "string",
+					"format": "date-time",
+					"description": "since v2"
+				},
+				"type": {
+					"type": "string"
+				},
+				"url": {
+					"type": "string",
+					"description": "project's url"
+				},
+				"year": {
+					"type": "integer",
+					"format": "int32",
+					"description": "project's year"
+				}
+			}
+		},
+		"v2.StructureParentRelation": {
+			"type": "object",
+			"properties": {
+				"fromDate": {
+					"type": "string",
+					"format": "date-time"
+				},
+				"label": {
+					"type": "string",
+					"description": "if id not known"
+				},
+				"relationType": {
+					"type": "string",
+					"description": "Type of parent relation (including whether exclusive)"
+				},
+				"structure": {
+					"description": "Parent structure, at least id",
+					"$ref": "#/definitions/v2.Structure"
+				}
+			},
+			"description": "Parent structure reference. In v2 renamed from ParentReference"
+		},
+		"SearchResultOfv2.FullPublication": {
+			"type": "object",
+			"properties": {
+				"highlights": {
+					"type": "array",
+					"items": {
+						"$ref": "#/definitions/HighlightItem"
+					}
+				},
+				"score": {
+					"type": "object",
+					"description": "TODO float as in Elastisearch ?"
+				},
+				"value": {
+					"$ref": "#/definitions/v2.FullPublication"
+				}
+			}
+		},
+		"v2.Institution": {
+			"type": "object",
+			"properties": {
+				"code": {
+					"description": "Association code between the host structure and this institution, e.g. UMR 8896",
+					"$ref": "#/definitions/v2.AssociationCode"
+				},
+				"fromDate": {
+					"type": "string",
+					"format": "date-time",
+					"description": "Year of the association"
+				},
+				"label": {
+					"type": "string",
+					"example": "Institut national de la recherche agronomique",
+					"description": "Full label"
+				},
+				"relationType": {
+					"type": "string",
+					"example": "Etablissement support",
+					"description": "The association type between the structure and the institution ex. Tutelles, participant"
+				},
+				"structure": {
+					"description": "At least identifier of the institution",
+					"$ref": "#/definitions/v2.Structure"
+				},
+				"url": {
+					"type": "string",
+					"description": "URL to the institution base website (optional)"
+				}
+			}
+		},
+		"v2.Publication": {
+			"type": "object",
+			"properties": {
+				"affiliations": {
+					"type": "array",
+					"items": {
+						"$ref": "#/definitions/v2.Structure"
+					}
+				},
+				"alternativeSummary": {
+					"type": "object",
+					"description": "alternative summary of the publication (often the english summary), since v2 i18n",
+					"additionalProperties": {
+						"type": "string"
+					}
+				},
+				"apc": {
+					"type": "number",
+					"format": "float",
+					"description": "Article processing charge, amount of currency"
+				},
+				"authors": {
+					"type": "array",
+					"items": {
+						"$ref": "#/definitions/v2.PublicationAuthor"
+					}
+				},
+				"authorsCount": {
+					"type": "integer",
+					"format": "int32"
+				},
+				"awards": {
+					"type": "array",
+					"items": {
+						"$ref": "#/definitions/v2.Award"
+					}
+				},
+				"badges": {
+					"type": "array",
+					"description": "since v2",
+					"items": {
+						"$ref": "#/definitions/v2.Badge"
+					}
+				},
+				"certifications": {
+					"type": "array",
+					"items": {
+						"$ref": "#/definitions/v2.Certification"
+					}
+				},
+				"citations": {
+					"type": "array",
+					"description": "in FullPublication Light fields, outside only id",
+					"items": {
+						"$ref": "#/definitions/v2.Publication"
+					}
+				},
+				"citedBy": {
+					"type": "array",
+					"description": "in FullPublication Light fields and only the first 10 publications, outside only id",
+					"items": {
+						"$ref": "#/definitions/v2.Publication"
+					}
+				},
+				"citedByCount": {
+					"type": "integer",
+					"format": "int32",
+					"description": "Count of all members of the citedBy relationship"
+				},
+				"createdAt": {
+					"type": "string",
+					"format": "date-time"
+				},
+				"createdDate": {
+					"type": "string",
+					"format": "date-time"
+				},
+				"doiUrl": {
+					"type": "string"
+				},
+				"domains": {
+					"type": "array",
+					"items": {
+						"$ref": "#/definitions/v2.Domain"
+					}
+				},
+				"externalIds": {
+					"type": "array",
+					"items": {
+						"$ref": "#/definitions/ExternalId"
+					}
+				},
+				"focus": {
+					"type": "array",
+					"description": "since v2",
+					"items": {
+						"type": "string"
+					}
+				},
+				"grantedDate": {
+					"type": "string",
+					"format": "date-time"
+				},
+				"id": {
+					"type": "string"
+				},
+				"inpadocFamily": {
+					"type": "string"
+				},
+				"inventionKind": {
+					"type": "string"
+				},
+				"isFrench": {
+					"type": "boolean"
+				},
+				"isInternational": {
+					"type": "boolean"
+				},
+				"isOa": {
+					"type": "boolean",
+					"example": false,
+					"description": "is in Open Access publishing"
+				},
+				"isOeb": {
+					"type": "boolean"
+				},
+				"keywords": {
+					"type": "object",
+					"description": "une liste de termes par langue (fr, en), fourni par MESRI",
+					"additionalProperties": {
+						"$ref": "#/definitions/List"
+					}
+				},
+				"language": {
+					"type": "string",
+					"example": "fr"
+				},
+				"lastUpdated": {
+					"type": "string",
+					"format": "date-time"
+				},
+				"linkedProductions": {
+					"type": "array",
+					"items": {
+						"$ref": "#/definitions/v2.LinkedProduction"
+					}
+				},
+				"links": {
+					"type": "array",
+					"description": "collection of link type (twitter, wikipedia) to url",
+					"items": {
+						"$ref": "#/definitions/v2.Link"
+					}
+				},
+				"oaEvidence": {
+					"$ref": "#/definitions/v2.PublicationOaEvidence"
+				},
+				"patents": {
+					"type": "array",
+					"items": {
+						"$ref": "#/definitions/v2.Patent"
+					}
+				},
+				"productionType": {
+					"type": "string"
+				},
+				"projects": {
+					"type": "array",
+					"items": {
+						"$ref": "#/definitions/v2.Project"
+					}
+				},
+				"publicationDate": {
+					"type": "string",
+					"format": "date-time",
+					"description": "Known publication date (may be null)"
+				},
+				"references": {
+					"type": "array",
+					"items": {
+						"type": "string"
+					}
+				},
+				"referencesCount": {
+					"type": "integer",
+					"format": "int32"
+				},
+				"removedAt": {
+					"type": "string",
+					"format": "date-time"
+				},
+				"similarPublications": {
+					"type": "array",
+					"items": {
+						"$ref": "#/definitions/SimilarTypedObjectOfv2.Publication"
+					}
+				},
+				"source": {
+					"description": "Where the publication has been published (journal, event...)",
+					"$ref": "#/definitions/v2.PublicationSource"
+				},
+				"submissionDate": {
+					"type": "string",
+					"format": "date-time"
+				},
+				"subtitle": {
+					"type": "object",
+					"description": "since v2 i18n",
+					"additionalProperties": {
+						"type": "string"
+					}
+				},
+				"summary": {
+					"type": "object",
+					"description": "since v2 i18n",
+					"additionalProperties": {
+						"type": "string"
+					}
+				},
+				"title": {
+					"type": "object",
+					"description": "since v2 i18n",
+					"additionalProperties": {
+						"type": "string"
+					}
+				},
+				"type": {
+					"type": "string",
+					"description": "Publication Type"
+				},
+				"year": {
+					"type": "integer",
+					"format": "int32"
+				}
+			}
+		},
+		"v2.StructureRelation": {
+			"type": "object",
+			"properties": {
+				"fromDate": {
+					"type": "string",
+					"format": "date-time"
+				},
+				"structure": {
+					"example": "ED 217",
+					"description": "Related Structure if known in DB, at least identifier",
+					"$ref": "#/definitions/v2.Structure"
+				},
+				"type": {
+					"type": "string",
+					"description": "Type of the target structure (type of the relation). Unconstrained since v2, before : Comue / Carnot /Ecole Doctorale / Pôle de compétitivité /Incubateur"
+				}
+			},
+			"description": "Relation between structures."
+		},
+		"SimilarTypedObjectOfv2.Publication": {
+			"type": "object",
+			"properties": {
+				"score": {
+					"type": "string"
+				},
+				"target": {
+					"description": "Light fields in Full object, else only id",
+					"$ref": "#/definitions/v2.Publication"
+				}
+			}
+		},
+		"LikeResponseOfv2.FullPerson": {
+			"type": "object",
+			"properties": {
+				"facets": {
+					"type": "array",
+					"description": "Computed buckets or bins for each named aggregation",
+					"items": {
+						"$ref": "#/definitions/FacetResult"
+					}
+				},
+				"request": {
+					"description": "Like request that provided this response's results",
+					"$ref": "#/definitions/v2.LikeRequest"
+				},
+				"results": {
+					"type": "array",
+					"description": "Found objects",
+					"items": {
+						"$ref": "#/definitions/SearchResultOfv2.FullPerson"
+					}
+				},
+				"total": {
+					"type": "integer",
+					"format": "int64"
+				}
+			}
+		},
+		"v2.PublicationOaEvidence": {
+			"type": "object",
+			"properties": {
+				"hostType": {
+					"type": "string"
+				},
+				"landingPageUrl": {
+					"type": "string"
+				},
+				"license": {
+					"type": "string"
+				},
+				"pdfUrl": {
+					"type": "string"
+				},
+				"updated": {
+					"type": "string",
+					"format": "date-time"
+				},
+				"url": {
+					"type": "string"
+				},
+				"version": {
+					"type": "string"
+				}
+			}
+		},
+		"SearchResponseOfv2.FullPerson": {
+			"type": "object",
+			"properties": {
+				"facets": {
+					"type": "array",
+					"description": "Computed buckets or bins for each named aggregation",
+					"items": {
+						"$ref": "#/definitions/FacetResult"
+					}
+				},
+				"histogramsMapValueTypeDummy": {
+					"$ref": "#/definitions/FacetResult"
+				},
+				"request": {
+					"description": "Search request that provided this response's results",
+					"$ref": "#/definitions/v2.SearchRequest"
+				},
+				"results": {
+					"type": "array",
+					"description": "Found objects",
+					"items": {
+						"$ref": "#/definitions/SearchResultOfv2.FullPerson"
+					}
+				},
+				"total": {
+					"type": "integer",
+					"format": "int64"
+				}
+			}
+		}
+	}
+}

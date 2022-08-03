@@ -1,0 +1,225 @@
+2605,2613d2604
+<           },
+<           {
+<             "name": "Accept",
+<             "in": "header",
+<             "required": false,
+<             "schema": {
+<               "type": "string",
+<               "default": "application/x-gn-mef-2-zip"
+<             }
+2618,2621c2609
+<             "description": "default response",
+<             "content": {
+<               "application/json": {}
+<             }
+---
+>             "description": "other response"
+2624c2612,2615
+<             "description": "Return requested records as ZIP."
+---
+>             "description": "Return requested records as ZIP.",
+>             "content": {
+>               "application/x-gn-mef-2-zip": {}
+>             }
+2941,2945d2931
+<             "application/json": {
+<               "schema": {
+<                 "type": "string"
+<               }
+<             },
+9133,9134c9119,9120
+<           "default": {
+<             "description": "default response",
+---
+>           "200": {
+>             "description": "OK",
+9136c9122,9126
+<               "application/json": {}
+---
+>               "application/json": {
+>                 "schema": {
+>                   "$ref": "#/components/schemas/SearchResult"
+>                 }
+>               }
+9138,9140d9127
+<           },
+<           "200": {
+<             "description": "OK"
+10575,10584d10561
+<             "name": "Accept",
+<             "in": "header",
+<             "description": "Formatter type to use.",
+<             "required": false,
+<             "schema": {
+<               "type": "string",
+<               "default": "text/html"
+<             }
+<           },
+<           {
+10663c10640
+<             "description": "default response",
+---
+>             "description": "other response",
+10669c10646,10654
+<             "description": "OK"
+---
+>             "description": "OK",
+>             "content": {
+>               "application/xml": {
+>                 "schema": {
+>                   "type": "string",
+>                   "default": "text/html"
+>                 }
+>               }
+>             }
+11050,11058d11034
+<           },
+<           {
+<             "name": "Accept",
+<             "in": "header",
+<             "required": false,
+<             "schema": {
+<               "type": "string",
+<               "default": "application/x-gn-mef-2-zip"
+<             }
+11063c11039
+<             "description": "default response",
+---
+>             "description": "other response",
+11069c11045,11048
+<             "description": "Return the record."
+---
+>             "description": "Return the record.",
+>             "content": {
+>               "application/x-gn-mef-2-zip": {}
+>             }
+11082,11083c11061,11062
+<         "summary": "Get a metadata record as XML or JSON",
+<         "operationId": "getRecordAs",
+---
+>         "summary": "Get a metadata record as XML",
+>         "operationId": "getRecordAsXml",
+11143,11151d11121
+<           },
+<           {
+<             "name": "Accept",
+<             "in": "header",
+<             "required": false,
+<             "schema": {
+<               "type": "string",
+<               "default": "application/xml"
+<             }
+11156c11126
+<             "description": "default response",
+---
+>             "description": "other response",
+11158c11128
+<               "application/json": {}
+---
+>               "application/xml": {}
+11168,11172d11137
+<               },
+<               "application/json": {
+<                 "schema": {
+<                   "type": "object"
+<                 }
+11183,11187d11147
+<               },
+<               "application/json": {
+<                 "schema": {
+<                   "type": "object"
+<                 }
+11199,11200c11159,11160
+<         "summary": "Get a metadata record as XML or JSON",
+<         "operationId": "getRecordAs_1",
+---
+>         "summary": "Get a metadata record as JSON",
+>         "operationId": "getRecordAsJSON",
+11260,11268d11219
+<           },
+<           {
+<             "name": "Accept",
+<             "in": "header",
+<             "required": false,
+<             "schema": {
+<               "type": "string",
+<               "default": "application/xml"
+<             }
+11273c11224
+<             "description": "default response",
+---
+>             "description": "other response",
+11281,11285d11231
+<               "application/xml": {
+<                 "schema": {
+<                   "type": "object"
+<                 }
+<               },
+16072a16019,16068
+>       },
+>       "SearchResult": {
+>         "type": "object",
+>         "properties": {
+>           "took": {
+>             "type": "integer"
+>           },
+>           "timed_out": {
+>             "type": "boolean"
+>           },
+>           "shards": {
+>             "type": "object"
+>           },
+>           "hits": {
+>             "$ref": "#/components/schemas/SearchHits"
+>           },
+>           "aggregations": {
+>             "type": "object"
+>           }
+>         }
+>       },
+>       "SearchHits": {
+>         "type": "object",
+>         "properties": {
+>           "total": {
+>             "type": "object"
+>           },
+>           "max_score": {
+>             "type": "number",
+>             "format": "double"
+>           },
+>           "hits": {
+>             "type": "array",
+>             "items": {
+>               "$ref": "#/components/schemas/SearchHit"
+>             }
+>           }
+>         }
+>       },
+>       "SearchHit": {
+>         "type": "object",
+>         "properties": {
+>           "_id": {
+>             "type": "string"
+>           },
+>           "_score": {
+>             "type": "number",
+>             "format": "double"
+>           }
+>         }
+16073a16070,16080
+>     },
+>     "securitySchemes": {
+>       "basicAuth": {
+>         "type": "http",
+>         "scheme": "basic"
+>       }
+>     }
+>   },
+>   "security": [
+>     {
+>       "basicAuth": []
+16075c16082
+<   }
+---
+>   ]

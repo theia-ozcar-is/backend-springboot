@@ -1,0 +1,4 @@
+/home/coussotc/dev/theia-ozcar-projects/backend-springboot/apiclient/apiclient-restcountries/src/main/java/fr/theialand/insitu/dataportal/api/restcountries/RestCountriesConfig.java
+/home/coussotc/dev/theia-ozcar-projects/backend-springboot/apiclient/apiclient-restcountries/src/main/java/fr/theialand/insitu/dataportal/api/restcountries/RestCountriesClient.java
+/home/coussotc/dev/theia-ozcar-projects/backend-springboot/apiclient/apiclient-restcountries/src/main/java/fr/theialand/insitu/dataportal/api/restcountries/model/RestCountry.java
+/home/coussotc/dev/theia-ozcar-projects/backend-springboot/apiclient/apiclient-restcountries/src/main/java/fr/theialand/insitu/dataportal/api/restcountries/RestCountriesClientImpl.java

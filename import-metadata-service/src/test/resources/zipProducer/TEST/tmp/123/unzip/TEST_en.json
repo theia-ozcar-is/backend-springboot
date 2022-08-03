@@ -1,0 +1,444 @@
+{
+  "version": "1.0",
+  "producer": {
+    "producerId": "TEST",
+    "name": "TEST",
+    "title": "Test title of producer",
+    "description": "Test description",
+    "fundings": [
+      {
+        "type": "French research institutes",
+        "acronym": "IRD",
+        "name": "Institut de Recherche pour le Développement",
+        "iso3166": "fr",
+        "idScanR": "180006025"
+      },
+      {
+        "type": "Federative structure",
+        "acronym": "OMP",
+        "name": "Observatoire Midi-Pyrénées",
+        "iso3166": "fr",
+        "idScanR": "200719584L"
+      },
+      {
+        "type": "French research institutes",
+        "acronym": "CNRS",
+        "name": "Centre National de la Recherche Scientifique",
+        "iso3166": "fr",
+        "idScanR": "180089013"
+      },
+      {
+        "type": "Research unit",
+        "acronym": "GET",
+        "name": "Géosciences Environnement Toulouse",
+        "iso3166": "fr",
+        "idScanR": "201119478D"
+      }
+    ],
+    "contacts": [
+      {
+        "firstName": "testFirstName",
+        "lastName": "testLastName",
+        "email": "testtheia@test.osug.fr",
+        "role": "Project leader"
+      },
+      {
+        "firstName": "testFirstName",
+        "lastName": "testLastName",
+        "email": "testtheia@test.osug.fr",
+        "role": "Project leader"
+      }
+    ],
+    "onlineResource": {
+      "urlInfo": "https://theia-test.osug.fr"
+    }
+  },
+  "datasets": [
+    {
+      "datasetId": "TEST_DAT_1",
+      "metadata": {
+        "title": "TestTitle 1",
+        "description": "Test desc 1",
+        "datasetLineage": "Test Lineage 1",
+        "contacts": [
+          {
+            "firstName": "Test",
+            "lastName": "Test",
+            "email": "testtheia@test.osug.fr",
+            "role": "Principal investigator",
+            "organisation": {
+              "name": "IRD",
+              "role": "Research group",
+              "iso3166": "fr",
+              "idScanR": "180006025"
+            }
+          }
+        ],
+        "topicCategories": [
+          "Environment",
+          "Geoscientific Information"
+        ],
+        "inspireTheme": "Environmental monitoring facilities",
+        "keywords": [
+          {
+            "keyword": "LAND SURFACE > EROSION/SEDIMENTATION > SUSPENDED SOLIDS"
+          },
+          {
+            "keyword": "TERRESTRIAL HYDROSPHERE > SURFACE WATER > WATER DEPTH"
+          },
+          {
+            "keyword": "LAND SURFACE > EROSION/SEDIMENTATION > EROSION"
+          },
+          {
+            "keyword": "SEDIMENT SAMPLERS"
+          },
+          {
+            "keyword": "WATER LEVEL GAUGES"
+          },
+          {
+            "keyword": "SEDIMENT TRAPS"
+          },
+          {
+            "keyword": "Hydrochemical data"
+          },
+          {
+            "keyword": "Hydrological data"
+          },
+          {
+            "keyword": "test kw"
+          }
+        ],
+        "onlineResource": {
+          "doi": "10.9999/TEST.TEST.3"
+        },
+        "dataConstraint": {
+          "accessUseConstraint": "1. In accordance with scientific standards, all users of these data should make appropriate acknowledgement to the producer of the data as well as the distributor using bibliographic citation. Such citations will appear in footnotes or in the reference section of any such manuscript.\n2. Regarding the specific case of scientific publications using the MSEC Data Base, it is expressly asked to the authors to cite the related article below:\nValentin, C., Agus, F., Alamban, R., Boosaner, A., Bricquet, J.P., Chaplot, V., de Guzman, T., de Rouw, A., Janeau, J.L., Orange, D., Phachomphonh, K., Phai. D., Podwojewski, P., Ribolzi, O., Silvera, N., Subagyono, K., Thiébaux, J.P., Toan, T., Vadari, T., 2008 - Impact of rapid land use changes and conservation practices on annual runoff and sediment losses from 27 upland catchments in South-East Asia. Agriculture, Ecosystems and Environment, 128, 225–238. DOI: 10.1016/j.agee.2008.06.0043. MSEC consortium requests a copy of any produced material based on the data. This includes position papers, scientific reports, and graduate papers in addition to publications.",
+          "embargo": {
+            "duration": 36500,
+            "priviledgedUsers": [
+              "testtheia@test.osug.fr"
+            ]
+          }
+        },
+        "portalSearchCriteria": {
+          "climates": [
+            "Tropical climate"
+          ],
+          "geologies": [
+            "Other sedimentary rocks"
+          ]
+        },
+        "spatialExtent": {
+          "geometry": {
+            "coordinates": [
+              [
+                [
+                  102.169139,
+                  19.8525
+                ],
+                [
+                  102.169139,
+                  19.8525
+                ],
+                [
+                  102.169139,
+                  19.8525
+                ],
+                [
+                  102.169139,
+                  19.8525
+                ],
+                [
+                  102.169139,
+                  19.8525
+                ]
+              ]
+            ],
+            "type": "Polygon"
+          },
+          "properties": {},
+          "type": "Feature"
+        }
+      },
+      "observations": [
+        {
+          "observationId": "TEST_OBS_DAT_1_1",
+          "featureOfInterest": {
+            "samplingFeature": {
+              "geometry": {
+                "coordinates": [
+                  102.169139,
+                  19.8525
+                ],
+                "type": "Point"
+              },
+              "name": "Hydrological station, S4",
+              "type": "Feature",
+              "properties": {}
+            }
+          },
+          "observedProperty": {
+            "name": "Suspended particulate matter",
+            "unit": "g.l-1",
+            "gcmdKeywords": [
+              {
+                "category": "EARTH SCIENCE",
+                "topic": "LAND SURFACE",
+                "term": "EROSION/SEDIMENTATION",
+                "variableLevel1": "SUSPENDED SOLIDS"
+              }
+            ],
+            "theiaCategories": [
+              "https://w3id.org/ozcar-theia/erosionSedimentation"
+            ]
+          },
+          "result": {
+            "missingValue": "-99999.99",
+            "dataFile": {
+              "name": "TEST_OBS_DAT_1_1.txt"
+            }
+          },
+          "timeSerie": true,
+          "temporalExtent": {
+            "dateBeg": "2001-05-11T00:00:00Z",
+            "dateEnd": "2014-09-25T00:00:00Z"
+          },
+          "dataType": "Numeric",
+          "processingLevel": "Quality-controlled data"
+        },
+        {
+          "observationId": "TEST_OBS_DAT_1_1",
+          "featureOfInterest": {
+            "samplingFeature": {
+              "geometry": {
+                "coordinates": [
+                  102.169139,
+                  19.8525
+                ],
+                "type": "Point"
+              },
+              "name": "Hydrological station, S4",
+              "type": "Feature",
+              "properties": {}
+            }
+          },
+          "observedProperty": {
+            "name": "Bed particulate matter and stones",
+            "unit": "t.ha-1",
+            "gcmdKeywords": [
+              {
+                "category": "EARTH SCIENCE",
+                "topic": "LAND SURFACE",
+                "term": "EROSION/SEDIMENTATION",
+                "variableLevel1": "EROSION"
+              }
+            ],
+            "theiaCategories": [
+              "https://w3id.org/ozcar-theia/erosionSedimentation"
+            ]
+          },
+          "result": {
+            "missingValue": "-99999.99",
+            "dataFile": {
+              "name": "TEST_OBS_DAT_1_1.txt"
+            }
+          },
+          "timeSerie": true,
+          "temporalExtent": {
+            "dateBeg": "2001-05-07T00:00:00Z",
+            "dateEnd": "2014-09-23T00:00:00Z"
+          },
+          "dataType": "Numeric",
+          "processingLevel": "Quality-controlled data"
+        }
+      ]
+    },
+    {
+      "datasetId": "TEST_DAT_2",
+      "metadata": {
+        "title": "Test title 2",
+        "description": "Test desc 2",
+        "datasetLineage": "Test lineage 2",
+        "contacts": [
+          {
+            "firstName": "Test",
+            "lastName": "Test",
+            "email": "testtheia@test.osug.fr",
+            "role": "Principal investigator",
+            "organisation": {
+              "name": "IRD",
+              "role": "Research group",
+              "iso3166": "fr",
+              "idScanR": "180006025"
+            }
+          }
+        ],
+        "topicCategories": [
+          "Environment",
+          "Geoscientific Information"
+        ],
+        "inspireTheme": "Environmental monitoring facilities",
+        "keywords": [
+          {
+            "keyword": "ATMOSPHERE > PRECIPITATION > PRECIPITATION AMOUNT"
+          },
+          {
+            "keyword": "RAIN GAUGES"
+          },
+          {
+            "keyword": "Meteorological data"
+          },
+          {
+            "keyword": "test kw"
+          },
+          {
+            "keyword": "test2 kw"
+          }
+        ],
+        "onlineResource": {
+          "doi": "10.9999/TEST.TEST.4"
+        },
+        "dataConstraint": {
+          "accessUseConstraint": "1. In accordance with scientific standards, all users of these data should make appropriate acknowledgement to the producer of the data as well as the distributor using bibliographic citation. Such citations will appear in footnotes or in the reference section of any such manuscript.\n2. Regarding the specific case of scientific publications using the MSEC Data Base, it is expressly asked to the authors to cite the related article below:\nValentin, C., Agus, F., Alamban, R., Boosaner, A., Bricquet, J.P., Chaplot, V., de Guzman, T., de Rouw, A., Janeau, J.L., Orange, D., Phachomphonh, K., Phai. D., Podwojewski, P., Ribolzi, O., Silvera, N., Subagyono, K., Thiébaux, J.P., Toan, T., Vadari, T., 2008 - Impact of rapid land use changes and conservation practices on annual runoff and sediment losses from 27 upland catchments in South-East Asia. Agriculture, Ecosystems and Environment, 128, 225–238. DOI: 10.1016/j.agee.2008.06.0043. MSEC consortium requests a copy of any produced material based on the data. This includes position papers, scientific reports, and graduate papers in addition to publications.",
+          "embargo": {
+            "duration": 36500,
+            "priviledgedUsers": [
+              "testtheia@test.osug.fr"
+            ]
+          }
+        },
+        "portalSearchCriteria": {
+          "climates": [
+            "Tropical climate"
+          ],
+          "geologies": [
+            "Other sedimentary rocks"
+          ]
+        },
+        "spatialExtent": {
+          "geometry": {
+            "coordinates": [
+              [
+                [
+                  102.167622,
+                  19.860833
+                ],
+                [
+                  102.167622,
+                  19.853093
+                ],
+                [
+                  102.17552,
+                  19.853093
+                ],
+                [
+                  102.17552,
+                  19.860833
+                ],
+                [
+                  102.167622,
+                  19.860833
+                ]
+              ]
+            ],
+            "type": "Polygon"
+          },
+          "properties": {},
+          "type": "Feature"
+        }
+      },
+      "observations": [
+        {
+          "observationId": "TEST_OBS_DAT_2_1",
+          "featureOfInterest": {
+            "samplingFeature": {
+              "geometry": {
+                "coordinates": [
+                  102.169421,
+                  19.854011
+                ],
+                "type": "Point"
+              },
+              "name": "Raingauge network, R2",
+              "type": "Feature",
+              "properties": {}
+            }
+          },
+          "observedProperty": {
+            "name": "Rainfall (24h from today to day after)",
+            "unit": "mm",
+            "gcmdKeywords": [
+              {
+                "category": "EARTH SCIENCE",
+                "topic": "ATMOSPHERE",
+                "term": "PRECIPITATION",
+                "variableLevel1": "PRECIPITATION AMOUNT"
+              }
+            ],
+            "theiaCategories": [
+              "https://w3id.org/ozcar-theia/liquidPrecipitation"
+            ]
+          },
+          "result": {
+            "missingValue": "-99999.99",
+            "dataFile": {
+              "name": "TEST_OBS_DAT_2_1.txt"
+            }
+          },
+          "timeSerie": true,
+          "temporalExtent": {
+            "dateBeg": "2001-03-18T00:00:00Z",
+            "dateEnd": "2014-09-23T00:00:00Z"
+          },
+          "dataType": "Numeric",
+          "processingLevel": "Quality-controlled data"
+        },
+        {
+          "observationId": "TEST_OBS_DAT_2_2",
+          "featureOfInterest": {
+            "samplingFeature": {
+              "geometry": {
+                "coordinates": [
+                  102.167753,
+                  19.857695
+                ],
+                "type": "Point"
+              },
+              "name": "Raingauge network, R3",
+              "type": "Feature",
+              "properties": {}
+            }
+          },
+          "observedProperty": {
+            "name": "Rainfall (24h from today to day after)",
+            "unit": "mm",
+            "gcmdKeywords": [
+              {
+                "category": "EARTH SCIENCE",
+                "topic": "ATMOSPHERE",
+                "term": "PRECIPITATION",
+                "variableLevel1": "PRECIPITATION AMOUNT"
+              }
+            ],
+            "theiaCategories": [
+              "https://w3id.org/ozcar-theia/liquidPrecipitation"
+            ]
+          },
+          "result": {
+            "missingValue": "-99999.99",
+            "dataFile": {
+              "name": "TEST_OBS_DAT_2_2.txt"
+            }
+          },
+          "timeSerie": true,
+          "temporalExtent": {
+            "dateBeg": "2001-03-18T00:00:00Z",
+            "dateEnd": "2014-09-23T00:00:00Z"
+          },
+          "dataType": "Numeric",
+          "processingLevel": "Quality-controlled data"
+        }
+      ]
+    }
+  ]
+}

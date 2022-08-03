@@ -1,0 +1,139 @@
+openapi: 3.0.0
+info:
+  description: openAPI definition for open-elevation API - https://github.com/Jorl17/open-elevation
+  license:
+    name: GPL-2.0 License
+    url: https://www.gnu.org/licenses/old-licenses/gpl-2.0.en.html
+  title: open-elevation
+  version: "0.1"
+servers:
+- url: /
+paths:
+  /api/v1/lookup:
+    get:
+      description: |
+        Returns ("looks up") the elevation at one or more (latitude,longitude) points. The GET API is limited to 1024 bytes in the request line. If you plan on making large requests, consider using the POST api.
+      operationId: getLookup
+      parameters:
+      - description: List of locations, separated by | in latitude, longitude format,
+          similar to the Google Elevation API
+        example: 10,10|20,20|41.161758,-8.583933
+        explode: true
+        in: query
+        name: locations
+        required: true
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LocationElevationResultsDTO'
+          description: A JSON object with a single list of results, in the results
+            field is returned. Each result contains latitude, longitude and elevation.
+            The results are in the same order as the request parameters. Elevation
+            is in meters. If there is no recorded elevation at the provided coordinate,
+            sea level (0 meters) is returned.
+      tags:
+      - openElevationLookup
+      x-accepts: application/json
+    post:
+      description: |
+        Returns (looks up) the elevation at one or more (latitude,longitude) points. The POST API currently has no limit
+      operationId: postLookup
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LocationsPostParam'
+        x-examples:
+          application/json: |-
+            {
+               "locations":
+               [
+                  {
+                     "longitude":10.0,
+                     "latitude":10.0
+                  },
+                  {
+                     "longitude":20.0,
+                     "latitude":20.0
+                  },
+                  {
+                     "latitude":41.161758,
+                     "longitude":-8.583933
+                  }
+               ]
+            }
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LocationElevationResultsDTO'
+          description: A JSON object with a single list of results, in the results
+            field is returned. Each result contains latitude, longitude and elevation.
+            The results are in the same order as the request parameters. Elevation
+            is in meters. If there is no recorded elevation at the provided coordinate,
+            sea level (0 meters) is returned.
+      tags:
+      - openElevationLookup
+      x-contentType: application/json
+      x-accepts: application/json
+components:
+  schemas:
+    Location:
+      example:
+        latitude: 6.027456183070403
+        longitude: 0.8008281904610115
+      properties:
+        longitude:
+          format: double
+          type: number
+        latitude:
+          format: double
+          type: number
+    LocationsPostParam:
+      example:
+        locations:
+        - latitude: 6.027456183070403
+          longitude: 0.8008281904610115
+        - latitude: 6.027456183070403
+          longitude: 0.8008281904610115
+      properties:
+        locations:
+          items:
+            $ref: '#/components/schemas/Location'
+          type: array
+    LocationElevation:
+      example:
+        elevation: 1
+        latitude: 0.8008281904610115
+        longitude: 6.027456183070403
+      properties:
+        latitude:
+          format: double
+          type: number
+        longitude:
+          format: double
+          type: number
+        elevation:
+          format: int32
+          type: integer
+    LocationElevationResultsDTO:
+      example:
+        results:
+        - elevation: 1
+          latitude: 0.8008281904610115
+          longitude: 6.027456183070403
+        - elevation: 1
+          latitude: 0.8008281904610115
+          longitude: 6.027456183070403
+      properties:
+        results:
+          items:
+            $ref: '#/components/schemas/LocationElevation'
+          type: array
+

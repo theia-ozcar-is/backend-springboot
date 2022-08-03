@@ -1,0 +1,6 @@
+fr/theialand/insitu/dataportal/backendassociation/configuration/SwaggerConfig.class
+fr/theialand/insitu/dataportal/backendassociation/service/AssociationServiceImpl.class
+fr/theialand/insitu/dataportal/backendassociation/controller/VariableAssociationController.class
+fr/theialand/insitu/dataportal/backendassociation/BackendSpringbootAssociationVariableApplication.class
+fr/theialand/insitu/dataportal/backendassociation/configuration/SpringSecurityConfig.class
+fr/theialand/insitu/dataportal/backendassociation/service/AssociationService.class

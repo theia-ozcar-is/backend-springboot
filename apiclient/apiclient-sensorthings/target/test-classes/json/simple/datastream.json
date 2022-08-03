@@ -1,0 +1,16 @@
+{
+  "name" : "GroundWater depth / TEST de suivi eau souterraine quantité TEST",
+  "description" : "GroundWater depth / Installation de suivi eau souterraine quantité TEST",
+  "observationType" : "http://www.opengis.net/def/observationType/OGC-OM/2.0/OM_Measurement",
+  "Sensor@iot.navigationLink" : "https://sensorthings.brgm-rec.fr/SensorThingsGroundWater/v1.1/Datastreams(1)/Sensor",
+  "Thing@iot.navigationLink" : "https://sensorthings.brgm-rec.fr/SensorThingsGroundWater/v1.1/Datastreams(1)/Thing",
+  "Observations@iot.navigationLink" : "https://sensorthings.brgm-rec.fr/SensorThingsGroundWater/v1.1/Datastreams(1)/Observations",
+  "unitOfMeasurement" : {
+    "name" : "meters",
+    "symbol" : "m",
+    "definition" : "http://www.qudt.org/qudt/owl/1.0.0/unit/Instances.html#Meter"
+  },
+  "ObservedProperty@iot.navigationLink" : "https://sensorthings.brgm-rec.fr/SensorThingsGroundWater/v1.1/Datastreams(42)/ObservedProperty",
+  "@iot.id" : 1,
+  "@iot.selfLink" : "https://sensorthings.brgm-rec.fr/SensorThingsGroundWater/v1.1/Datastreams(42)"
+}

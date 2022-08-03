@@ -1,0 +1,90 @@
+{
+  "name" : "Water Temperature / Installation de suivi eau souterraine quantité",
+  "description" : "Water Temperature / Installation de suivi eau souterraine quantité",
+  "observationType" : "http://www.opengis.net/def/observationType/OGC-OM/2.0/OM_Measurement",
+  "Sensor@iot.navigationLink" : "https://sensorthings.brgm-rec.fr/SensorThingsGroundWater/v1.1/Datastreams(42)/Sensor",
+  "Sensor" : {
+    "name" : "Digital recording teletransmitted",
+    "description" : "Digital recording teletransmitted",
+    "encodingType" : "http://www.opengis.net/doc/IS/SensorML/2.0",
+    "metadata" : "https://lab.egeos-services.it/gitlab/aware/ows-client/raw/35940912c408f951d0b44231fc370cccf942b29b/patched_modules/ogc-schemas/tests/SensorML/2.0/locDynamic.xml",
+    "@iot.id" : 2,
+    "@iot.selfLink" : "https://sensorthings.brgm-rec.fr/SensorThingsGroundWater/v1.1/Sensors(2)",
+    "properties": {
+      "lineageInformations": [{
+        "processDescription": "read & check TEST",
+        "processDate": "2012-04-23T18:25:43.511Z"
+      }]
+    }
+  },
+  "Thing@iot.navigationLink" : "https://sensorthings.brgm-rec.fr/SensorThingsGroundWater/v1.1/Datastreams(42)/Thing",
+  "Thing" : {
+    "name" : "Installation de suivi eau souterraine quantité",
+    "description" : "GroundWater Quantity Environmental monitoring facility monitoring ground water level",
+    "properties" : {
+      "altitude_point_eau" : {
+        "value" : 86.0,
+        "uom" : "https://data.geoscience.fr/ncl/urf/111"
+      },
+      "altitude_repere" : {
+        "value" : 86.0,
+        "uom" : "https://data.geoscience.fr/ncl/urf/111"
+      },
+      "id" : "https://data.geoscience.fr/id/EMF/GroundwaterQuantity/00626X0025"
+    },
+    "Locations" : [ {
+      "name" : "Installation de suivi eau souterraine quantité",
+      "description" : "Installation de suivi eau souterraine quantité",
+      "encodingType" : "application/vnd.geo+json",
+      "location" : {"type":"Point","coordinates":[2.305866012,49.72646066]},
+      "@iot.id" : 9,
+      "@iot.selfLink" : "https://sensorthings.brgm-rec.fr/SensorThingsGroundWater/v1.1/Locations(9)"
+    } ],
+    "Locations@iot.count" : 1,
+    "@iot.id" : 9,
+    "@iot.selfLink" : "https://sensorthings.brgm-rec.fr/SensorThingsGroundWater/v1.1/Things(9)"
+  },
+  "Observations@iot.navigationLink" : "https://sensorthings.brgm-rec.fr/SensorThingsGroundWater/v1.1/Datastreams(42)/Observations",
+  "unitOfMeasurement" : {
+    "name" : "Degree Celsius",
+    "symbol" : "°C",
+    "definition" : "http://www.qudt.org/qudt/owl/1.0.0/unit/Instances.html#DegreeCelsius"
+  },
+  "ObservedProperty@iot.navigationLink" : "https://sensorthings.brgm-rec.fr/SensorThingsGroundWater/v1.1/Datastreams(42)/ObservedProperty",
+  "ObservedProperty" : {
+    "name" : "Water Temperature",
+    "description" : "Water Temperature",
+    "definition" : "https://data.geoscience.fr/ncl/ObsProp/187",
+    "@iot.id" : 2,
+    "@iot.selfLink" : "https://sensorthings.brgm-rec.fr/SensorThingsGroundWater/v1.1/ObservedProperties(2)",
+    "properties": {
+      "firstProp": "wtf",
+      "secondProp": {
+        "moreOfWut": 22
+      },
+      "theiaCategories": [
+        "ee","ee","rr"
+      ],
+      "gcmdKeywords": [
+        {
+          "category": "firstCateg",
+          "topic": "firstTopic"
+        },
+        {
+          "category": "2ndCateg",
+          "topic": "2ndTopic"
+        }
+      ]
+    }
+  },
+  "resultTime": "2014-03-01T13:00:00Z/2015-05-11T15:30:00Z",
+  "properties": {
+    "firstProp": "not used",
+    "secondProp": {
+      "moreOfWut": 22
+    },
+    "processingLevel": "Raw data"
+  },
+  "@iot.id" : 42,
+  "@iot.selfLink" : "https://sensorthings.brgm-rec.fr/SensorThingsGroundWater/v1.1/Datastreams(42)"
+}

@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>backend-springboot</artifactId>
+        <groupId>fr.theialand.insitu</groupId>
+        <version>0.0.1-SNAPSHOT</version>
+    </parent>
+
+    <modelVersion>4.0.0</modelVersion>
+
+    <artifactId>import-metadata-service</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+    <description>Import metadata from files into mongo, then push metadata to Geonetwork</description>
+
+    <dependencies>
+
+        <!-- Dep on ETL for pushing the data to Geonetwork at the end of import service -->
+        <dependency>
+            <groupId>fr.theialand.insitu</groupId>
+            <artifactId>etl-mongo-geonetwork</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
+
+        <dependency>
+            <groupId>fr.theialand.insitu</groupId>
+            <artifactId>mongodb-repository</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
+
+        <dependency>
+            <groupId>fr.theialand.insitu</groupId>
+            <artifactId>apiclient-scanr</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>fr.theialand.insitu</groupId>
+            <artifactId>apiclient-restcountries</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>fr.theialand.insitu</groupId>
+            <artifactId>apiclient-sparql</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
+
+        <dependency>
+            <groupId>fr.theialand.insitu</groupId>
+            <artifactId>apiclient-openelevation</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
+
+        <dependency>
+            <groupId>fr.theialand.insitu</groupId>
+            <artifactId>common-configs</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>fr.theialand.insitu</groupId>
+            <artifactId>apiclient-koppen-climate</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>fr.theialand.insitu</groupId>
+            <artifactId>apiclient-CGMW-WMS</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
+
+        <dependency>
+            <!--            todo : trying to get rid of this last adherence-->
+            <groupId>org.json</groupId>
+            <artifactId>json</artifactId>
+            <version>20180130</version>
+        </dependency>
+
+        <!-- Enable the use of @Email, @Pattern ... to inform json schema about limitations and format       -->
+        <dependency>
+            <groupId>javax.validation</groupId>
+            <artifactId>validation-api</artifactId>
+        </dependency>
+
+        <!-- The new Json Schema Validator, that goes along well with Jackson, and recommended by VicTools.        -->
+        <dependency>
+            <groupId>com.networknt</groupId>
+            <artifactId>json-schema-validator</artifactId>
+            <version>1.0.49</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.github.stefanbirkner</groupId>
+            <artifactId>system-rules</artifactId>
+            <version>1.19.0</version>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <version>2.3.5.RELEASE</version>
+            </plugin>
+            <plugin>
+                <groupId>com.google.cloud.tools</groupId>
+                <artifactId>jib-maven-plugin</artifactId>
+                <configuration>
+                    <skip>true</skip>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+
+</project>

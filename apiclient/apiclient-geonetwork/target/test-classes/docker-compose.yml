@@ -1,0 +1,91 @@
+version: "3.7"
+services:
+
+  postgres:
+    image: mdillon/postgis:9.4
+    environment:
+      POSTGRES_USER: geonetwork
+      POSTGRES_PASSWORD: geonetwork
+      POSTGRES_DB: geonetwork
+    volumes:
+      - "pg:/var/lib/postgresql/data"
+
+  elasticsearch:
+    image: elasticsearch:7.9.3
+    ports:
+      - 9200:9200
+    environment:
+      #- node.name=theia01
+      #- cluster.name=es-theia-cluster
+      #- bootstrap.memory_lock=true
+      - discovery.type=single-node
+      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+    volumes:
+      - "es:/usr/share/elasticsearch/data"
+
+  kibana:
+    image: kibana:7.9.3
+    environment:
+      SERVER_NAME: 'kibana'
+      ELASTICSEARCH_URL: http://elasticsearch:9200/
+      SERVER_BASEPATH: /geonetwork/dashboards
+      SERVER_REWRITEBASEPATH: 'false'
+      KIBANA_INDEX: .dashboards
+      XPACK_MONITORING_UI_CONTAINER_ELASTICSEARCH_ENABLED: 'true'
+
+  gn:
+    image: geonetwork:4.0.1
+    depends_on:
+      - postgres
+      - elasticsearch
+      - kibana
+    ports:
+      - 8080:8080
+    environment:
+      DATA_DIR: /var/lib/geonetwork_data
+      # for the H2 database
+      GEONETWORK_DB_TYPE: postgres
+      GEONETWORK_DB_NAME: geonetwork
+      GEONETWORK_DB_USERNAME: geonetwork
+      GEONETWORK_DB_PASSWORD: geonetwork
+      GEONETWORK_DB_HOST: postgres
+      GEONETWORK_DB_PORT: 5432
+
+      # ... which is replaced by a PG database...
+      #POSTGRES_DB_HOST: postgres
+      #POSTGRES_DB_USERNAME: pguser
+      #POSTGRES_DB_PASSWORD: pgpass
+      #`GEONETWORK_DB_CONNECTION_PROPERTIES`
+
+      # ... which are replaced by an ES databaz
+      ES_HOST: elasticsearch
+      ES_PORT: 9200
+      ES_PROTOCOL: http
+      #ES_INDEX_RECORDS: gn-records
+
+      JAVA_OPTS: >
+        -Dorg.eclipse.jetty.annotations.AnnotationParser.LEVEL=OFF
+        -Djava.security.egd=file:/dev/./urandom -Djava.awt.headless=true
+        -Xms512M -Xss512M -Xmx2G -XX:+UseConcMarkSweepGC
+        -Dgeonetwork.resources.dir=/catalogue-data/resources
+        -Dgeonetwork.data.dir=/catalogue-data
+        -Dgeonetwork.codeList.dir=/var/lib/jetty/webapps/geonetwork/WEB-INF/data/config/codelist
+        -Dgeonetwork.schema.dir=/var/lib/jetty/webapps/geonetwork/WEB-INF/data/config/schema_plugins
+
+
+    volumes:
+      - "/home/bourdarj/gn/image/data:/var/lib/geonetwork_data"
+
+    # deactivate the CSRF protection before running the image
+    command:
+      - /bin/sh
+      - -c
+      - |
+        sed -i 's,<ref bean="csrfFilter" />,,' ~/webapps/geonetwork/WEB-INF/config-security/config-security-core.xml
+        /geonetwork-entrypoint.sh java -jar /usr/local/jetty/start.jar
+
+
+volumes:
+  gn:
+  es:
+  pg:

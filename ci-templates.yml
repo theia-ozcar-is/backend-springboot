@@ -1,0 +1,60 @@
+######################################
+# CI TEMPLATES
+
+# template for java Compile jobs
+.compileJob:
+  stage: compile
+  artifacts:
+    paths:
+      - "*/target/"
+      - "*/*/target/"
+      - "*/*/*/target/"
+
+# template for test jobs
+.testJob:
+  stage: test
+  artifacts:
+    reports: # https://gitlab.com/gitlab-org/gitlab-ce/issues/50663   # https://gitlab.com/gitlab-org/gitlab-ce/issues/17081
+      junit:
+        - "*/target/*-reports/TEST-*.xml"         # couvre surefire-reports et failsafe-reports
+        - "*/*/target/*-reports/TEST-*.xml"
+        - "*/*/*/target/*-reports/TEST-*.xml"
+    expire_in: 10 weeks
+    when: always
+  allow_failure: true
+
+## template for package jobs
+#.packageJob:
+#  stage: package
+#  artifacts:
+#    paths: # jar and future wars
+#      - "*/target/*ar"
+#      - "*/*/target/*ar"
+#      - "*/*/*/target/*ar"
+#    expire_in: 5 weeks
+
+# template for all buildah jobs. use with extends keyword
+.buildahJob:
+  stage: build
+  image: gricad-registry.univ-grenoble-alpes.fr/kubernetes-alpes/buildah:fedora34-buildah1.23.1
+  variables:
+    IMAGE_BUILD: buildah build-using-dockerfile --storage-driver vfs --format docker
+    IMAGE_PUSH: buildah push --storage-driver vfs
+    IMAGE_TAG: buildah tag
+  before_script:
+    - buildah login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY
+  after_script:
+    - buildah logout $CI_REGISTRY
+
+# needed by apiclient-gn compile process
+.installMvnPatchCommand:
+  before_script:
+    - apt-get update
+    - apt-get install patch # needed by the maven-patch-plugin
+
+# Template for JIB build jobs.
+.jibJob:
+  stage: build
+  script:
+    - mvn package jib:build -pl $MODULE_NAME -am -Djib.to.image=$CI_REGISTRY_IMAGE/$MODULE_NAME:$CI_COMMIT_SHORT_SHA -Djib.to.auth.username=$CI_REGISTRY_USER -Djib.to.auth.password=$CI_JOB_TOKEN -Djib.from.image=$BASE_IMAGE
+    - if [ -n "$CI_COMMIT_TAG" ] ; then mvn package jib:build -pl $MODULE_NAME -am -Djib.to.image=$CI_REGISTRY_IMAGE/$MODULE_NAME:$CI_COMMIT_TAG -Djib.from.image=gcr.io/distroless/java:11 -Djib.to.auth.username=$CI_REGISTRY_USER -Djib.to.auth.password=$CI_JOB_TOKEN ; fi

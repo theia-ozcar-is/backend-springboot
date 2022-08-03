@@ -1,0 +1,555 @@
+{
+    "version": "1.0",
+    "producer": {
+        "producerId": "TOUR",
+        "name": "SNO-Tourbières",
+        "title": "SNO-Tourbières, the national observation service (SNO) of peatland",
+        "description": "SNO-Tourbières is a national observation service (SNO) dedicated to long-term monitoring of climatological, hydrological and changes in peatland.",
+        "email": "contact.sno-tourbieres@cnrs-orleans.fr",
+        "fundings": [
+            {
+                "type": "French research institutes",
+                "acronym": "CNRS",
+                "name": "Centre National de la Recherche Scientifique",
+                "idScanR": "180089013",
+                "iso3166": "fr"
+            },
+            {
+                "type": "Federative structure",
+                "acronym": "OSUC",
+                "name": "Observatoire des Sciences de l'Univers de la Région Centre",
+                "idScanR": "200810873N",
+                "iso3166": "fr"
+            },
+            {
+                "type": "Federative structure",
+                "acronym": "OSU THETA",
+                "name": "Observatoire des Sciences de L'Univers Terre Homme Environnement Temps Astronomie de Franche-Comté-Bourgogne",
+                "idScanR": "201120530X",
+                "iso3166": "fr"
+            },
+            {
+                "type": "Federative structure",
+                "acronym": "OSUR",
+                "name": "Observatoire des Sciences de l’Univers de Rennes",
+                "idScanR": "201220716V",
+                "iso3166": "fr"
+            },
+            {
+                "type": "Federative structure",
+                "acronym": "OHM Pyrénées Haut-Vicdessos",
+                "name": "Observatoire Homme-Milieu Pyrénées Haut-Vicdessos",
+                "iso3166": "fr"
+            },
+            {
+                "type": "Research unit",
+                "acronym": "ISTO",
+                "name": "Institut des Sciences de la Terre d’Orléans",
+                "idScanR": "201220213Y",
+                "iso3166": "fr"
+            },
+            {
+                "type": "Research unit",
+                "acronym": "LPC2E",
+                "name": "Laboratoire de Physiques et Chimie de l’Environnement et de l’Espace",
+                "idScanR": "201220223J",
+                "iso3166": "fr"
+            },
+            {
+                "type": "Research unit",
+                "acronym": "",
+                "name": "Chrono Environnement",
+                "idScanR": "200812285Y",
+                "iso3166": "fr"
+            },
+            {
+                "type": "Research unit",
+                "acronym": "Ecobio Rennes",
+                "name": "Ecosystèmes Biodiversité Evolution",
+                "idScanR": "199612339J",
+                "iso3166": "fr"
+            },
+            {
+                "type": "Research unit",
+                "acronym": "GEODE",
+                "name": "Géographie De l’Environnement",
+                "idScanR": "199512032E",
+                "iso3166": "fr"
+            },
+            {
+                "type": "Research unit",
+                "acronym": "EcoLab",
+                "name": "Laboratoire écologie fonctionnelle et environnement",
+                "idScanR": "200711910V",
+                "iso3166": "fr"
+            },
+            {
+                "type": "Research unit",
+                "acronym": "",
+                "name": "GeoSciences Rennes",
+                "idScanR": "200012191F",
+                "iso3166": "fr"
+            },
+            {
+                "type": "Other",
+                "acronym": "LabEx Voltaire et LabEx DRIIHM",
+                "name": "Laboratoire d’Exellence VOLatils – Terre, Atmosphère et Interactions - Ressources et Environnement et Laboratoire d’Exellence Dispositif de Recherche Interdisciplinaire sur les Interactions Hommes-Milieux",
+                "iso3166": "fr"
+            }
+        ],
+        "contacts": [
+            {
+                "firstName": "Gogo",
+                "lastName": "Sébastien",
+                "email": "sebastien.gogo@univ-orleans.fr",
+                "role": "Project leader"
+            },
+            {
+                "firstName": "Gogo",
+                "lastName": "Sébastien",
+                "email": "sebastien.gogo@univ-orleans.fr",
+                "role": "Data manager"
+            }
+        ],
+        "onlineResource": {
+            "urlDownload": "https://data-snot.cnrs.fr",
+            "urlInfo": "https://www.sno-tourbieres.cnrs.fr/base-donnees-sno-tourbieres/"
+        }
+    },
+    "datasets": [
+        {
+            "datasetId": "TOUR_DAT_lgt-ges-eddycovariance",
+            "metadata": {
+                "title": "Jeu de données des flux de gaz à effet de serre par eddycovariance dans la tourbière de La Guette (23 ha), Loiret, France",
+                "description": "Le jeu de données comporte 5 variables : flux de CO2, flux de CH4, flux de chaleur sensible, flux de chaleur latente et l'évapotranspiration réelle",
+                "objective": "L'objectif du jeu de données est d'estimer sur le long les émissions de gaz à effet de serre sur la tourbière de la Guette pour évaluer l'impact du changement climatique sur le cycle du carbone",
+                "datasetLineage": "Les flux de gaz à effet de serre (GES) sont estimés avec les données provenant de la station eddy-covariance de la tourbière de la Guette. Le calcul du flux est réalisé avec un logiciel de calcul suivi d'un contrôle des flux par expertise",
+                "contacts": [
+                    {
+                        "firstName": "Sebastien",
+                        "lastName": "Gogo",
+                        "email": "sebastien.gogo@univ-orleans.fr",
+                        "role": "Principal investigator"
+                    },
+                    {
+                        "firstName": "Sebastien",
+                        "lastName": "Gogo",
+                        "email": "sebastien.gogo@univ-orleans.fr",
+                        "role": "Data manager"
+                    }
+                ],
+                "topicCategories": [
+                    "Environment",
+                    "Geoscientific Information"
+                ],
+                "inspireTheme": "Environmental monitoring facilities",
+                "onlineResource": {
+                    "urlDownload": "https://data-snot.cnrs.fr",
+                    "urlInfo": "https://www.sno-tourbieres.cnrs.fr/"
+                },
+                "dataConstraint": {
+                    "accessUseConstraint": "to define",
+                    "urlDataPolicy": "https://data-snot.cnrs.fr/snot/mentionLegale.jsf",
+                    "licence": {
+                        "title": "CC BY-SA 4.0",
+                        "url": "https://creativecommons.org/licenses/by-sa/4.0/deed.en"
+                    }
+                },
+                "portalSearchCriteria": {
+                    "climates": [
+                        "Continental climate"
+                    ],
+                    "geologies": [
+                        "Quartenary soils"
+                    ]
+                },
+                "spatialExtent": {
+                    "geometry": {
+                        "coordinates": [
+                            [
+                                [
+                                    2.2771479533,
+                                    47.3203344471
+                                ],
+                                [
+                                    2.2923829005,
+                                    47.3203344471
+                                ],
+                                [
+                                    2.2923829005,
+                                    47.3266761792
+                                ],
+                                [
+                                    2.2771479533,
+                                    47.3266761792
+                                ],
+                                [
+                                    2.2771479533,
+                                    47.3203344471
+                                ]
+                            ]
+                        ],
+                        "type": "Polygon"
+                    },
+                    "properties": {
+
+                    },
+                    "type": "Feature"
+                }
+            },
+            "observations": [
+                {
+                    "observationId": "TOUR_OBS_lgt-ec1-ges-eddycovariance_sh-FC",
+                    "featureOfInterest": {
+                        "samplingFeature": {
+                            "geometry": {
+                                "coordinates": [
+                                    2.2841993534,
+                                    47.3229427922
+                                ],
+                                "type": "Point"
+                            },
+                            "name": "Eddy-covariance station 1",
+                            "type": "Feature",
+                            "properties": {
+
+                            }
+                        }
+                    },
+                    "observedProperty": {
+                        "name": "FC",
+                        "unit": "μmolCO2/m2/s",
+                        "description": "CO2 flux measurements by eddy-covariance",
+                        "theiaCategories": [
+                            "https://w3id.org/ozcar-theia/atmosphericChemistry"
+                        ]
+                    },
+                    "procedure": {
+                        "dataProduction": {
+                            "sensors": [
+                                {
+                                    "model": "HS-50",
+                                    "manufacturer": "Gill Instruments Ltd.",
+                                    "sensorType": "3-axis sonic anemometer monitor wind speeds of 0-45m/s and 0-359° wind direction with fast sampling rate of 50Hz",
+                                    "calibration": "",
+                                    "activityPeriods": [
+                                        {
+                                            "dateBeg": "2017-01-19T12:01:00Z",
+                                            "dateEnd": "2018-12-31T12:12:00Z"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "model": "LI-7200/RS",
+                                    "manufacturer": "LICOR",
+                                    "sensorType": "Closed path, non-dispersive infrared CO2/H2O analyzer designed for use in eddy-covariance flux systems",
+                                    "calibration": "",
+                                    "activityPeriods": [
+                                        {
+                                            "dateBeg": "2017-01-19T12:01:00Z",
+                                            "dateEnd": "2018-12-31T12:12:00Z"
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    },
+                    "result": {
+                        "missingValue": "-9999",
+                        "dataFile": {
+                            "name": "TOUR_OBS_lgt-ec1-ges-eddycovariance_sh-FC.txt"
+                        }
+                    },
+                    "timeSerie": true,
+                    "temporalExtent": {
+                        "dateBeg": "2017-01-20T12:01:00Z",
+                        "dateEnd": "2018-12-31T12:12:00Z"
+                    },
+                    "dataType": "Numeric",
+                    "processingLevel": "Quality-controlled data"
+                },
+                {
+                    "observationId": "TOUR_OBS_lgt-ec1-ges-eddycovariance_sh-H",
+                    "featureOfInterest": {
+                        "samplingFeature": {
+                            "geometry": {
+                                "coordinates": [
+                                    2.2841993534,
+                                    47.3229427922
+                                ],
+                                "type": "Point"
+                            },
+                            "name": "Eddy-covariance station 1",
+                            "type": "Feature",
+                            "properties": {
+
+                            }
+                        }
+                    },
+                    "observedProperty": {
+                        "name": "H",
+                        "unit": "W/m2",
+                        "description": "Sensitive heat flow by eddy-covariance",
+                        "theiaCategories": [
+                            "https://w3id.org/ozcar-theia/atmosphericChemistry"
+                        ]
+                    },
+                    "procedure": {
+                        "dataProduction": {
+                            "sensors": [
+                                {
+                                    "model": "HS-50",
+                                    "manufacturer": "Gill Instruments Ltd.",
+                                    "sensorType": "3-axis sonic anemometer monitor wind speeds of 0-45m/s and 0-359° wind direction with fast sampling rate of 50Hz",
+                                    "calibration": "",
+                                    "activityPeriods": [
+                                        {
+                                            "dateBeg": "2017-01-19T12:01:00Z",
+                                            "dateEnd": "2018-12-31T12:12:00Z"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "model": "LI-7200/RS",
+                                    "manufacturer": "LICOR",
+                                    "sensorType": "Closed path, non-dispersive infrared CO2/H2O analyzer designed for use in eddy-covariance flux systems",
+                                    "calibration": "",
+                                    "activityPeriods": [
+                                        {
+                                            "dateBeg": "2017-01-19T12:01:00Z",
+                                            "dateEnd": "2018-12-31T12:12:00Z"
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    },
+                    "result": {
+                        "missingValue": "-9999",
+                        "dataFile": {
+                            "name": "TOUR_OBS_lgt-ec1-ges-eddycovariance_sh-H.txt"
+                        }
+                    },
+                    "timeSerie": true,
+                    "temporalExtent": {
+                        "dateBeg": "2017-01-20T12:01:00Z",
+                        "dateEnd": "2018-12-31T12:12:00Z"
+                    },
+                    "dataType": "Numeric",
+                    "processingLevel": "Quality-controlled data"
+                },
+                {
+                    "observationId": "TOUR_OBS_lgt-ec1-ges-eddycovariance_sh-ETR",
+                    "featureOfInterest": {
+                        "samplingFeature": {
+                            "geometry": {
+                                "coordinates": [
+                                    2.2841993534,
+                                    47.3229427922
+                                ],
+                                "type": "Point"
+                            },
+                            "name": "Eddy-covariance station 1",
+                            "type": "Feature",
+                            "properties": {
+
+                            }
+                        }
+                    },
+                    "observedProperty": {
+                        "name": "ETR",
+                        "unit": "mm/h",
+                        "description": "Actual evapotranspiration by eddy-covariance",
+                        "theiaCategories": [
+                            "https://w3id.org/ozcar-theia/atmosphericChemistry"
+                        ]
+                    },
+                    "procedure": {
+                        "dataProduction": {
+                            "sensors": [
+                                {
+                                    "model": "HS-50",
+                                    "manufacturer": "Gill Instruments Ltd.",
+                                    "sensorType": "3-axis sonic anemometer monitor wind speeds of 0-45m/s and 0-359° wind direction with fast sampling rate of 50Hz",
+                                    "calibration": "",
+                                    "activityPeriods": [
+                                        {
+                                            "dateBeg": "2017-01-19T12:01:00Z",
+                                            "dateEnd": "2018-12-31T12:12:00Z"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "model": "LI-7200/RS",
+                                    "manufacturer": "LICOR",
+                                    "sensorType": "Closed path, non-dispersive infrared CO2/H2O analyzer designed for use in eddy-covariance flux systems",
+                                    "calibration": "",
+                                    "activityPeriods": [
+                                        {
+                                            "dateBeg": "2017-01-19T12:01:00Z",
+                                            "dateEnd": "2018-12-31T12:12:00Z"
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    },
+                    "result": {
+                        "missingValue": "-9999",
+                        "dataFile": {
+                            "name": "TOUR_OBS_lgt-ec1-ges-eddycovariance_sh-ETR.txt"
+                        }
+                    },
+                    "timeSerie": true,
+                    "temporalExtent": {
+                        "dateBeg": "2017-01-20T12:01:00Z",
+                        "dateEnd": "2018-12-31T12:12:00Z"
+                    },
+                    "dataType": "Numeric",
+                    "processingLevel": "Quality-controlled data"
+                },
+                {
+                    "observationId": "TOUR_OBS_lgt-ec1-ges-eddycovariance_sh-LE",
+                    "featureOfInterest": {
+                        "samplingFeature": {
+                            "geometry": {
+                                "coordinates": [
+                                    2.2841993534,
+                                    47.3229427922
+                                ],
+                                "type": "Point"
+                            },
+                            "name": "Eddy-covariance station 1",
+                            "type": "Feature",
+                            "properties": {
+
+                            }
+                        }
+                    },
+                    "observedProperty": {
+                        "name": "LE",
+                        "unit": "W/m2",
+                        "description": "Latent heat flow by eddy-covariance",
+                        "theiaCategories": [
+                            "https://w3id.org/ozcar-theia/atmosphericChemistry"
+                        ]
+                    },
+                    "procedure": {
+                        "dataProduction": {
+                            "sensors": [
+                                {
+                                    "model": "HS-50",
+                                    "manufacturer": "Gill Instruments Ltd.",
+                                    "sensorType": "3-axis sonic anemometer monitor wind speeds of 0-45m/s and 0-359° wind direction with fast sampling rate of 50Hz",
+                                    "calibration": "",
+                                    "activityPeriods": [
+                                        {
+                                            "dateBeg": "2017-01-19T12:01:00Z",
+                                            "dateEnd": "2018-12-31T12:12:00Z"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "model": "LI-7200/RS",
+                                    "manufacturer": "LICOR",
+                                    "sensorType": "Closed path, non-dispersive infrared CO2/H2O analyzer designed for use in eddy-covariance flux systems",
+                                    "calibration": "",
+                                    "activityPeriods": [
+                                        {
+                                            "dateBeg": "2017-01-19T12:01:00Z",
+                                            "dateEnd": "2018-12-31T12:12:00Z"
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    },
+                    "result": {
+                        "missingValue": "-9999",
+                        "dataFile": {
+                            "name": "TOUR_OBS_lgt-ec1-ges-eddycovariance_sh-LE.txt"
+                        }
+                    },
+                    "timeSerie": true,
+                    "temporalExtent": {
+                        "dateBeg": "2017-01-20T12:01:00Z",
+                        "dateEnd": "2018-12-31T12:12:00Z"
+                    },
+                    "dataType": "Numeric",
+                    "processingLevel": "Quality-controlled data"
+                },
+                {
+                    "observationId": "TOUR_OBS_lgt-ec1-ges-eddycovariance_sh-FCH4",
+                    "featureOfInterest": {
+                        "samplingFeature": {
+                            "geometry": {
+                                "coordinates": [
+                                    2.2841993534,
+                                    47.3229427922
+                                ],
+                                "type": "Point"
+                            },
+                            "name": "Eddy-covariance station 1",
+                            "type": "Feature",
+                            "properties": {
+
+                            }
+                        }
+                    },
+                    "observedProperty": {
+                        "name": "FCH4",
+                        "unit": "μmol/m2/s",
+                        "description": "CH4 flux measurements by eddy-covariance",
+                        "theiaCategories": [
+                            "https://w3id.org/ozcar-theia/atmosphericChemistry"
+                        ]
+                    },
+                    "procedure": {
+                        "dataProduction": {
+                            "sensors": [
+                                {
+                                    "model": "HS-50",
+                                    "manufacturer": "Gill Instruments Ltd.",
+                                    "sensorType": "3-axis sonic anemometer monitor wind speeds of 0-45m/s and 0-359° wind direction with fast sampling rate of 50Hz",
+                                    "calibration": "",
+                                    "activityPeriods": [
+                                        {
+                                            "dateBeg": "2017-01-19T12:01:00Z",
+                                            "dateEnd": "2018-12-31T12:12:00Z"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "model": "LI-7700",
+                                    "manufacturer": "LICOR",
+                                    "sensorType": "Open path methane analyzer designed to measure atmospheric CH4 flux",
+                                    "calibration": "",
+                                    "activityPeriods": [
+                                        {
+                                            "dateBeg": "2017-01-19T12:01:00Z",
+                                            "dateEnd": "2018-12-31T12:12:00Z"
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    },
+                    "result": {
+                        "missingValue": "-9999",
+                        "dataFile": {
+                            "name": "TOUR_OBS_lgt-ec1-ges-eddycovariance_sh-FCH4.txt"
+                        }
+                    },
+                    "timeSerie": true,
+                    "temporalExtent": {
+                        "dateBeg": "2017-01-20T12:01:00Z",
+                        "dateEnd": "2018-12-31T12:12:00Z"
+                    },
+                    "dataType": "Numeric",
+                    "processingLevel": "Quality-controlled data"
+                }
+            ]
+        }
+    ]
+}
+

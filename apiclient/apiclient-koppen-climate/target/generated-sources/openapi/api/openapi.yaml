@@ -1,0 +1,101 @@
+openapi: 3.0.0
+info:
+  description: openAPI definition for koppen-climate API. The API is queried using
+    a location and return the Koppen climate corresponding to the location. Koppen
+    climates come from Hylke E. Beck et al. 2018. https://doi.org/10.1038/sdata.2018.214.
+    The dataset used is Beck_KG_V1_present_conf_0p0083.tif that represents the present-day
+    (1980–2016) Köppen-Geiger climate classification at a spacial resolution of 0.0083°.
+  title: koppen-climate
+  version: "0.1"
+servers:
+- url: /
+paths:
+  /climate:
+    get:
+      description: |
+        Returns the koppen climate code at one (latitude,longitude) point.
+      operationId: getClimate
+      parameters:
+      - description: Location in latitude, longitude format, similar to the Google
+          Elevation API
+        example: 10,10
+        explode: true
+        in: query
+        name: location
+        required: true
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LocationKoppenClimateDTO'
+          description: A JSON object with a single result containing latitude, longitude
+            and koppenClimate.
+      tags:
+      - koppenClimate
+      x-accepts: application/json
+components:
+  schemas:
+    KoppenClimateCodeLiteral:
+      example:
+        code: code
+        literal: literal
+      properties:
+        code:
+          type: string
+        literal:
+          type: string
+      type: object
+    KoppenClimate:
+      example:
+        mainGroup:
+          code: code
+          literal: literal
+        seasonalPrecipitationSubGroup:
+          code: code
+          literal: literal
+        classification:
+          code: code
+          literal: literal
+        temperatureSubGroup:
+          code: code
+          literal: literal
+      properties:
+        classification:
+          $ref: '#/components/schemas/KoppenClimateCodeLiteral'
+        mainGroup:
+          $ref: '#/components/schemas/KoppenClimateCodeLiteral'
+        seasonalPrecipitationSubGroup:
+          $ref: '#/components/schemas/KoppenClimateCodeLiteral'
+        temperatureSubGroup:
+          $ref: '#/components/schemas/KoppenClimateCodeLiteral'
+    LocationKoppenClimateDTO:
+      example:
+        latitude: 0.8008281904610115
+        koppenClimate:
+          mainGroup:
+            code: code
+            literal: literal
+          seasonalPrecipitationSubGroup:
+            code: code
+            literal: literal
+          classification:
+            code: code
+            literal: literal
+          temperatureSubGroup:
+            code: code
+            literal: literal
+        longitude: 6.027456183070403
+      properties:
+        latitude:
+          format: double
+          type: number
+        longitude:
+          format: double
+          type: number
+        koppenClimate:
+          $ref: '#/components/schemas/KoppenClimate'
+

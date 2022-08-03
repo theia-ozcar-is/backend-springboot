@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+
+    <!-- copy value from app.properties-->
+    <springProperty name="userlogFile"  source="userlog.file"/>
+    <!-- get the args of command line, spring way . -->
+    <springProperty name="producerPath" source="prodDir"/>
+
+    <!-- REPLACE default SpringBoot loginng conf !! -->
+    <!-- ... Still _based_ on default stuff -->
+    <!-- https://docs.spring.io/spring-boot/docs/current/reference/html/howto.html#howto-logging -->
+    <include resource="org/springframework/boot/logging/logback/defaults.xml" />
+
+    <!-- setup an appender for output to the console, we might want to remove this later on  -->
+    <include resource="org/springframework/boot/logging/logback/console-appender.xml" />
+
+    <!-- Set up a new appender for user marked logs -->
+    <appender name="USERLOG" class="ch.qos.logback.core.FileAppender">
+        <filter class="ch.qos.logback.core.filter.EvaluatorFilter">
+            <evaluator class="ch.qos.logback.classic.boolex.OnMarkerEvaluator">
+                <marker>USER</marker>
+            </evaluator>
+            <onMatch>ACCEPT</onMatch>
+            <onMismatch>DENY</onMismatch>
+        </filter>
+        <file>${producerPath}/${userlogFile}</file>
+        <append>false</append>
+        <encoder>
+            <pattern>%date %level - %nopex%msg%n</pattern>
+        </encoder>
+    </appender>
+
+<!--    <include resource="org/springframework/boot/logging/logback/file-appender.xml" />-->
+
+    <!-- log everything else everywhere ;) -->
+    <root level="INFO">
+        <appender-ref ref="CONSOLE" />
+<!--        <appender-ref ref="FILE" />-->
+        <appender-ref ref="USERLOG" />
+    </root>
+</configuration>
+

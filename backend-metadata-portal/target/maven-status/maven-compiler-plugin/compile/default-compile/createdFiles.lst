@@ -1,0 +1,6 @@
+fr/theialand/insitu/dataportal/backendmetadata/config/KeycloakConfiguration.class
+fr/theialand/insitu/dataportal/backendmetadata/DataportalApplication.class
+fr/theialand/insitu/dataportal/backendmetadata/config/SwaggerConfig.class
+fr/theialand/insitu/dataportal/backendmetadata/config/SecurityConfig.class
+fr/theialand/insitu/dataportal/backendmetadata/controller/ObservationsController.class
+fr/theialand/insitu/dataportal/backendmetadata/config/converters/GeometrySerializer.class

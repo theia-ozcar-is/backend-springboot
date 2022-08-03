@@ -1,0 +1,9 @@
+{
+  "name" : "GroundWater depthTEST",
+  "description" : "GroundWater depthTEST",
+  "Datastreams@iot.navigationLink" : "https://sensorthings.brgm-rec.fr/SensorThingsGroundWater/v1.1/ObservedProperties(1)/Datastreams",
+  "MultiDatastreams@iot.navigationLink" : "https://sensorthings.brgm-rec.fr/SensorThingsGroundWater/v1.1/ObservedProperties(1)/MultiDatastreams",
+  "definition" : "https://data.geoscience.fr/ncl/ObsProp/186",
+  "@iot.id" : 1,
+  "@iot.selfLink" : "https://sensorthings.brgm-rec.fr/SensorThingsGroundWater/v1.1/ObservedProperties(1)"
+}

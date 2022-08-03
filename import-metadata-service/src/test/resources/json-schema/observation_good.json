@@ -1,0 +1,63 @@
+{
+  "observationId": "CATC_OBS_CE.SW_Gha_1",
+  "featureOfInterest": {
+    "samplingFeature": {
+      "geometry": {
+        "coordinates": [
+          -1.4786,
+          15.3447
+        ],
+        "type": "Point"
+      },
+      "name": "AGOUFOU_TUBE_26",
+      "type": "Feature",
+      "properties": {}
+    }
+  },
+  "observedProperty": {
+    "name": "Soil Moisture/Water Content at depth 10 cm",
+    "unit": "m3/m3",
+    "theiaCategories": [
+      "https://w3id.org/ozcar-theia/soilWaterMeasurements"
+    ]
+  },
+  "procedure": {
+    "dataProduction": {
+      "sensors": [
+        {
+          "model": "PR2 Profile Probe",
+          "manufacturer": "Delta T",
+          "sensorType": "SOIL MOISTURE SENSORS",
+          "activityPeriods": [
+            {
+              "dateBeg": "2007-07-15T10:00:00Z",
+              "dateEnd": "2010-09-30T10:00:00Z"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "result": {
+    "missingValue": "-9999.9",
+    "qualityFlags": [
+      {
+        "code": "1",
+        "description": "validated data"
+      },
+      {
+        "code": "11",
+        "description": "missing value"
+      }
+    ],
+    "dataFile": {
+      "name": "CATC_OBS_CE.SW_Gha_1.txt"
+    }
+  },
+  "timeSerie": true,
+  "temporalExtent": {
+    "dateBeg": "2007-07-15T10:00:00Z",
+    "dateEnd": "2010-09-30T10:00:00Z"
+  },
+  "dataType": "Numeric"
+}

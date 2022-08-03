@@ -1,0 +1,5 @@
+# Déstruction de l'arborescence d'un SNO.
+# 1 paramètre:
+#	Code a 4 lettre du SNO
+rm -r /var/www/html/$1
+htpasswd -D /var/www/.htpasswd $1

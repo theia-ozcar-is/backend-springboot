@@ -1,0 +1,695 @@
+{
+  "version": "1.0",
+  "producer": {
+    "producerId": "KARS",
+    "name": "SNO KARST",
+    "title": "SNO KARST, the karst national observatory",
+    "description": "Karst is a complex hydrogeologic entity whose study requires specific and original models and approaches. The goal of SNO KARST is to bring out scientific questions and advances, specifically in terms of hydrogeochemical flux modeling at karst hydrosystem outlets and the links between global changes and the physico-chemical composition of water at the interface between hydrologic and hydrogeologic compartments. Particular attention is focused on the data-model link so as to understand better the physics and chemistry of the medium and to enhance modeling capacity to reproduce variations of flux and matter. We also point out that carbonate rocks that host karst systems are materials eminently \"susceptible\" to erosion and weathering and that these processes are themselves highly dependent on by expected modifications of climate, and of the hydrologic and rainfall regime. Because of these factors, karst is even more vulnerable over short time scales, which is a characteristic that is generally less meaningful in deeper non-karst hydrosystems or those that have slower hydric dynamics. The aspect of material transfer and participation in major biogeochemical cycles is also a primary preoccupation of this SNO, especially because karst systems are more vulnerable to modifications of conditions at surface boundaries.\n      SNO KARST is a suitable place to merge the powers of observation and current research on karst aquifers to compare, organize, and standardize approaches (tools, methods, concepts). Here team members work to develop tools to characterize and model water resource evolution (qualitative, quantitative) in response to forcing of short, medium, and long wavelength, within different physiographic, geologic, and climatic contexts. We hope to move toward a \"synthetic\" approach at the scale of large karst typologies, from characterizing their structure and operation to hydrodynamic and hydrogeochemical modeling of transfers. To accomplish this, it is necessary to perpetuate the temporal surveillance of various natural laboratories.",
+    "email": "snokarst@services.cnrs.fr",
+    "contacts": [
+      {
+        "firstName": "Hervé",
+        "lastName": "Jourde",
+        "email": "herve.jourde@umontpellier.fr",
+        "role": "Project leader",
+        "orcId": "0000-0001-7124-4879",
+        "organisation": {
+          "name": "HydroSciences Montpellier",
+          "acronym": "HSM",
+          "role": "Research group",
+          "iso3166": "fr",
+          "idScanR": "199512007C"
+        }
+      },
+      {
+        "firstName": "Olivier",
+        "lastName": "Lobry",
+        "email": "olivier.lobry@umontpellier.fr",
+        "role": "Data manager",
+        "orcId": "0000-0003-0969-8655",
+        "organisation": {
+          "name": "Observatoire de Recherche Méditerranéen de l'Environnement",
+          "acronym": "OSU OREME",
+          "role": "Research group",
+          "iso3166": "fr",
+          "idScanR": "200919527R"
+        }
+      }
+    ],
+    "fundings": [
+      {
+        "type": "French universities and schools",
+        "name": "Aix-Marseille Université",
+        "iso3166": "fr",
+        "acronym": "AMU",
+        "idScanR": "130015332"
+      },
+      {
+        "type": "French universities and schools",
+        "name": "Avignon Université",
+        "iso3166": "fr",
+        "acronym": "AU",
+        "idScanR": "198406852"
+      },
+      {
+        "type": "Research program",
+        "name": "FONTAINE DE VAUCLUSE",
+        "iso3166": "fr",
+        "acronym": "FV"
+      },
+      {
+        "type": "French research institutes",
+        "name": "Centre National de la Recherche Scientifique",
+        "iso3166": "fr",
+        "acronym": "CNRS",
+        "idScanR": "180089013"
+      },
+      {
+        "type": "French research institutes",
+        "name": "Institut de Recherche pour le Développement",
+        "iso3166": "fr",
+        "acronym": "IRD",
+        "idScanR": "180006025"
+      },
+      {
+        "type": "French research institutes",
+        "name": "BRGM",
+        "iso3166": "fr",
+        "acronym": "BRGM",
+        "idScanR": "58205614900518"
+      },
+      {
+        "type": "Research unit",
+        "name": "Institut de Mécanique et d'Ingénierie, Département Génie Civil et Environnemental",
+        "iso3166": "fr",
+        "acronym": "I2M-GCE",
+        "idScanR": "201119386D"
+      },
+      {
+        "type": "Federative structure",
+        "name": "Observatoire Aquitain des Sciences de l'Univers",
+        "iso3166": "fr",
+        "acronym": "OASU",
+        "idScanR": "200222184J"
+      },
+      {
+        "type": "Federative structure",
+        "name": "Observatoire Midi Pyrénées",
+        "iso3166": "fr",
+        "acronym": "OMP",
+        "idScanR": "200719584L"
+      },
+      {
+        "type": "Research program",
+        "name": "KARST DE LA CRAIE",
+        "iso3166": "fr",
+        "acronym": "KC"
+      },
+      {
+        "type": "Research program",
+        "name": "KARSTS AQUITAINS",
+        "iso3166": "fr",
+        "acronym": "KA"
+      },
+      {
+        "type": "Federative structure",
+        "name": "Observatoire de Recherche Méditerranéen de l'Environnement",
+        "iso3166": "fr",
+        "acronym": "OSU OREME",
+        "idScanR": "200919527R"
+      },
+      {
+        "type": "Federative structure",
+        "name": "OSU THETA",
+        "iso3166": "fr",
+        "acronym": "THETA",
+        "idScanR": "201120530X"
+      },
+      {
+        "type": "French universities and schools",
+        "name": "Université de Bordeaux 1",
+        "iso3166": "fr",
+        "acronym": "BORDEAUX1",
+        "idScanR": "130018351"
+      },
+      {
+        "type": "Research program",
+        "name": "MEDYCYSS",
+        "iso3166": "fr",
+        "acronym": "MC"
+      },
+      {
+        "type": "Research program",
+        "name": "PORT-MIOU",
+        "iso3166": "fr",
+        "acronym": "PM"
+      },
+      {
+        "type": "Research program",
+        "name": "VAL D'ORLEANS",
+        "iso3166": "fr",
+        "acronym": "VO"
+      },
+      {
+        "type": "Research program",
+        "name": "JURASSIC KARST",
+        "iso3166": "fr",
+        "acronym": "JK"
+      },
+      {
+        "type": "Research program",
+        "name": "FONTAINE DE NIMES",
+        "iso3166": "fr",
+        "acronym": "FN"
+      },
+      {
+        "type": "Research program",
+        "name": "LE BAGET (MOULIS)",
+        "iso3166": "fr",
+        "acronym": "MOU"
+      },
+      {
+        "type": "Research unit",
+        "name": "Institut des Sciences de la Terre d'Orléans",
+        "iso3166": "fr",
+        "acronym": "ISTO",
+        "idScanR": "201220213Y"
+      },
+      {
+        "type": "Federative structure",
+        "name": "Observatoire des Sciences de l’Univers en région Centre",
+        "iso3166": "fr",
+        "acronym": "OSUC",
+        "idScanR": "200810873N"
+      },
+      {
+        "type": "Federative structure",
+        "name": "OSU PYTHEAS",
+        "iso3166": "fr",
+        "acronym": "PYTHEAS",
+        "idScanR": "201220900V"
+      },
+      {
+        "type": "Research unit",
+        "name": "UMR Laboratoire Ecologie fonctionnelle et environnement",
+        "iso3166": "fr",
+        "acronym": "ECOLAB",
+        "idScanR": "200711910V"
+      },
+      {
+        "type": "Research unit",
+        "name": "UMR EMMAH (UMR 1114 AU/INRA)",
+        "iso3166": "fr",
+        "acronym": "EMMAH",
+        "idScanR": "199917981D"
+      },
+      {
+        "type": "Research unit",
+        "name": "UMR Géosciences Environnement Toulouse",
+        "iso3166": "fr",
+        "acronym": "GET",
+        "idScanR": "201119478D"
+      },
+      {
+        "type": "Research unit",
+        "name": "UMR HydroSciences Montpellier",
+        "iso3166": "fr",
+        "acronym": "HSM",
+        "idScanR": "199512007C"
+      },
+      {
+        "type": "Research unit",
+        "name": "UMR Laboratoire Chrono-Environnement",
+        "iso3166": "fr",
+        "acronym": "LCE",
+        "idScanR": "200812285Y"
+      },
+      {
+        "type": "Research unit",
+        "name": "UMR Morphodynamique Continentale et Côtière",
+        "iso3166": "fr",
+        "acronym": "M2C",
+        "idScanR": "200012210B"
+      },
+      {
+        "type": "Research unit",
+        "name": "UMR Milieux environnementaux, transferts et interactions dans les hydrosystèmes et les sols",
+        "iso3166": "fr",
+        "acronym": "METIS",
+        "idScanR": "199712664H"
+      },
+      {
+        "type": "French universities and schools",
+        "name": "Sorbonne Université",
+        "iso3166": "fr",
+        "acronym": "SU",
+        "idScanR": "130023385"
+      },
+      {
+        "type": "French universities and schools",
+        "name": "Université de Franche-Comté",
+        "iso3166": "fr",
+        "acronym": "UFC",
+        "idScanR": "192512150"
+      },
+      {
+        "type": "French universities and schools",
+        "name": "Université de Montpellier",
+        "iso3166": "fr",
+        "acronym": "UM",
+        "idScanR": "130020548"
+      },
+      {
+        "type": "French universities and schools",
+        "name": "Université d'Orléans",
+        "iso3166": "fr",
+        "acronym": "UO",
+        "idScanR": "194508552"
+      },
+      {
+        "type": "French universities and schools",
+        "name": "Université Paul Sabatier (Toulouse III)",
+        "iso3166": "fr",
+        "acronym": "TOULOUSE3",
+        "idScanR": "193113842"
+      },
+      {
+        "type": "French universities and schools",
+        "name": "Université de Rouen",
+        "iso3166": "fr",
+        "acronym": "UR",
+        "idScanR": "197619042"
+      }
+    ],
+    "onlineResource": {
+      "urlDownload": "https://data.oreme.org/observation/snokarst",
+      "urlInfo": "https://sokarst.org/",
+      "webservices": [
+        {
+          "description": "ISO19115 / Inspire metadata (getRecordById)",
+          "url": "https://sig.oreme.org/geonetwork/srv/eng/csw?SERVICE=CSW&VERSION=2.0.2&REQUEST=GetRecordById&ID=8dbdb4d7-161a-45e3-b3c3-51e6058f6e8a"
+        },
+        {
+          "description": "ISO19115 / Inspire metadata (metadata url)",
+          "url": "https://sig.oreme.org/geonetwork/srv/eng/catalog.search#/metadata/8dbdb4d7-161a-45e3-b3c3-51e6058f6e8a"
+        },
+        {
+          "description": "Web Feature Service",
+          "url": "https://sig.oreme.org/geoserver/sf/wfs?service=WFS&version=1.1.0&request=GetFeature&typeName=sf:snokarst_station&outputFormat=application/json&SrsName=EPSG:4326"
+        },
+        {
+          "description": "Web Map Service",
+          "url": "https://sig.oreme.org/geoserver/wms?bbox=0.636288,42.95544365,6.298074,49.503083&Format=image/png&request=GetMap&layers=oreme:snokarst_station&width=550&height=250&srs=EPSG:4326"
+        }
+      ]
+    }
+  },
+  "datasets": [
+    {
+      "datasetId": "KARS_DAT_FONTNIM-1",
+      "metadata": {
+        "title": "Time series of type chemistry in Fontaine de Nimes basin - FONTAINE DE NIMES observatory - KARST observatory network -  OZCAR Critical Zone network Research Infrastructure",
+        "description": "Data of type chemistry measured on Fontaine de Nimes basin within the framework of the FONTAINE DE NIMES observatory, that is part of the KARST observatory network. The KARST observatory network aims to strengthen knowledge-sharing and to promote cross-disciplinary research on karst systems, in the framework of the OZCAR Critical Zone network Research Infrastructure.\nData consist in 2 time series on 1 station(s). \nThe measured parameters are: Conductivity (µS/cm), Water temperature (°C).\nMeasurements start on 06-10-2004 and are regularly updated with new data.",
+        "onlineResource": {
+          "urlInfo": "https://sokarst.org",
+          "webservices": [
+            {
+              "description": "ISO19115 / Inspire metadata (getRecordById)",
+              "url": "https://sig.oreme.org/geonetwork/srv/eng/csw?SERVICE=CSW&VERSION=2.0.2&REQUEST=GetRecordById&ID=d7890c02-a4cc-456f-be18-68fdb75f234f"
+            },
+            {
+              "description": "ISO19115 / Inspire metadata (metadata url)",
+              "url": "https://sig.oreme.org/geonetwork/srv/eng/catalog.search#/metadata/d7890c02-a4cc-456f-be18-68fdb75f234f"
+            }
+          ],
+          "urlDownload": "https://doi.org/10.15148/5d4514e2-61fe-46c4-aa72-316be44fd3ae",
+          "doi": "10.15148/5d4514e2-61fe-46c4-aa72-316be44fd3ae"
+        },
+        "datasetLineage": "Dataset acquired during SNO KARST program. The dataset is broadcasted unmodified to Theia/OZCAR information system.",
+        "contacts": [
+          {
+            "firstName": "Olivier",
+            "lastName": "Lobry",
+            "email": "olivier.lobry@umontpellier.fr",
+            "role": "Data manager",
+            "orcId": "0000-0003-0969-8655",
+            "organisation": {
+              "name": "Observatoire de Recherche Méditerranéen de l'Environnement",
+              "acronym": "OSU OREME",
+              "role": "Research group",
+              "iso3166": "fr",
+              "idScanR": "200919527R"
+            }
+          },
+          {
+            "firstName": "Juliette",
+            "lastName": "Fabre",
+            "email": "juliette.fabre@umontpellier.fr",
+            "role": "Data manager",
+            "orcId": "0000-0001-5825-479X",
+            "organisation": {
+              "name": "Observatoire de Recherche Méditerranéen de l'Environnement",
+              "acronym": "OSU OREME",
+              "role": "Research group",
+              "iso3166": "fr",
+              "idScanR": "200919527R"
+            }
+          },
+          {
+            "firstName": "Hervé",
+            "lastName": "Jourde",
+            "email": "herve.jourde@umontpellier.fr",
+            "role": "Principal investigator",
+            "organisation": {
+              "name": "UMR HydroSciences Montpellier",
+              "role": "Research group",
+              "iso3166": "fr",
+              "acronym": "HSM",
+              "idScanR": "199512007C"
+            },
+            "orcId": "0000-0001-7124-4879"
+          },
+          {
+            "firstName": "Vincent",
+            "lastName": "Bailly-Comte",
+            "email": "v.bailly-comte@brgm.fr",
+            "role": "Project member",
+            "organisation": {
+              "name": "BRGM",
+              "role": "Research group",
+              "iso3166": "fr",
+              "acronym": "BRGM",
+              "idScanR": "58205614900518"
+            },
+            "orcId": "0000-0003-2352-1821"
+          },
+          {
+            "firstName": "Jean-Christophe",
+            "lastName": "Maréchal",
+            "email": "jc.marechal@brgm.fr",
+            "role": "Project member",
+            "organisation": {
+              "name": "BRGM",
+              "role": "Research group",
+              "iso3166": "fr",
+              "acronym": "BRGM",
+              "idScanR": "58205614900518"
+            },
+            "orcId": "0000-0001-8179-1294"
+          },
+          {
+            "firstName": "Bernard",
+            "lastName": "Ladouche",
+            "email": "b.ladouche@brgm.fr",
+            "role": "Project member",
+            "organisation": {
+              "name": "BRGM",
+              "role": "Research group",
+              "iso3166": "fr",
+              "acronym": "BRGM",
+              "idScanR": "58205614900518"
+            },
+            "orcId": "0000-0001-9378-4462"
+          },
+          {
+            "firstName": "Jean-Baptiste",
+            "lastName": "Charlier",
+            "email": "j.charlier@brgm.fr",
+            "role": "Project member",
+            "organisation": {
+              "name": "BRGM",
+              "role": "Research group",
+              "iso3166": "fr",
+              "acronym": "BRGM",
+              "idScanR": "58205614900518"
+            },
+            "orcId": "0000-0002-1268-8848"
+          },
+          {
+            "firstName": "Frédérik",
+            "lastName": "Maldan",
+            "email": "f.maldan@brgm.fr",
+            "role": "Project member",
+            "organisation": {
+              "name": "BRGM",
+              "role": "Research group",
+              "iso3166": "fr",
+              "acronym": "BRGM",
+              "idScanR": "58205614900518"
+            },
+            "orcId": "0000-0001-7143-4437"
+          },
+          {
+            "firstName": "Perrine",
+            "lastName": "Fleury",
+            "email": "p.fleury@brgm.fr",
+            "role": "Project member",
+            "organisation": {
+              "name": "BRGM",
+              "role": "Research group",
+              "iso3166": "fr",
+              "acronym": "BRGM",
+              "idScanR": "58205614900518"
+            },
+            "orcId": "0000-0002-5875-9939"
+          },
+          {
+            "name": "BRGM",
+            "role": "Research group",
+            "iso3166": "fr",
+            "acronym": "BRGM",
+            "idScanR": "58205614900518"
+          },
+          {
+            "name": "FONTAINE DE NIMES",
+            "role": "Research group",
+            "iso3166": "fr",
+            "acronym": "FN"
+          }
+        ],
+        "dataConstraint": {
+          "accessUseConstraint": "These data were gathered within the framework of the FONTAINE DE NIMES observation site. FONTAINE DE NIMES observation site is part of the KARST observatory network (snokarst.oreme.org) initiated by INSU/CNRS, which aims to strengthen knowledge-sharing and to promote cross-disciplinary research on karst systems in the framework of the OZCAR Critical Zone network Research Infrastructure. \nPlease contact the resource person of the observation site for the use of these data, preferably as part of research collaboration. If the use of these data results in a publication, thank you to communicate us the doi and to mention the following sentence in the acknowledgements: \n\"This work was performed within the framework of the FONTAINE DE NIMES observation site. FONTAINE DE NIMES observation site is part of the KARST observatory network (snokarst.oreme.org) initiated by INSU/CNRS, which aims to strengthen knowledge-sharing and to promote cross-disciplinary research on karst systems in the framework of the OZCAR Critical Zone network Research Infrastructure. \"",
+          "licence": {
+            "title": "CC BY 4.0",
+            "url": "https://creativecommons.org/licenses/by/4.0/"
+          }
+        },
+        "portalSearchCriteria": {
+          "climates": [
+            "Mountain climate",
+            "Continental climate"
+          ],
+          "geologies": [
+            "Carbonate rocks"
+          ]
+        },
+        "topicCategories": [
+          "Environment",
+          "Geoscientific Information"
+        ],
+        "inspireTheme": "Environmental monitoring facilities",
+        "keywords": [
+          {
+            "keyword": "flood",
+            "uri": "http://www.eionet.europa.eu/gemet/concept/3298"
+          },
+          {
+            "keyword": " hydrology",
+            "uri": "http://www.eionet.europa.eu/gemet/concept/4118"
+          },
+          {
+            "keyword": " atmosphere",
+            "uri": "http://www.eionet.europa.eu/gemet/concept/617"
+          },
+          {
+            "keyword": " karst",
+            "uri": "http://www.eionet.europa.eu/gemet/concept/4545"
+          },
+          {
+            "keyword": " geophysics",
+            "uri": "http://www.eionet.europa.eu/gemet/concept/3655"
+          },
+          {
+            "keyword": " hydrometeorology",
+            "uri": "http://www.eionet.europa.eu/gemet/concept/4120"
+          },
+          {
+            "keyword": " hydrogeology",
+            "uri": "http://www.eionet.europa.eu/gemet/concept/4108"
+          },
+          {
+            "keyword": "flood",
+            "uri": "http://aims.fao.org/aos/agrovoc/c_29686"
+          },
+          {
+            "keyword": " hydrology",
+            "uri": "http://aims.fao.org/aos/agrovoc/c_3731"
+          },
+          {
+            "keyword": " hydrodynamics",
+            "uri": "http://aims.fao.org/aos/agrovoc/c_3723"
+          },
+          {
+            "keyword": " karst",
+            "uri": "http://aims.fao.org/aos/agrovoc/c_33509"
+          },
+          {
+            "keyword": " geophysics",
+            "uri": "http://aims.fao.org/aos/agrovoc/c_3235"
+          },
+          {
+            "keyword": " hydrometeorology",
+            "uri": "http://aims.fao.org/aos/agrovoc/c_3733"
+          },
+          {
+            "keyword": " hydrogeology",
+            "uri": "http://aims.fao.org/aos/agrovoc/c_11669"
+          }
+        ],
+        "spatialExtent": {
+          "type": "Feature",
+          "properties": {},
+          "geometry": {
+            "type": "Polygon",
+            "coordinates": [
+              [
+                [
+                  4.348898,
+                  43.84044
+                ],
+                [
+                  4.348898,
+                  43.84044
+                ],
+                [
+                  4.348898,
+                  43.84044
+                ],
+                [
+                  4.348898,
+                  43.84044
+                ],
+                [
+                  4.348898,
+                  43.84044
+                ]
+              ]
+            ]
+          }
+        }
+      },
+      "observations": [
+        {
+          "observationId": "KARS_OBS_2165",
+          "observedProperty": {
+            "name": "Water temperature",
+            "unit": "°C",
+            "description": "Mazauric - water temperature - VTW\nSample fraction: BULK",
+            "gcmdKeywords": [
+              {
+                "category": "EARTH SCIENCE",
+                "topic": "TERRESTRIAL HYDROSPHERE",
+                "term": "WATER QUALITY/WATER CHEMISTRY",
+                "variableLevel1": "WATER CHARACTERISTICS",
+                "variableLevel2": "WATER TEMPERATURE",
+                "uuid": "https://gcmdservices.gsfc.nasa.gov/kms/concept/61594015-4ab4-4b38-ae4f-e31a4757b065"
+              },
+              {
+                "category": "EARTH SCIENCE",
+                "topic": "TERRESTRIAL HYDROSPHERE",
+                "term": "GROUND WATER",
+                "variableLevel1": "GROUNDWATER CHEMISTRY",
+                "uuid": "https://gcmdservices.gsfc.nasa.gov/kms/concept/8435030e-8d16-409f-a812-ace5d8ffc122"
+              }
+            ],
+            "theiaCategories": [
+              "https://w3id.org/ozcar-theia/karsticWaterGlobalIndices"
+            ]
+          },
+          "featureOfInterest": {
+            "samplingFeature": {
+              "name": "Aven Mazauric: vasque de la Fontaine",
+              "type": "Feature",
+              "properties": {},
+              "geometry": {
+                "type": "Point",
+                "coordinates": [
+                  4.348898,
+                  43.84044,
+                  51
+                ]
+              }
+            }
+          },
+          "procedure": {
+            "dataProduction": {
+              "method": "Automatic probe fro water temperature records in the Aven Mazauric.\nMeasurement type: automatic."
+            }
+          },
+          "dataType": "Numeric",
+          "timeSerie": true,
+          "temporalExtent": {
+            "dateBeg": "2004-10-06T17:20:00Z",
+            "dateEnd": "2017-08-19T07:00:00Z"
+          },
+          "processingLevel": "Quality-controlled data",
+          "result": {
+            "qualityFlags": [
+              {
+                "code": "R",
+                "description": "Reconstitution"
+              },
+              {
+                "code": "D",
+                "description": "Doubtful"
+              },
+              {
+                "code": "ND",
+                "description": "Not detected"
+              },
+              {
+                "code": "Dev",
+                "description": "Spillway"
+              },
+              {
+                "code": "E",
+                "description": "Recorder"
+              },
+              {
+                "code": "L",
+                "description": "Lector"
+              },
+              {
+                "code": "No",
+                "description": "No"
+              },
+              {
+                "code": "Q",
+                "description": "Direct flow measurement"
+              },
+              {
+                "code": "S",
+                "description": "To the source"
+              },
+              {
+                "code": "T",
+                "description": "Very little water"
+              },
+              {
+                "code": "V",
+                "description": "Basin"
+              },
+              {
+                "code": "P",
+                "description": "Sampler"
+              }
+            ],
+            "dataFile": {
+              "name": "KARS_OBS_2165.txt"
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

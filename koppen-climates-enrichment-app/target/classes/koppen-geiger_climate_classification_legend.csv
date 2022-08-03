@@ -1,0 +1,31 @@
+raster classes;Köppen–Geiger climate classes;Köppen–Geiger climate classification description;Main groups classes;Main groups descriptions;Seasonal precipitation subgroups;Seasonal precipitation subgroups description;Temperature subgroups;Temperature subgroups description
+1;Af;Tropical, rainforest;A;Tropical;f;rainforest;;
+2;Am;Tropical, monsoon;A;Tropical;m;monsoon;;
+3;Aw;Tropical, savannah;A;Tropical;w;savannah;;
+4;BWh;Arid, desert, hot;B;Arid;W;desert;h;hot
+5;BWk;Arid, desert, cold;B;Arid;W;desert;k;cold
+6;BSh;Arid, steppe, hot;B;Arid;S;steppe;h;hot
+7;BSk;Arid, steppe, cold;B;Arid;S;steppe;k;cold
+8;Csa;Temperate, dry summer, hot summer;C;Temperate;s;dry summer;a;hot summer
+9;Csb;Temperate, dry summer, warm summer;C;Temperate;s;dry summer;b;warm summer
+10;Csc;Temperate, dry summer, cold summer;C;Temperate;s;dry summer;c;cold summer
+11;Cwa;Temperate, dry winter, hot summer;C;Temperate;w;dry winter;a;hot summer
+12;Cwb;Temperate, dry winter, warm summer;C;Temperate;w;dry winter;b;warm summer
+13;Cwc;Temperate, dry winter, cold summer;C;Temperate;w;dry winter;c;cold summer
+14;Cfa;Temperate, no dry season, hot summer;C;Temperate;f;no dry season;a;hot summer
+15;Cfb;Temperate, no dry season, warm summer;C;Temperate;f;no dry season;b;warm summer
+16;Cfc;Temperate, no dry season, cold summer;C;Temperate;f;no dry season;c;cold summer
+17;Dsa;Cold, dry summer, hot summer;D;Cold;s;dry summer;a;hot summer
+18;Dsb;Cold, dry summer, warm summer;D;Cold;s;dry summer;b;warm summer
+19;Dsc;Cold, dry summer, cold summer;D;Cold;s;dry summer;c;cold summer
+20;Dsd;Cold, dry summer, very cold winter;D;Cold;s;dry summer;d;very cold winter
+21;Dwa;Cold, dry winter, hot summer;D;Cold;w;dry winter;a;hot summer
+22;Dwb;Cold, dry winter, warm summer;D;Cold;w;dry winter;b;warm summer
+23;Dwc;Cold, dry winter, cold summer;D;Cold;w;dry winter;c;cold summer
+24;Dwd;Cold, dry winter, very cold winter;D;Cold;w;dry winter;d;very cold winter
+25;Dfa;Cold, no dry season, hot summer;D;Cold;f;no dry season;a;hot summer
+26;Dfb;Cold, no dry season, warm summer;D;Cold;f;no dry season;b;warm summer
+27;Dfc;Cold, no dry season, cold summer;D;Cold;f;no dry season;c;cold summer
+28;Dfd;Cold, no dry season, very cold winter;D;Cold;f;no dry season;d;very cold winter
+29;ET;Polar, tundra;E;Polar;;;T;tundra
+30;EF;Polar, frost;E;Polar;;;F;frost

@@ -1,0 +1,359 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gmd:MD_Metadata xmlns:gmx="http://www.isotc211.org/2005/gmx" xmlns:gmd="http://www.isotc211.org/2005/gmd"
+                 xmlns:gml="http://www.opengis.net/gml/3.2" xmlns:srv1="http://www.isotc211.org/2005/srv"
+                 xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                 xmlns:gmi="http://standards.iso.org/iso/19115/-2/gmi/1.0" xmlns:gcol="http://www.isotc211.org/2005/gco"
+                 xmlns:gts="http://www.isotc211.org/2005/gts">
+    <gmd:fileIdentifier>
+        <gcol:CharacterString>TOUR_DAT_ldm-ges-eddycovariance</gcol:CharacterString>
+    </gmd:fileIdentifier>
+    <gmd:language>
+        <gmd:LanguageCode codeList="http://www.isotc211.org/2005/resources/Codelist/gmxCodelists.xml#LanguageCode"
+                          codeListValue="eng" codeSpace="eng">English
+        </gmd:LanguageCode>
+    </gmd:language>
+    <gmd:characterSet>
+        <gmd:MD_CharacterSetCode
+                codeList="http://www.isotc211.org/2005/resources/Codelist/gmxCodelists.xml#MD_CharacterSetCode"
+                codeListValue="utf8" codeSpace="eng">UTF-8
+        </gmd:MD_CharacterSetCode>
+    </gmd:characterSet>
+    <gmd:hierarchyLevel>
+        <gmd:MD_ScopeCode codeList="http://www.isotc211.org/2005/resources/Codelist/gmxCodelists.xml#MD_ScopeCode"
+                          codeListValue="dataset" codeSpace="eng">Dataset
+        </gmd:MD_ScopeCode>
+    </gmd:hierarchyLevel>
+    <gmd:hierarchyLevel>
+        <gmd:MD_ScopeCode codeList="http://www.isotc211.org/2005/resources/Codelist/gmxCodelists.xml#MD_ScopeCode"
+                          codeListValue="dataset" codeSpace="eng">Dataset
+        </gmd:MD_ScopeCode>
+    </gmd:hierarchyLevel>
+    <gmd:contact>
+        <gmd:CI_ResponsibleParty>
+            <gmd:organisationName>
+                <gcol:CharacterString>OZCAR-RI SNO-Tourbières</gcol:CharacterString>
+            </gmd:organisationName>
+            <gmd:contactInfo>
+                <gmd:CI_Contact>
+                    <gmd:address>
+                        <gmd:CI_Address>
+                            <gmd:electronicMailAddress>
+                                <gcol:CharacterString>christophe.flechard@inra.fr</gcol:CharacterString>
+                            </gmd:electronicMailAddress>
+                        </gmd:CI_Address>
+                    </gmd:address>
+                </gmd:CI_Contact>
+            </gmd:contactInfo>
+            <gmd:role>
+                <gmd:CI_RoleCode codeList="http://www.isotc211.org/2005/resources/Codelist/gmxCodelists.xml#CI_RoleCode"
+                                 codeListValue="pointOfContact" codeSpace="eng">Point of contact
+                </gmd:CI_RoleCode>
+            </gmd:role>
+        </gmd:CI_ResponsibleParty>
+    </gmd:contact>
+    <gmd:contact>
+        <gmd:CI_ResponsibleParty>
+            <gmd:individualName>
+                <gcol:CharacterString>Christophe</gcol:CharacterString>
+            </gmd:individualName>
+            <gmd:positionName>
+                <gcol:CharacterString>Flechard</gcol:CharacterString>
+            </gmd:positionName>
+            <gmd:contactInfo>
+                <gmd:CI_Contact>
+                    <gmd:address>
+                        <gmd:CI_Address>
+                            <gmd:electronicMailAddress>
+                                <gcol:CharacterString>christophe.flechard@inra.fr</gcol:CharacterString>
+                            </gmd:electronicMailAddress>
+                        </gmd:CI_Address>
+                    </gmd:address>
+                </gmd:CI_Contact>
+            </gmd:contactInfo>
+            <gmd:role>
+                <gmd:CI_RoleCode codeList="http://www.isotc211.org/2005/resources/Codelist/gmxCodelists.xml#CI_RoleCode"
+                                 codeListValue="principalInvestigator" codeSpace="eng">Principal investigator
+                </gmd:CI_RoleCode>
+            </gmd:role>
+        </gmd:CI_ResponsibleParty>
+    </gmd:contact>
+    <gmd:contact>
+        <gmd:CI_ResponsibleParty>
+            <gmd:individualName>
+                <gcol:CharacterString>Sebastien</gcol:CharacterString>
+            </gmd:individualName>
+            <gmd:positionName>
+                <gcol:CharacterString>Gogo</gcol:CharacterString>
+            </gmd:positionName>
+            <gmd:contactInfo>
+                <gmd:CI_Contact>
+                    <gmd:address>
+                        <gmd:CI_Address>
+                            <gmd:electronicMailAddress>
+                                <gcol:CharacterString>sebastien.gogo@univ-orleans.fr</gcol:CharacterString>
+                            </gmd:electronicMailAddress>
+                        </gmd:CI_Address>
+                    </gmd:address>
+                </gmd:CI_Contact>
+            </gmd:contactInfo>
+            <gmd:role>
+                <gmd:CI_RoleCode codeList="http://www.isotc211.org/2005/resources/Codelist/gmxCodelists.xml#CI_RoleCode"
+                                 codeListValue="custodian" codeSpace="eng">Custodian
+                </gmd:CI_RoleCode>
+            </gmd:role>
+        </gmd:CI_ResponsibleParty>
+    </gmd:contact>
+    <gmd:dataSetURI>
+        <gcol:CharacterString>https://data-snot.cnrs.fr</gcol:CharacterString>
+    </gmd:dataSetURI>
+    <gmd:referenceSystemInfo>
+        <gmd:MD_ReferenceSystem>
+            <gmd:referenceSystemIdentifier>
+                <gmd:RS_Identifier>
+                    <gmd:authority>
+                        <gmd:CI_Citation>
+                            <gmd:title>
+                                <gcol:CharacterString>EPSG Geodetic Parameter Dataset</gcol:CharacterString>
+                            </gmd:title>
+                            <gmd:edition>
+                                <gcol:CharacterString>9.7</gcol:CharacterString>
+                            </gmd:edition>
+                            <gmd:editionDate>
+                                <gcol:Date>2019-07-17</gcol:Date>
+                            </gmd:editionDate>
+                            <gmd:identifier>
+                                <gmd:MD_Identifier>
+                                    <gmd:code>
+                                        <gcol:CharacterString>EPSG</gcol:CharacterString>
+                                    </gmd:code>
+                                </gmd:MD_Identifier>
+                            </gmd:identifier>
+                        </gmd:CI_Citation>
+                    </gmd:authority>
+                    <gmd:code>
+                        <gcol:CharacterString>WGS 84</gcol:CharacterString>
+                    </gmd:code>
+                    <gmd:codeSpace>
+                        <gcol:CharacterString>EPSG</gcol:CharacterString>
+                    </gmd:codeSpace>
+                    <gmd:version>
+                        <gcol:CharacterString>9.7</gcol:CharacterString>
+                    </gmd:version>
+                </gmd:RS_Identifier>
+            </gmd:referenceSystemIdentifier>
+        </gmd:MD_ReferenceSystem>
+    </gmd:referenceSystemInfo>
+    <gmd:identificationInfo>
+        <gmd:MD_DataIdentification>
+            <gmd:citation>
+                <gmd:CI_Citation>
+                    <gmd:title xsi:type="gmd:PT_FreeText_PropertyType">
+                        <gcol:CharacterString>Jeu de données des flux de gaz à effet de serre par eddycovariance dans la
+                            tourbière de Landemarais (23 ha), Ille-et-Vilaine, France
+                        </gcol:CharacterString>
+                        <gmd:PT_FreeText>
+                            <gmd:textGroup>
+                                <gmd:LocalisedCharacterString locale="#locale-eng">Jeu de données des flux de gaz à
+                                    effet de serre par eddycovariance dans la tourbière de Landemarais (23 ha),
+                                    Ille-et-Vilaine, France
+                                </gmd:LocalisedCharacterString>
+                            </gmd:textGroup>
+                        </gmd:PT_FreeText>
+                    </gmd:title>
+                    <gmd:identifier>
+                        <gmd:MD_Identifier></gmd:MD_Identifier>
+                    </gmd:identifier>
+                </gmd:CI_Citation>
+            </gmd:citation>
+            <gmd:abstract xsi:type="gmd:PT_FreeText_PropertyType">
+                <gcol:CharacterString>Le jeu de données comporte 5 variables : flux de CO2, flux de CH4, flux de chaleur
+                    sensible, flux de chaleur latente et l'évapotranspiration réelle
+                </gcol:CharacterString>
+                <gmd:PT_FreeText>
+                    <gmd:textGroup>
+                        <gmd:LocalisedCharacterString locale="#locale-eng">Le jeu de données comporte 5 variables : flux
+                            de CO2, flux de CH4, flux de chaleur sensible, flux de chaleur latente et
+                            l'évapotranspiration réelle
+                        </gmd:LocalisedCharacterString>
+                    </gmd:textGroup>
+                </gmd:PT_FreeText>
+            </gmd:abstract>
+            <gmd:pointOfContact>
+                <gmd:CI_ResponsibleParty>
+                    <gmd:organisationName>
+                        <gcol:CharacterString>OZCAR-RI SNO-Tourbières</gcol:CharacterString>
+                    </gmd:organisationName>
+                    <gmd:contactInfo>
+                        <gmd:CI_Contact>
+                            <gmd:address>
+                                <gmd:CI_Address>
+                                    <gmd:electronicMailAddress>
+                                        <gcol:CharacterString>christophe.flechard@inra.fr</gcol:CharacterString>
+                                    </gmd:electronicMailAddress>
+                                </gmd:CI_Address>
+                            </gmd:address>
+                        </gmd:CI_Contact>
+                    </gmd:contactInfo>
+                    <gmd:role>
+                        <gmd:CI_RoleCode
+                                codeList="http://www.isotc211.org/2005/resources/Codelist/gmxCodelists.xml#CI_RoleCode"
+                                codeListValue="pointOfContact" codeSpace="eng">Point of contact
+                        </gmd:CI_RoleCode>
+                    </gmd:role>
+                </gmd:CI_ResponsibleParty>
+            </gmd:pointOfContact>
+            <gmd:descriptiveKeywords>
+                <gmd:MD_Keywords>
+                    <gmd:keyword>
+                        <gmx:Anchor xlink:href="http://inspire.ec.europa.eu/theme/ef">Environmental monitoring
+                            facilities
+                        </gmx:Anchor>
+                    </gmd:keyword>
+                    <gmd:type>
+                        <gmd:MD_KeywordTypeCode
+                                codeList="http://www.isotc211.org/2005/resources/Codelist/gmxCodelists.xml#MD_KeywordTypeCode"
+                                codeListValue="theme" codeSpace="eng">Theme
+                        </gmd:MD_KeywordTypeCode>
+                    </gmd:type>
+                    <gmd:thesaurusName>
+                        <gmd:CI_Citation>
+                            <gmd:title>
+                                <gmx:Anchor xlink:href="http://www.eionet.europa.eu/gemet/inspire_themes">GEMET -INSPIRE
+                                    themes, version 1.0
+                                </gmx:Anchor>
+                            </gmd:title>
+                        </gmd:CI_Citation>
+                    </gmd:thesaurusName>
+                </gmd:MD_Keywords>
+            </gmd:descriptiveKeywords>
+            <gmd:extent>
+                <gmd:EX_Extent>
+                    <gmd:geographicElement>
+                        <gmd:EX_GeographicBoundingBox>
+                            <gmd:extentTypeCode>
+                                <gcol:Boolean>true</gcol:Boolean>
+                            </gmd:extentTypeCode>
+                            <gmd:westBoundLongitude>
+                                <gcol:Decimal>48.4392056957</gcol:Decimal>
+                            </gmd:westBoundLongitude>
+                            <gmd:eastBoundLongitude>
+                                <gcol:Decimal>48.4447856377</gcol:Decimal>
+                            </gmd:eastBoundLongitude>
+                            <gmd:southBoundLatitude>
+                                <gcol:Decimal>-1.193630512</gcol:Decimal>
+                            </gmd:southBoundLatitude>
+                            <gmd:northBoundLatitude>
+                                <gcol:Decimal>-1.1813138082</gcol:Decimal>
+                            </gmd:northBoundLatitude>
+                        </gmd:EX_GeographicBoundingBox>
+                    </gmd:geographicElement>
+                    <gmd:temporalElement>
+                        <gmd:EX_TemporalExtent>
+                            <gmd:extent>
+                                <gml:TimePeriod gml:id="TimePeriod1">
+                                    <gml:beginPosition>2019-03-01T13:03:00+01:00</gml:beginPosition>
+                                    <gml:endPosition>2019-12-31T13:12:00+01:00</gml:endPosition>
+                                </gml:TimePeriod>
+                            </gmd:extent>
+                        </gmd:EX_TemporalExtent>
+                    </gmd:temporalElement>
+                </gmd:EX_Extent>
+            </gmd:extent>
+        </gmd:MD_DataIdentification>
+    </gmd:identificationInfo>
+    <gmd:dataQualityInfo>
+        <gmd:DQ_DataQuality>
+            <gmd:scope>
+                <gmd:MD_Scope>
+                    <gmd:level>
+                        <gmd:MD_ScopeCode
+                                codeList="http://www.isotc211.org/2005/resources/Codelist/gmxCodelists.xml#MD_ScopeCode"
+                                codeListValue="dataset" codeSpace="eng">Dataset
+                        </gmd:MD_ScopeCode>
+                    </gmd:level>
+                </gmd:MD_Scope>
+            </gmd:scope>
+            <gmd:lineage>
+                <gmd:LI_Lineage>
+                    <gmd:statement xsi:type="gmd:PT_FreeText_PropertyType">
+                        <gcol:CharacterString>Les flux de gaz à effet de serre (GES) sont estimés avec les données
+                            provenant de la station eddy-covariance de la tourbière de Landemarais. Le calcul du flux
+                            est réalisé avec un logiciel de calcul suivi d'un contrôle des flux par expertise
+                        </gcol:CharacterString>
+                        <gmd:PT_FreeText>
+                            <gmd:textGroup>
+                                <gmd:LocalisedCharacterString locale="#locale-eng">Les flux de gaz à effet de serre
+                                    (GES) sont estimés avec les données provenant de la station eddy-covariance de la
+                                    tourbière de Landemarais. Le calcul du flux est réalisé avec un logiciel de calcul
+                                    suivi d'un contrôle des flux par expertise
+                                </gmd:LocalisedCharacterString>
+                            </gmd:textGroup>
+                        </gmd:PT_FreeText>
+                    </gmd:statement>
+                </gmd:LI_Lineage>
+            </gmd:lineage>
+        </gmd:DQ_DataQuality>
+    </gmd:dataQualityInfo>
+    <gmd:metadataConstraints>
+        <gmd:MD_LegalConstraints>
+            <gmd:useLimitation xsi:type="gmd:PT_FreeText_PropertyType">
+                <gcol:CharacterString>The following sentence should appear in the acknowledgments of the publication :
+                    'The SNO Tourbières observing system https://www.sno-tourbieres.cnrs.fr/ was set up thanks to an
+                    incentive funding of the French Ministry of Research that allowed pooling together various
+                    pre-existing small scale observing setups. The continuity and long term perenity of the measurements
+                    are made possible by an undisrupted and continuous CNRS funding since 2008'
+                </gcol:CharacterString>
+                <gmd:PT_FreeText>
+                    <gmd:textGroup>
+                        <gmd:LocalisedCharacterString locale="#locale-eng">The following sentence should appear in the
+                            acknowledgments of the publication : 'The SNO Tourbières observing system
+                            https://www.sno-tourbieres.cnrs.fr/ was set up thanks to an incentive funding of the French
+                            Ministry of Research that allowed pooling together various pre-existing small scale
+                            observing setups. The continuity and long term perenity of the measurements are made
+                            possible by an undisrupted and continuous CNRS funding since 2008'
+                        </gmd:LocalisedCharacterString>
+                    </gmd:textGroup>
+                </gmd:PT_FreeText>
+            </gmd:useLimitation>
+            <gmd:useConstraints>
+                <gmd:MD_RestrictionCode
+                        codeList="http://www.isotc211.org/2005/resources/Codelist/gmxCodelists.xml#MD_RestrictionCode"
+                        codeListValue="license" codeSpace="eng">Licence
+                </gmd:MD_RestrictionCode>
+            </gmd:useConstraints>
+            <gmd:otherConstraints>
+                <gcol:CharacterString>CC BY-SA 4.0 https://creativecommons.org/licenses/by-sa/4.0/deed.en
+                </gcol:CharacterString>
+            </gmd:otherConstraints>
+            <gmd:otherConstraints xsi:type="gmd:PT_FreeText_PropertyType">
+                <gcol:CharacterString>The following sentence should appear in the acknowledgments of the publication :
+                    'The SNO Tourbières observing system https://www.sno-tourbieres.cnrs.fr/ was set up thanks to an
+                    incentive funding of the French Ministry of Research that allowed pooling together various
+                    pre-existing small scale observing setups. The continuity and long term perenity of the measurements
+                    are made possible by an undisrupted and continuous CNRS funding since 2008'
+                </gcol:CharacterString>
+                <gmd:PT_FreeText>
+                    <gmd:textGroup>
+                        <gmd:LocalisedCharacterString locale="#locale-eng">The following sentence should appear in the
+                            acknowledgments of the publication : 'The SNO Tourbières observing system
+                            https://www.sno-tourbieres.cnrs.fr/ was set up thanks to an incentive funding of the French
+                            Ministry of Research that allowed pooling together various pre-existing small scale
+                            observing setups. The continuity and long term perenity of the measurements are made
+                            possible by an undisrupted and continuous CNRS funding since 2008'
+                        </gmd:LocalisedCharacterString>
+                    </gmd:textGroup>
+                </gmd:PT_FreeText>
+            </gmd:otherConstraints>
+        </gmd:MD_LegalConstraints>
+    </gmd:metadataConstraints>
+    <gmd:metadataMaintenance>
+        <gmd:MD_MaintenanceInformation>
+            <gmd:maintenanceAndUpdateFrequency>
+                <gmd:MD_MaintenanceFrequencyCode
+                        codeList="http://www.isotc211.org/2005/resources/Codelist/gmxCodelists.xml#MD_MaintenanceFrequencyCode"
+                        codeListValue="asNeeded" codeSpace="eng">As needed
+                </gmd:MD_MaintenanceFrequencyCode>
+            </gmd:maintenanceAndUpdateFrequency>
+        </gmd:MD_MaintenanceInformation>
+    </gmd:metadataMaintenance>
+</gmd:MD_Metadata>

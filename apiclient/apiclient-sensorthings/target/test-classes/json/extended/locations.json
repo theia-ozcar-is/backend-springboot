@@ -1,0 +1,12 @@
+{
+  "value" : [ {
+    "name" : "Installation de suivi eau souterraine quantité",
+    "description" : "Installation de suivi eau souterraine quantité",
+    "encodingType" : "application/vnd.geo+json",
+    "location" : {"type":"Point","coordinates":[2.376490666,48.839594323]},
+    "HistoricalLocations@iot.navigationLink" : "https://sensorthings.brgm-rec.fr/SensorThingsGroundWater/v1.1/Locations(1)/HistoricalLocations",
+    "Things@iot.navigationLink" : "https://sensorthings.brgm-rec.fr/SensorThingsGroundWater/v1.1/Locations(1)/Things",
+    "@iot.id" : 1,
+    "@iot.selfLink" : "https://sensorthings.brgm-rec.fr/SensorThingsGroundWater/v1.1/Locations(1)"
+  } ]
+}

@@ -1,0 +1,26 @@
+#!/bin/sh
+
+
+./mkSNO AGRH
+./mkSNO CATC
+./mkSNO AURA
+./mkSNO BVET
+./mkSNO CRYO
+./mkSNO DRAI
+./mkSNO ERUN
+./mkSNO HPLU
+./mkSNO HYBA
+./mkSNO MSEC
+./mkSNO OBSE
+./mkSNO OHGE
+./mkSNO OHMC
+./mkSNO OMER
+./mkSNO OPEA
+./mkSNO ORAC
+./mkSNO OSRC
+./mkSNO REAL
+./mkSNO KARS
+./mkSNO TOUR
+./mkSNO YZER
+./mkSNO MTRO
+./mkSNO OVIL

@@ -1,0 +1,9 @@
+/home/coussotc/dev/theia-ozcar-projects/backend-springboot/koppen-climates-enrichment-app/target/generated-sources/openapi/src/main/java/fr/theialand/insitu/dataportal/server/koppenclimate/api/ClimateApiDelegate.java
+/home/coussotc/dev/theia-ozcar-projects/backend-springboot/koppen-climates-enrichment-app/src/main/java/fr/theialand/insitu/dataportal/server/koppenclimate/business/ClimateApiDelegateImpl.java
+/home/coussotc/dev/theia-ozcar-projects/backend-springboot/koppen-climates-enrichment-app/target/generated-sources/openapi/src/main/java/fr/theialand/insitu/dataportal/server/koppenclimate/model/LocationKoppenClimateDTO.java
+/home/coussotc/dev/theia-ozcar-projects/backend-springboot/koppen-climates-enrichment-app/target/generated-sources/openapi/src/main/java/fr/theialand/insitu/dataportal/server/koppenclimate/api/ClimateApiController.java
+/home/coussotc/dev/theia-ozcar-projects/backend-springboot/koppen-climates-enrichment-app/target/generated-sources/openapi/src/main/java/fr/theialand/insitu/dataportal/server/koppenclimate/api/ApiUtil.java
+/home/coussotc/dev/theia-ozcar-projects/backend-springboot/koppen-climates-enrichment-app/target/generated-sources/openapi/src/main/java/fr/theialand/insitu/dataportal/server/koppenclimate/model/KoppenClimate.java
+/home/coussotc/dev/theia-ozcar-projects/backend-springboot/koppen-climates-enrichment-app/src/main/java/fr/theialand/insitu/dataportal/server/koppenclimate/Main.java
+/home/coussotc/dev/theia-ozcar-projects/backend-springboot/koppen-climates-enrichment-app/target/generated-sources/openapi/src/main/java/fr/theialand/insitu/dataportal/server/koppenclimate/api/ClimateApi.java
+/home/coussotc/dev/theia-ozcar-projects/backend-springboot/koppen-climates-enrichment-app/target/generated-sources/openapi/src/main/java/fr/theialand/insitu/dataportal/server/koppenclimate/model/KoppenClimateCodeLiteral.java

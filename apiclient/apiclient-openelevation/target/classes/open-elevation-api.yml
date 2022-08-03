@@ -1,0 +1,106 @@
+openapi: 3.0.0
+info:
+  description: openAPI definition for open-elevation API -
+    https://github.com/Jorl17/open-elevation
+  version: "0.1"
+  title: open-elevation
+  license:
+    name: GPL-2.0 License
+    url: "https://www.gnu.org/licenses/old-licenses/gpl-2.0.en.html"
+#servers:
+#  - url: "http://k8s-service/open-elevation/api/v1"
+#    description: |
+#      Dummy Kubernetes service as the Rest API won't be exposed outside the Kubernetes cluster. Usefull to set the base path = /api/v1/
+paths:
+  /api/v1/lookup:
+    get:
+      tags:
+        - openElevationLookup
+      operationId: getLookup
+      description: |
+        Returns ("looks up") the elevation at one or more (latitude,longitude) points. The GET API is limited to 1024 bytes in the request line. If you plan on making large requests, consider using the POST api.
+      parameters:
+        - in: query
+          description: List of locations, separated by | in latitude, longitude format, similar to the Google Elevation API
+          name: locations
+          required: true
+          example: 10,10|20,20|41.161758,-8.583933
+          schema:
+            type: string
+      responses:
+        "200":
+          description: A JSON object with a single list of results, in the results field is returned. Each result contains latitude, longitude and elevation. The results are in the same order as the request parameters. Elevation is in meters. If there is no recorded elevation at the provided coordinate, sea level (0 meters) is returned.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/LocationElevationResultsDTO"
+    post:
+      tags:
+        - openElevationLookup
+      operationId: postLookup
+      description: |
+        Returns (looks up) the elevation at one or more (latitude,longitude) points. The POST API currently has no limit
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/LocationsPostParam"
+        x-examples:
+          application/json: |-
+            {
+               "locations":
+               [
+                  {
+                     "longitude":10.0,
+                     "latitude":10.0
+                  },
+                  {
+                     "longitude":20.0,
+                     "latitude":20.0
+                  },
+                  {
+                     "latitude":41.161758,
+                     "longitude":-8.583933
+                  }
+               ]
+            }
+      responses:
+        "200":
+          description: A JSON object with a single list of results, in the results field is returned. Each result contains latitude, longitude and elevation. The results are in the same order as the request parameters. Elevation is in meters. If there is no recorded elevation at the provided coordinate, sea level (0 meters) is returned.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/LocationElevationResultsDTO"
+components:
+  schemas:
+    Location:
+      properties:
+        longitude:
+          type: number
+          format: double
+        latitude:
+          type: number
+          format: double
+    LocationsPostParam:
+      properties:
+        locations:
+          type: array
+          items:
+            $ref: "#/components/schemas/Location"
+    LocationElevation:
+      properties:
+        latitude:
+          type: number
+          format: double
+        longitude:
+          type: number
+          format: double
+        elevation:
+          type: integer
+          format: int32
+    LocationElevationResultsDTO:
+      properties:
+        results:
+          type: array
+          items:
+            $ref: "#/components/schemas/LocationElevation"

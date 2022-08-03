@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>common</artifactId>
+        <groupId>fr.theialand.insitu</groupId>
+        <version>0.0.1-SNAPSHOT</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+
+    <artifactId>common-models</artifactId>
+    <description>Models and common classes, mostly for json-schema importing and generation</description>
+
+    <properties>
+        <victools.version>4.18.0</victools.version>
+
+        <!-- food for the maven goal exec:java -->
+        <exec.mainClass>fr.theialand.insitu.dataportal.model.application.JsonSchemaGeneratorApplication</exec.mainClass>
+        <exec.args>target/pivot-model.json</exec.args>
+    </properties>
+
+    <dependencies>
+
+        <!-- Some models and utils (jackson OM) depends on mongo classes no need for the whole spring thing -->
+        <dependency>
+            <groupId>org.mongodb</groupId>
+            <artifactId>mongodb-driver-core</artifactId>
+        </dependency>
+
+        <!-- VicTools is the Json Schema Generator, it have sub-modules -->
+        <dependency>
+            <groupId>com.github.victools</groupId>
+            <artifactId>jsonschema-generator</artifactId>
+            <version>${victools.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.github.victools</groupId>
+            <artifactId>jsonschema-module-jackson</artifactId>
+            <version>${victools.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.github.victools</groupId>
+            <artifactId>jsonschema-module-javax-validation</artifactId>
+            <version>${victools.version}</version>
+        </dependency>
+
+        <!-- Enable the use of @Email, @Pattern ... to inform json schema about limitations and format       -->
+        <dependency>
+            <groupId>javax.validation</groupId>
+            <artifactId>validation-api</artifactId>
+        </dependency>
+
+    </dependencies>
+
+</project>

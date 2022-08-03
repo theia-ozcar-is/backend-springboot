@@ -1,0 +1,11 @@
+/home/coussotc/dev/theia-ozcar-projects/backend-springboot/etl-mongo-geonetwork/src/test/java/fr/theialand/insitu/dataportal/etl/transformer/KeywordTransformerTest.java
+/home/coussotc/dev/theia-ozcar-projects/backend-springboot/etl-mongo-geonetwork/src/test/java/fr/theialand/insitu/dataportal/etl/transformer/GeotoolkitBugsTest.java
+/home/coussotc/dev/theia-ozcar-projects/backend-springboot/etl-mongo-geonetwork/src/test/java/fr/theialand/insitu/dataportal/etl/transformer/IdentificationTransformerTest.java
+/home/coussotc/dev/theia-ozcar-projects/backend-springboot/etl-mongo-geonetwork/src/test/java/fr/theialand/insitu/dataportal/etl/ConnectivityIT.java
+/home/coussotc/dev/theia-ozcar-projects/backend-springboot/etl-mongo-geonetwork/src/test/java/fr/theialand/insitu/dataportal/etl/transformer/TransformerTest.java
+/home/coussotc/dev/theia-ozcar-projects/backend-springboot/etl-mongo-geonetwork/src/test/java/fr/theialand/insitu/dataportal/etl/EtlStandaloneConfig.java
+/home/coussotc/dev/theia-ozcar-projects/backend-springboot/etl-mongo-geonetwork/src/test/java/fr/theialand/insitu/dataportal/etl/MetadataTestUtils.java
+/home/coussotc/dev/theia-ozcar-projects/backend-springboot/etl-mongo-geonetwork/src/test/java/fr/theialand/insitu/dataportal/etl/EtlUtilsTest.java
+/home/coussotc/dev/theia-ozcar-projects/backend-springboot/etl-mongo-geonetwork/src/test/java/fr/theialand/insitu/dataportal/etl/transformer/ContactTransformerTest.java
+/home/coussotc/dev/theia-ozcar-projects/backend-springboot/etl-mongo-geonetwork/src/test/java/fr/theialand/insitu/dataportal/etl/transformer/TransformerTestHelper.java
+/home/coussotc/dev/theia-ozcar-projects/backend-springboot/etl-mongo-geonetwork/src/test/java/fr/theialand/insitu/dataportal/etl/EtlServiceIT.java

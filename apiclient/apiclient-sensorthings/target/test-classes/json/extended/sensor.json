@@ -1,0 +1,16 @@
+{
+  "name" : "Digital recording teletransmitted",
+  "description" : "Digital recording teletransmitted",
+  "Datastreams@iot.navigationLink" : "https://sensorthings.brgm-rec.fr/SensorThingsGroundWater/v1.1/Sensors(2)/Datastreams",
+  "MultiDatastreams@iot.navigationLink" : "https://sensorthings.brgm-rec.fr/SensorThingsGroundWater/v1.1/Sensors(2)/MultiDatastreams",
+  "encodingType" : "http://www.opengis.net/doc/IS/SensorML/2.0",
+  "metadata" : "https://data.geoscience.fr/ncl/Proc/75",
+  "@iot.id" : 2,
+  "@iot.selfLink" : "https://sensorthings.brgm-rec.fr/SensorThingsGroundWater/v1.1/Sensors(2)",
+  "properties": {
+    "lineageInformations": [{
+      "processDescription": "read & check TEST",
+      "processDate": "2012-04-23T18:25:43.511Z"
+    }]
+  }
+}

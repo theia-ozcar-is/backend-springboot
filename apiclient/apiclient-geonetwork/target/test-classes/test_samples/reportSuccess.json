@@ -1,0 +1,27 @@
+{
+  "errors": [],
+  "infos": [],
+  "uuid": "ca551875-07e4-4b5c-8e5b-e18ec782bf3b",
+  "metadata": [],
+  "metadataErrors": {},
+  "metadataInfos": {
+    "107": [
+      {
+        "message": "Metadata imported from XML with UUID 'a65b38a9-7ad2-4306-99ff-1b0c7e6cfcb7'",
+        "date": "2020-11-20T16:54:25"
+      }
+    ]
+  },
+  "numberOfRecordNotFound": 0,
+  "numberOfRecordsNotEditable": 0,
+  "numberOfNullRecords": 0,
+  "numberOfRecords": 0,
+  "numberOfRecordsProcessed": 1,
+  "numberOfRecordsWithErrors": 0,
+  "type": "SimpleMetadataProcessingReport",
+  "running": false,
+  "startIsoDateTime": "2020-11-20T16:54:25",
+  "endIsoDateTime": "2020-11-20T16:54:25",
+  "ellapsedTimeInSeconds": 0,
+  "totalTimeInSeconds": 0
+}

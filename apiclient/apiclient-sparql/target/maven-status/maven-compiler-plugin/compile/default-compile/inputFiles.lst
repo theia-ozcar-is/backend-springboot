@@ -1,0 +1,7 @@
+/home/coussotc/dev/theia-ozcar-projects/backend-springboot/apiclient/apiclient-sparql/src/main/java/fr/theialand/insitu/dataportal/api/sparql/AbstractRDFClient.java
+/home/coussotc/dev/theia-ozcar-projects/backend-springboot/apiclient/apiclient-sparql/src/main/java/fr/theialand/insitu/dataportal/api/sparql/exeception/InvalidUriException.java
+/home/coussotc/dev/theia-ozcar-projects/backend-springboot/apiclient/apiclient-sparql/src/main/java/fr/theialand/insitu/dataportal/api/sparql/update/RDFUpdateClientImpl.java
+/home/coussotc/dev/theia-ozcar-projects/backend-springboot/apiclient/apiclient-sparql/src/main/java/fr/theialand/insitu/dataportal/api/sparql/query/RDFQueryClient.java
+/home/coussotc/dev/theia-ozcar-projects/backend-springboot/apiclient/apiclient-sparql/src/main/java/fr/theialand/insitu/dataportal/api/sparql/query/RDFQueryClientImpl.java
+/home/coussotc/dev/theia-ozcar-projects/backend-springboot/apiclient/apiclient-sparql/src/main/java/fr/theialand/insitu/dataportal/api/sparql/exeception/InvalidCategoryUriException.java
+/home/coussotc/dev/theia-ozcar-projects/backend-springboot/apiclient/apiclient-sparql/src/main/java/fr/theialand/insitu/dataportal/api/sparql/update/RDFUpdateClient.java

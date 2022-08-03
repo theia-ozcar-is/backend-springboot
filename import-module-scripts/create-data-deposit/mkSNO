@@ -1,0 +1,34 @@
+DIR="/var/www/html/$1"
+if [ -d "$DIR" ];
+then
+  echo "The folder $1 already exists, .htpasswd is updated"
+  htpasswd -b /var/www/.htpasswd $1 $(grep $1 /home/prod.pwd)
+elif grep -q $1 /home/prod.pwd ;
+then
+  echo "The folder $1 does not exist, but a producer entry does already exist in secrets. The directories are created and .htpasswd is updated with the producer secret."
+  mkdir -p /var/www/html/$1
+  cp -rp ./squelette/* /var/www/html/$1
+  find /var/www/html/$1 -name ".htaccess" -exec sed -i "s/#SNO#/$1/g" {} \;
+  chmod -R 775 /var/www/html/$1/new
+  chmod -R 755 /var/www/html/$1/trash
+  chmod -R 755 /var/www/html/$1/previous
+  chmod -R 755 /var/www/html/$1/tmp
+  htpasswd -b /var/www/.htpasswd $1 $(grep $1 /home/prod.pwd)
+else
+  echo "The folder $1 does not exist, directory are created and .htpasswd is updated"
+  mkdir -p /var/www/html/$1
+  cp -rp ./squelette/* /var/www/html/$1
+  find /var/www/html/$1 -name ".htaccess" -exec sed -i "s/#SNO#/$1/g" {} \;
+  chmod -R 775 /var/www/html/$1/new
+  chmod -R 755 /var/www/html/$1/trash
+  chmod -R 755 /var/www/html/$1/previous
+  chmod -R 755 /var/www/html/$1/tmp
+  PASS1=$(cat /dev/urandom | tr -dc '0-9' | fold -w 4 | head -n 1)
+  PASS2=$(cat /dev/urandom | tr -dc 'a-zA-Z0-9' | fold -w 2 | head -n 1)
+  PASS3=$1$PASS1+$PASS2
+  htpasswd -b /var/www/.htpasswd $1 $PASS3
+  echo "######### add this line to producer password secrets! :"
+  echo "---------------------------------------"
+  echo $PASS3
+  echo "---------------------------------------"
+fi

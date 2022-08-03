@@ -1,0 +1,5 @@
+/home/coussotc/dev/theia-ozcar-projects/backend-springboot/apiclient/apiclient-common/src/main/java/fr/theialand/insitu/dataportal/api/exception/ClientNotFoundException.java
+/home/coussotc/dev/theia-ozcar-projects/backend-springboot/apiclient/apiclient-common/src/main/java/fr/theialand/insitu/dataportal/api/exception/ClientLinkException.java
+/home/coussotc/dev/theia-ozcar-projects/backend-springboot/apiclient/apiclient-common/src/main/java/fr/theialand/insitu/dataportal/api/exception/ClientWorkflowException.java
+/home/coussotc/dev/theia-ozcar-projects/backend-springboot/apiclient/apiclient-common/src/main/java/fr/theialand/insitu/dataportal/api/RestClientConfig.java
+/home/coussotc/dev/theia-ozcar-projects/backend-springboot/apiclient/apiclient-common/src/main/java/fr/theialand/insitu/dataportal/api/exception/ClientException.java

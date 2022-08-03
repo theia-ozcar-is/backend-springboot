@@ -1,0 +1,64 @@
+{
+  "producerId": "CATC",
+  "name": "AMMA-CATCH",
+  "title": "AMMA-CATCH: a hydrological, meteorological and ecological observatory on West Africa",
+  "description": "AMMA-CATCH is a national observation service (SNO) dedicated to long-term monitoring of climatological, hydrological and ecological changes in West Africa. For this purpose, it gathers data from three densely instrumented sites, going back as far as the mid-1980s in the Sahelian part of the observation network. These three sites cover areas ranging between 10000 and 25000 kmÂ² and are located at different latitudes so as to sample the characteristic eco-climatic gradients of the region. Simultaneous monitoring of the vegetation cover, the phenology and the various terms of the water balance (rainfall, infiltration, groundwater recharge, surface runoff) at the three sites provides insight into the interactions between the water cycle, vegetation dynamics and climate variability at intraseasonal and interannual scales over this region that is highly vulnerable to the impacts of climate change.",
+  "email": "contact@amma-catch.org",
+  "fundings": [
+    {
+      "idScanR": "180006025",
+      "type": "French research institutes",
+      "acronym": "IRD",
+      "name": "Institut de Recherche pour le DÃ©veloppement",
+      "iso3166": "fr"
+    },
+    {
+      "idScanR": "180089013",
+      "type": "French research institutes",
+      "acronym": "CNRS",
+      "name": "Centre National de la Recherche Scientifique",
+      "iso3166": "fr"
+    }
+  ],
+  "contacts": [
+    {
+      "firstName": "Sylvie",
+      "lastName": "Galle",
+      "email": "sylvie.galle@ird.fr",
+      "role": "Project leader",
+      "orcId": "0000-0002-3100-8510",
+      "organisation": {
+        "name": "Institut des GÃ©osciences de l'Environnement",
+        "acronym": "IGE",
+        "role": "Research group",
+        "iso3166": "fr",
+        "idScanR": "201722374A"
+      }
+    },
+    {
+      "firstName": "VÃ©ronique",
+      "lastName": "Chaffard",
+      "email": "veronique.chaffard@ird.fr",
+      "role": "Data manager",
+      "orcId": "0000-0003-2823-7117",
+      "organisation": {
+        "name": "Institut des GÃ©osciences de l'Environnement",
+        "acronym": "IGE",
+        "role": "Research group",
+        "iso3166": "fr",
+        "idScanR": "201722374A"
+      }
+    }
+  ],
+  "onlineResource": {
+    "urlDownload": "htxxxztpbd.amma-catch.org",
+    "urlInfo": "http://www.amma-catch.org/?lang=en",
+    "doi": "10.17178/AMMA-CATCH.all",
+    "webservices": [
+      {
+        "description": "CSW",
+        "url": "http://bd.amma-catch.org/amma-catchWS2/WS/csw/default?service=CSW&request=GetCapabilities"
+      }
+    ]
+  }
+}

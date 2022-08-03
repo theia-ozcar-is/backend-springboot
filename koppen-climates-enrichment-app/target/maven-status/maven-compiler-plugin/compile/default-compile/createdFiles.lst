@@ -1,0 +1,11 @@
+fr/theialand/insitu/dataportal/server/koppenclimate/Main.class
+fr/theialand/insitu/dataportal/server/koppenclimate/api/ClimateApiController.class
+fr/theialand/insitu/dataportal/server/koppenclimate/api/ClimateApi.class
+fr/theialand/insitu/dataportal/server/koppenclimate/api/ClimateApiController$1.class
+fr/theialand/insitu/dataportal/server/koppenclimate/model/LocationKoppenClimateDTO.class
+fr/theialand/insitu/dataportal/server/koppenclimate/model/KoppenClimateCodeLiteral.class
+fr/theialand/insitu/dataportal/server/koppenclimate/model/KoppenClimate.class
+fr/theialand/insitu/dataportal/server/koppenclimate/business/ClimateApiDelegateImpl.class
+fr/theialand/insitu/dataportal/server/koppenclimate/api/ApiUtil.class
+fr/theialand/insitu/dataportal/server/koppenclimate/api/ClimateApi$1.class
+fr/theialand/insitu/dataportal/server/koppenclimate/api/ClimateApiDelegate.class

@@ -1,0 +1,673 @@
+{
+  "datasetId": "CATC_DAT_CL.Run_Od",
+  "metadata": {
+    "description": "Automatic measurement of water level converted into flow and electrical conductivity. Calibration of the stage-discharge relationships is made by an Acoustic Doppler Current Profilometer. A value = 9999 stands for a dry river.",
+    "objective": "Long term measurements (LOP) of the river discharge to documentate the surface water balance of 6 nested catchments (12 to 586 km2). The electrical conductivity of river water is an integrative measure that allows documentation of the origin of waters (rainfall, surface and sub-surface runoff, water table drainage). Associated to the chemical characterization of water (CE.Wchem_Od), these data give insight into processes of runoff generation, allow to compute water balance components and constitute validation datasets for hydrological models.",
+    "datasetLineage": "Dataset acquired during AMMA-CATCH programm. The dataset is broadcasted unmodified to Theia/OZCAR information system.",
+    "contacts": [
+      {
+        "firstName": "Luc",
+        "lastName": "Séguis",
+        "email": "luc.seguis@ird.fr",
+        "role": "Principal investigator",
+        "organisation": {
+          "name": "Hydrosciences Montpellier",
+          "acronym": "HSM",
+          "role": "Research group",
+          "iso3166": "fr",
+          "idScanR": "199512007C"
+        }
+      },
+      {
+        "firstName": "Véronique",
+        "lastName": "Chaffard",
+        "email": "veronique.chaffard@ird.fr",
+        "role": "Data manager",
+        "organisation": {
+          "name": "Institut des Géosciences de l'Environnement Grenoble",
+          "acronym": "IGE",
+          "role": "Research group",
+          "iso3166": "fr",
+          "idScanR": "201722374A"
+        }
+      }
+    ],
+    "topicCategories": [
+      "Environment",
+      "Geoscientific Information"
+    ],
+    "inspireTheme": "Environmental monitoring facilities",
+    "keywords": [
+      {
+        "keyword": "Discharge"
+      }
+    ],
+    "onlineResource": {
+      "urlDownload": "http://bd.amma-catch.org/download.jsf?lang=fr&identifier=17&stations=442,441,440&variables=29,39,38,30&begin=&end=",
+      "urlInfo": "http://bd.amma-catch.org",
+      "doi": "10.17178/AMMA-CATCH.CL.Run_Od"
+    },
+    "dataConstraint": {
+      "accessUseConstraint": "\"For any publication using AMMA-CATCH data, depending on the contribution of the data to the scientific results obtained, data users should either propose co-authorship to the data providers (doi work package leaders) or at least acknowledge their contribution. The following sentence should appear in the acknowledgments of the publication: \"\"The AMMA-CATCH regional observing system (http://www.amma-catch.org/) was set up thanks to an incentive funding of the French Ministry of Research that allowed pooling together various pre-existing small scale observing setups. The continuity and long term perenity of the measurements are made possible by an undisrupted IRD funding since 1990 and by a continuous CNRS-INSU funding since 2005.\"",
+      "urlDataPolicy": "http://www.amma-catch.org/IMG/pdf/data_policy_amma-catch_db_en.pdf",
+      "licence": {
+        "title": "CC BY 4.0",
+        "url": "https://creativecommons.org/licenses/by/4.0/"
+      }
+    },
+    "portalSearchCriteria": {
+      "climates": [
+        "Tropical climate"
+      ]
+    },
+    "spatialExtent": {
+      "geometry": {
+        "coordinates": [
+          [
+            [
+              1.6099,
+              9.7522
+            ],
+            [
+              1.6099,
+              9.7106
+            ],
+            [
+              1.9447,
+              9.7106
+            ],
+            [
+              1.9447,
+              9.7522
+            ],
+            [
+              1.6099,
+              9.7522
+            ]
+          ]
+        ],
+        "type": "Polygon"
+      },
+      "properties": {},
+      "type": "Feature"
+    }
+  },
+  "observations": [
+    {
+      "observationId": "CATC_OBS_CL.Run_Od_1",
+      "featureOfInterest": {
+        "samplingFeature": {
+          "geometry": {
+            "coordinates": [
+              1.6865,
+              9.752,
+              409.9
+            ],
+            "type": "Point"
+          },
+          "name": "DONGA ROUTE DE KOLOKONDE",
+          "type": "Feature",
+          "properties": {}
+        }
+      },
+      "observedProperty": {
+        "name": "Discharge/Flow",
+        "unit": "m3/s",
+        "theiaCategories": [
+          "https://w3id.org/ozcar-theia/hydrologicalMeasurements"
+        ]
+      },
+      "procedure": {
+        "dataProduction": {
+          "sensors": [
+            {
+              "model": "Thalimedes",
+              "manufacturer": "OTT",
+              "sensorType": "Surface Water Monitoring System",
+              "activityPeriods": [
+                {
+                  "dateBeg": "2002-01-01T11:00:00Z",
+                  "dateEnd": "2015-12-30T23:30:00Z"
+                }
+              ]
+            }
+          ]
+        }
+      },
+      "result": {
+        "missingValue": "-9999.9",
+        "qualityFlags": [
+          {
+            "code": "11",
+            "description": "missing value"
+          },
+          {
+            "code": "13",
+            "description": "checked data"
+          },
+          {
+            "code": "17",
+            "description": "dry river"
+          }
+        ],
+        "dataFile": {
+          "name": "CATC_OBS_CL.Run_Od_1.txt"
+        }
+      },
+      "timeSerie": true,
+      "temporalExtent": {
+        "dateBeg": "2002-01-01T11:00:00Z",
+        "dateEnd": "2015-12-30T23:30:00Z"
+      },
+      "dataType": "Numeric"
+    },
+    {
+      "observationId": "CATC_OBS_CL.Run_Od_2",
+      "featureOfInterest": {
+        "samplingFeature": {
+          "geometry": {
+            "coordinates": [
+              1.9447,
+              9.7106,
+              349.05
+            ],
+            "type": "Point"
+          },
+          "name": "DONGA PONT",
+          "type": "Feature",
+          "properties": {}
+        }
+      },
+      "observedProperty": {
+        "name": "Discharge/Flow",
+        "unit": "m3/s",
+        "theiaCategories": [
+          "https://w3id.org/ozcar-theia/hydrologicalMeasurements"
+        ]
+      },
+      "procedure": {
+        "dataProduction": {
+          "sensors": [
+            {
+              "model": "Thalimedes",
+              "manufacturer": "OTT",
+              "sensorType": "Surface Water Monitoring System",
+              "activityPeriods": [
+                {
+                  "dateBeg": "1998-06-06T12:00:00Z",
+                  "dateEnd": "2015-12-30T23:20:00Z"
+                }
+              ]
+            }
+          ]
+        }
+      },
+      "result": {
+        "missingValue": "-9999.9",
+        "qualityFlags": [
+          {
+            "code": "13",
+            "description": "checked data"
+          }
+        ],
+        "dataFile": {
+          "name": "CATC_OBS_CL.Run_Od_2.txt"
+        }
+      },
+      "timeSerie": true,
+      "temporalExtent": {
+        "dateBeg": "1998-06-06T12:00:00Z",
+        "dateEnd": "2015-12-30T23:20:00Z"
+      },
+      "dataType": "Numeric"
+    },
+    {
+      "observationId": "CATC_OBS_CL.Run_Od_3",
+      "featureOfInterest": {
+        "samplingFeature": {
+          "geometry": {
+            "coordinates": [
+              1.6099,
+              9.7522,
+              453.19
+            ],
+            "type": "Point"
+          },
+          "name": "ARA PONT",
+          "type": "Feature",
+          "properties": {}
+        }
+      },
+      "observedProperty": {
+        "name": "Discharge/Flow",
+        "unit": "m3/s",
+        "theiaCategories": [
+          "https://w3id.org/ozcar-theia/hydrologicalMeasurements"
+        ]
+      },
+      "procedure": {
+        "dataProduction": {
+          "sensors": [
+            {
+              "model": "Thalimedes",
+              "manufacturer": "OTT",
+              "sensorType": "Surface Water Monitoring System",
+              "activityPeriods": [
+                {
+                  "dateBeg": "2002-06-25T21:45:00Z",
+                  "dateEnd": "2015-12-30T23:30:00Z"
+                }
+              ]
+            }
+          ]
+        }
+      },
+      "result": {
+        "missingValue": "-9999.9",
+        "qualityFlags": [
+          {
+            "code": "13",
+            "description": "checked data"
+          },
+          {
+            "code": "11",
+            "description": "missing value"
+          },
+          {
+            "code": "17",
+            "description": "dry river"
+          }
+        ],
+        "dataFile": {
+          "name": "CATC_OBS_CL.Run_Od_3.txt"
+        }
+      },
+      "timeSerie": true,
+      "temporalExtent": {
+        "dateBeg": "2002-06-25T21:45:00Z",
+        "dateEnd": "2015-12-30T23:30:00Z"
+      },
+      "dataType": "Numeric"
+    },
+    {
+      "observationId": "CATC_OBS_CL.Run_Od_4",
+      "featureOfInterest": {
+        "samplingFeature": {
+          "geometry": {
+            "coordinates": [
+              1.6865,
+              9.752,
+              409.9
+            ],
+            "type": "Point"
+          },
+          "name": "DONGA ROUTE DE KOLOKONDE",
+          "type": "Feature",
+          "properties": {}
+        }
+      },
+      "observedProperty": {
+        "name": "Discharge/Flow (15 minutes)",
+        "unit": "m3/s",
+        "theiaCategories": [
+          "https://w3id.org/ozcar-theia/hydrologicalMeasurements"
+        ]
+      },
+      "procedure": {
+        "dataProduction": {
+          "sensors": [
+            {
+              "model": "Thalimedes",
+              "manufacturer": "OTT",
+              "sensorType": "Surface Water Monitoring System",
+              "activityPeriods": [
+                {
+                  "dateBeg": "2002-04-07T09:45:00Z",
+                  "dateEnd": "2015-12-30T23:30:00Z"
+                }
+              ]
+            }
+          ]
+        }
+      },
+      "result": {
+        "missingValue": "-9999.9",
+        "qualityFlags": [
+          {
+            "code": "11",
+            "description": "missing value"
+          },
+          {
+            "code": "13",
+            "description": "checked data"
+          }
+        ],
+        "dataFile": {
+          "name": "CATC_OBS_CL.Run_Od_4.txt"
+        }
+      },
+      "timeSerie": true,
+      "temporalExtent": {
+        "dateBeg": "2002-04-07T10:00:00Z",
+        "dateEnd": "2015-12-30T23:30:00Z"
+      },
+      "dataType": "Numeric"
+    },
+    {
+      "observationId": "CATC_OBS_CL.Run_Od_5",
+      "featureOfInterest": {
+        "samplingFeature": {
+          "geometry": {
+            "coordinates": [
+              1.9447,
+              9.7106,
+              349.05
+            ],
+            "type": "Point"
+          },
+          "name": "DONGA PONT",
+          "type": "Feature",
+          "properties": {}
+        }
+      },
+      "observedProperty": {
+        "name": "Discharge/Flow (15 minutes)",
+        "unit": "m3/s",
+        "theiaCategories": [
+          "https://w3id.org/ozcar-theia/hydrologicalMeasurements"
+        ]
+      },
+      "procedure": {
+        "dataProduction": {
+          "sensors": [
+            {
+              "model": "Thalimedes",
+              "manufacturer": "OTT",
+              "sensorType": "Surface Water Monitoring System",
+              "activityPeriods": [
+                {
+                  "dateBeg": "1998-06-06T12:00:00Z",
+                  "dateEnd": "2015-12-30T23:15:00Z"
+                }
+              ]
+            }
+          ]
+        }
+      },
+      "result": {
+        "missingValue": "-9999.9",
+        "qualityFlags": [
+          {
+            "code": "13",
+            "description": "checked data"
+          }
+        ],
+        "dataFile": {
+          "name": "CATC_OBS_CL.Run_Od_5.txt"
+        }
+      },
+      "timeSerie": true,
+      "temporalExtent": {
+        "dateBeg": "1998-06-06T12:15:00Z",
+        "dateEnd": "2015-12-30T23:15:00Z"
+      },
+      "dataType": "Numeric"
+    },
+    {
+      "observationId": "CATC_OBS_CL.Run_Od_6",
+      "featureOfInterest": {
+        "samplingFeature": {
+          "geometry": {
+            "coordinates": [
+              1.6865,
+              9.752,
+              409.9
+            ],
+            "type": "Point"
+          },
+          "name": "DONGA ROUTE DE KOLOKONDE",
+          "type": "Feature",
+          "properties": {}
+        }
+      },
+      "observedProperty": {
+        "name": "Water Level",
+        "unit": "m",
+        "theiaCategories": [
+          "https://w3id.org/ozcar-theia/hydrologicalMeasurements"
+        ]
+      },
+      "procedure": {
+        "dataProduction": {
+          "sensors": [
+            {
+              "model": "Thalimedes",
+              "manufacturer": "OTT",
+              "sensorType": "Surface Water Monitoring System",
+              "activityPeriods": [
+                {
+                  "dateBeg": "2002-01-01T11:00:00Z",
+                  "dateEnd": "2015-12-30T23:30:00Z"
+                }
+              ]
+            }
+          ]
+        }
+      },
+      "result": {
+        "missingValue": "-9999.9",
+        "qualityFlags": [
+          {
+            "code": "11",
+            "description": "missing value"
+          },
+          {
+            "code": "13",
+            "description": "checked data"
+          },
+          {
+            "code": "17",
+            "description": "dry river"
+          }
+        ],
+        "dataFile": {
+          "name": "CATC_OBS_CL.Run_Od_6.txt"
+        }
+      },
+      "timeSerie": true,
+      "temporalExtent": {
+        "dateBeg": "2002-01-01T11:00:00Z",
+        "dateEnd": "2015-12-30T23:30:00Z"
+      },
+      "dataType": "Numeric"
+    },
+    {
+      "observationId": "CATC_OBS_CL.Run_Od_7",
+      "featureOfInterest": {
+        "samplingFeature": {
+          "geometry": {
+            "coordinates": [
+              1.9447,
+              9.7106,
+              349.05
+            ],
+            "type": "Point"
+          },
+          "name": "DONGA PONT",
+          "type": "Feature",
+          "properties": {}
+        }
+      },
+      "observedProperty": {
+        "name": "Water Level",
+        "unit": "m",
+        "theiaCategories": [
+          "https://w3id.org/ozcar-theia/hydrologicalMeasurements"
+        ]
+      },
+      "procedure": {
+        "dataProduction": {
+          "sensors": [
+            {
+              "model": "Thalimedes",
+              "manufacturer": "OTT",
+              "sensorType": "Surface Water Monitoring System",
+              "activityPeriods": [
+                {
+                  "dateBeg": "1998-06-06T12:00:00Z",
+                  "dateEnd": "2015-12-30T23:20:00Z"
+                }
+              ]
+            }
+          ]
+        }
+      },
+      "result": {
+        "missingValue": "-9999.9",
+        "qualityFlags": [
+          {
+            "code": "13",
+            "description": "checked data"
+          }
+        ],
+        "dataFile": {
+          "name": "CATC_OBS_CL.Run_Od_7.txt"
+        }
+      },
+      "timeSerie": true,
+      "temporalExtent": {
+        "dateBeg": "1998-06-06T12:00:00Z",
+        "dateEnd": "2015-12-30T23:20:00Z"
+      },
+      "dataType": "Numeric"
+    },
+    {
+      "observationId": "CATC_OBS_CL.Run_Od_8",
+      "featureOfInterest": {
+        "samplingFeature": {
+          "geometry": {
+            "coordinates": [
+              1.6099,
+              9.7522,
+              453.19
+            ],
+            "type": "Point"
+          },
+          "name": "ARA PONT",
+          "type": "Feature",
+          "properties": {}
+        }
+      },
+      "observedProperty": {
+        "name": "Water Level",
+        "unit": "m",
+        "theiaCategories": [
+          "https://w3id.org/ozcar-theia/hydrologicalMeasurements"
+        ]
+      },
+      "procedure": {
+        "dataProduction": {
+          "sensors": [
+            {
+              "model": "Thalimedes",
+              "manufacturer": "OTT",
+              "sensorType": "Surface Water Monitoring System",
+              "activityPeriods": [
+                {
+                  "dateBeg": "2002-06-25T20:30:00Z",
+                  "dateEnd": "2015-12-30T23:30:00Z"
+                }
+              ]
+            }
+          ]
+        }
+      },
+      "result": {
+        "missingValue": "-9999.9",
+        "qualityFlags": [
+          {
+            "code": "13",
+            "description": "checked data"
+          },
+          {
+            "code": "11",
+            "description": "missing value"
+          }
+        ],
+        "dataFile": {
+          "name": "CATC_OBS_CL.Run_Od_8.txt"
+        }
+      },
+      "timeSerie": true,
+      "temporalExtent": {
+        "dateBeg": "2002-06-25T20:30:00Z",
+        "dateEnd": "2015-12-30T23:30:00Z"
+      },
+      "dataType": "Numeric"
+    },
+    {
+      "observationId": "CATC_OBS_CL.Run_Od_9",
+      "featureOfInterest": {
+        "samplingFeature": {
+          "geometry": {
+            "coordinates": [
+              1.6099,
+              9.7522,
+              453.19
+            ],
+            "type": "Point"
+          },
+          "name": "ARA PONT",
+          "type": "Feature",
+          "properties": {}
+        }
+      },
+      "observedProperty": {
+        "name": "Discharge/Flow (10 minutes)",
+        "unit": "m3/s",
+        "theiaCategories": [
+          "https://w3id.org/ozcar-theia/hydrologicalMeasurements"
+        ]
+      },
+      "procedure": {
+        "dataProduction": {
+          "sensors": [
+            {
+              "model": "Thalimedes",
+              "manufacturer": "OTT",
+              "sensorType": "Surface Water Monitoring System",
+              "activityPeriods": [
+                {
+                  "dateBeg": "2002-05-29T17:30:00Z",
+                  "dateEnd": "2015-12-30T23:30:00Z"
+                }
+              ]
+            }
+          ]
+        }
+      },
+      "result": {
+        "missingValue": "-9999.9",
+        "qualityFlags": [
+          {
+            "code": "13",
+            "description": "checked data"
+          },
+          {
+            "code": "11",
+            "description": "missing value"
+          }
+        ],
+        "dataFile": {
+          "name": "CATC_OBS_CL.Run_Od_9.txt"
+        }
+      },
+      "timeSerie": true,
+      "temporalExtent": {
+        "dateBeg": "2002-05-29T17:40:00Z",
+        "dateEnd": "2015-12-30T23:30:00Z"
+      },
+      "dataType": "Numeric"
+    }
+  ]
+}

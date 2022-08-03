@@ -1,0 +1,46 @@
+[
+  {
+    "logo": null,
+    "website": null,
+    "defaultCategory": {
+      "name": "datasets",
+      "id": 2,
+      "label": {
+        "slo": "Datasets [SK]",
+        "fre": "Jeux de données",
+        "eng": "Datasets"
+      }
+    },
+    "allowedCategories": [
+      {
+        "name": "datasets",
+        "id": 2,
+        "label": {
+          "slo": "Datasets [SK]",
+          "fre": "Jeux de données",
+          "eng": "Datasets"
+        }
+      },
+      {
+        "name": "otherResources",
+        "id": 10,
+        "label": {
+          "slo": "Other information resources [SK]",
+          "fre": "Autres ressources",
+          "eng": "Other information resources"
+        }
+      }
+    ],
+    "enableAllowedCategories": true,
+    "name": "theia",
+    "id": 100,
+    "description": "",
+    "email": "",
+    "referrer": null,
+    "label": {
+      "slo": "theia",
+      "fre": "theia",
+      "eng": "theia"
+    }
+  }
+]

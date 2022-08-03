@@ -1,0 +1,11 @@
+fr/theialand/insitu/dataportal/etl/MetadataTestUtils.class
+fr/theialand/insitu/dataportal/etl/EtlUtilsTest.class
+fr/theialand/insitu/dataportal/etl/transformer/TransformerTest.class
+fr/theialand/insitu/dataportal/etl/transformer/ContactTransformerTest.class
+fr/theialand/insitu/dataportal/etl/transformer/GeotoolkitBugsTest.class
+fr/theialand/insitu/dataportal/etl/transformer/KeywordTransformerTest.class
+fr/theialand/insitu/dataportal/etl/transformer/IdentificationTransformerTest.class
+fr/theialand/insitu/dataportal/etl/EtlStandaloneConfig.class
+fr/theialand/insitu/dataportal/etl/transformer/TransformerTestHelper.class
+fr/theialand/insitu/dataportal/etl/ConnectivityIT.class
+fr/theialand/insitu/dataportal/etl/EtlServiceIT.class

@@ -1,0 +1,4 @@
+/home/coussotc/dev/theia-ozcar-projects/backend-springboot/apiclient/apiclient-CGMW-WMS/src/main/java/fr/theialand/insitu/dataportal/api/cgmwgeology/model/CGMWGeology.java
+/home/coussotc/dev/theia-ozcar-projects/backend-springboot/apiclient/apiclient-CGMW-WMS/src/main/java/fr/theialand/insitu/dataportal/api/cgmwgeology/GeologyWMSConfig.java
+/home/coussotc/dev/theia-ozcar-projects/backend-springboot/apiclient/apiclient-CGMW-WMS/src/main/java/fr/theialand/insitu/dataportal/api/cgmwgeology/GeologyWMSClient.java
+/home/coussotc/dev/theia-ozcar-projects/backend-springboot/apiclient/apiclient-CGMW-WMS/src/main/java/fr/theialand/insitu/dataportal/api/cgmwgeology/GeologyWMSClientImpl.java

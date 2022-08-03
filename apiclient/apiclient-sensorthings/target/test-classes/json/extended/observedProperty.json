@@ -1,0 +1,18 @@
+{
+  "name" : "Water Temperature",
+  "description" : "Water Temperature",
+  "Datastreams@iot.navigationLink" : "https://sensorthings.brgm-rec.fr/SensorThingsGroundWater/v1.1/ObservedProperties(2)/Datastreams",
+  "MultiDatastreams@iot.navigationLink" : "https://sensorthings.brgm-rec.fr/SensorThingsGroundWater/v1.1/ObservedProperties(2)/MultiDatastreams",
+  "definition" : "https://data.geoscience.fr/ncl/ObsProp/187",
+  "@iot.id" : 2,
+  "@iot.selfLink" : "https://sensorthings.brgm-rec.fr/SensorThingsGroundWater/v1.1/ObservedProperties(2)",
+  "properties": {
+    "firstProp": "wtf",
+    "secondProp": {
+      "moreOfWut": 22
+    },
+    "theiaCategories": [
+      "ee","ee","rr"
+    ]
+  }
+}

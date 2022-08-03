@@ -1,0 +1,25 @@
+{
+  "name" : "Water Temperature / Installation de suivi eau souterraine quantité",
+  "description" : "Water Temperature / Installation de suivi eau souterraine quantité",
+  "observationType" : "http://www.opengis.net/def/observationType/OGC-OM/2.0/OM_Measurement",
+  "Sensor@iot.navigationLink" : "https://sensorthings.brgm-rec.fr/SensorThingsGroundWater/v1.1/Datastreams(42)/Sensor",
+  "Thing@iot.navigationLink" : "https://sensorthings.brgm-rec.fr/SensorThingsGroundWater/v1.1/Datastreams(42)/Thing",
+  "Observations@iot.navigationLink" : "https://sensorthings.brgm-rec.fr/SensorThingsGroundWater/v1.1/Datastreams(42)/Observations",
+  "unitOfMeasurement" : {
+    "name" : "Degree Celsius",
+    "symbol" : "°C",
+    "definition" : "http://www.qudt.org/qudt/owl/1.0.0/unit/Instances.html#DegreeCelsius"
+  },
+  "ObservedProperty@iot.navigationLink" : "https://sensorthings.brgm-rec.fr/SensorThingsGroundWater/v1.1/Datastreams(42)/ObservedProperty",
+  "@iot.id" : 42,
+  "@iot.selfLink" : "https://sensorthings.brgm-rec.fr/SensorThingsGroundWater/v1.1/Datastreams(42)",
+  "resultTime": "2014-03-01T13:00:00Z/2015-05-11T15:30:00Z",
+  "properties": {
+    "firstProp": "not used",
+    "secondProp": {
+      "moreOfWut": 22
+    },
+    "processingLevel": "Raw data"
+   }
+
+}

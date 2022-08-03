@@ -1,0 +1,64 @@
+{
+  "@iot.nextLink": "https://sensorthings.brgm-rec.fr/SensorThingsGroundWater/v1.1/Datastreams?$skip=100",
+  "value": [
+    {
+      "name": "no prop DS",
+      "description": "GroundWater depth / Installation de suivi eau souterraine quantité",
+      "observationType": "http://www.opengis.net/def/observationType/OGC-OM/2.0/OM_Measurement",
+      "Sensor@iot.navigationLink": "https://sensorthings.brgm-rec.fr/SensorThingsGroundWater/v1.1/Datastreams(1)/Sensor",
+      "Thing@iot.navigationLink": "https://sensorthings.brgm-rec.fr/SensorThingsGroundWater/v1.1/Datastreams(1)/Thing",
+      "Observations@iot.navigationLink": "https://sensorthings.brgm-rec.fr/SensorThingsGroundWater/v1.1/Datastreams(1)/Observations",
+      "unitOfMeasurement": {
+        "name": "meters",
+        "symbol": "m",
+        "definition": "http://www.qudt.org/qudt/owl/1.0.0/unit/Instances.html#Meter"
+      },
+      "ObservedProperty@iot.navigationLink": "https://sensorthings.brgm-rec.fr/SensorThingsGroundWater/v1.1/Datastreams(1)/ObservedProperty",
+      "@iot.id": 1,
+      "@iot.selfLink": "https://sensorthings.brgm-rec.fr/SensorThingsGroundWater/v1.1/Datastreams(1)"
+    },
+    {
+      "name": "FR prop DS 1",
+      "description": "Water Temperature / Installation de suivi eau souterraine quantité",
+      "observationType": "http://www.opengis.net/def/observationType/OGC-OM/2.0/OM_Measurement",
+      "Sensor@iot.navigationLink": "https://sensorthings.brgm-rec.fr/SensorThingsGroundWater/v1.1/Datastreams(2)/Sensor",
+      "Thing@iot.navigationLink": "https://sensorthings.brgm-rec.fr/SensorThingsGroundWater/v1.1/Datastreams(2)/Thing",
+      "Observations@iot.navigationLink": "https://sensorthings.brgm-rec.fr/SensorThingsGroundWater/v1.1/Datastreams(2)/Observations",
+      "unitOfMeasurement": {
+        "name": "Degree Celsius",
+        "symbol": "°C",
+        "definition": "http://www.qudt.org/qudt/owl/1.0.0/unit/Instances.html#DegreeCelsius"
+      },
+      "ObservedProperty@iot.navigationLink": "https://sensorthings.brgm-rec.fr/SensorThingsGroundWater/v1.1/Datastreams(2)/ObservedProperty",
+      "@iot.id": 2,
+      "@iot.selfLink": "https://sensorthings.brgm-rec.fr/SensorThingsGroundWater/v1.1/Datastreams(2)",
+      "properties": {
+        "countryCode" : "FR",
+        "owner": "http://dd.eionet.europa.eu",
+        "wtf": "whatever"
+      }
+    },
+    {
+      "name": "FR prop DS 2",
+      "description": "Water Temperature / Installation de suivi eau souterraine quantité",
+      "observationType": "http://www.opengis.net/def/observationType/OGC-OM/2.0/OM_Measurement",
+      "Sensor@iot.navigationLink": "https://sensorthings.brgm-rec.fr/SensorThingsGroundWater/v1.1/Datastreams(2)/Sensor",
+      "Thing@iot.navigationLink": "https://sensorthings.brgm-rec.fr/SensorThingsGroundWater/v1.1/Datastreams(2)/Thing",
+      "Observations@iot.navigationLink": "https://sensorthings.brgm-rec.fr/SensorThingsGroundWater/v1.1/Datastreams(2)/Observations",
+      "unitOfMeasurement": {
+        "name": "Degree Celsius",
+        "symbol": "°C",
+        "definition": "http://www.qudt.org/qudt/owl/1.0.0/unit/Instances.html#DegreeCelsius"
+      },
+      "ObservedProperty@iot.navigationLink": "https://sensorthings.brgm-rec.fr/SensorThingsGroundWater/v1.1/Datastreams(2)/ObservedProperty",
+      "@iot.id": 2,
+      "@iot.selfLink": "https://sensorthings.brgm-rec.fr/SensorThingsGroundWater/v1.1/Datastreams(2)",
+      "properties": {
+        "owner": "http://dd.eionet.europa.eu",
+        "wtf": "whatevecr",
+        "countryCode" : "FR"
+      }
+    }
+
+  ]
+}

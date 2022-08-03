@@ -1,0 +1,6 @@
+/home/coussotc/dev/theia-ozcar-projects/backend-springboot/backend-association-variable/src/main/java/fr/theialand/insitu/dataportal/backendassociation/configuration/SpringSecurityConfig.java
+/home/coussotc/dev/theia-ozcar-projects/backend-springboot/backend-association-variable/src/main/java/fr/theialand/insitu/dataportal/backendassociation/service/AssociationService.java
+/home/coussotc/dev/theia-ozcar-projects/backend-springboot/backend-association-variable/src/main/java/fr/theialand/insitu/dataportal/backendassociation/BackendSpringbootAssociationVariableApplication.java
+/home/coussotc/dev/theia-ozcar-projects/backend-springboot/backend-association-variable/src/main/java/fr/theialand/insitu/dataportal/backendassociation/service/AssociationServiceImpl.java
+/home/coussotc/dev/theia-ozcar-projects/backend-springboot/backend-association-variable/src/main/java/fr/theialand/insitu/dataportal/backendassociation/controller/VariableAssociationController.java
+/home/coussotc/dev/theia-ozcar-projects/backend-springboot/backend-association-variable/src/main/java/fr/theialand/insitu/dataportal/backendassociation/configuration/SwaggerConfig.java

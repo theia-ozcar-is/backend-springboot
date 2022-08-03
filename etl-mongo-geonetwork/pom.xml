@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>backend-springboot</artifactId>
+        <groupId>fr.theialand.insitu</groupId>
+        <version>0.0.1-SNAPSHOT</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+
+    <artifactId>etl-mongo-geonetwork</artifactId>
+    <description>ETL module reading metadata from MongoDB and writing to Geonetwork through its API</description>
+
+    <properties>
+        <geotoolkit.version>5.0.0-MC0082</geotoolkit.version>
+    </properties>
+
+    <dependencies>
+
+        <!-- Both ends of the ETL -->
+        <dependency>
+            <groupId>fr.theialand.insitu</groupId>
+            <artifactId>apiclient-geonetwork</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>fr.theialand.insitu</groupId>
+            <artifactId>mongodb-repository</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>fr.theialand.insitu</groupId>
+            <artifactId>common-models</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
+
+        <!-- The CRS, EPSG and all are not part of SIS due to licencing (EPetrolSG) reasons
+           we don't use this. but Geotoolkit does when it reads geojson... so it has to be somewhere on the classpath-->
+        <dependency>
+            <groupId>org.apache.sis.non-free</groupId>
+            <artifactId>sis-embedded-data</artifactId>
+            <version>1.0</version>
+        </dependency>
+
+
+        <!-- JTS geojson to SIS/geoApi
+        Sadly, it brings a bit of geotoolkit with it
+        But Geotoolkit should play nice with SIS as the same guys work
+         in both projects, geotk is a bit above SIS
+         older versions do not work as they rely on yet another package-->
+        <dependency>
+            <groupId>org.geotoolkit</groupId>
+            <artifactId>geotk-feature-geojson</artifactId>
+            <version>${geotoolkit.version}</version>
+        </dependency>
+
+        <!--  All things Temporal are not implemented in SIS yet, we have to rely on geotk, for now -->
+        <dependency>
+            <groupId>org.geotoolkit</groupId>
+            <artifactId>geotk-temporal</artifactId>
+            <version>${geotoolkit.version}</version>
+        </dependency>
+
+        <!-- Test deps -->
+        <dependency>
+            <groupId>org.xmlunit</groupId>
+            <artifactId>xmlunit-assertj</artifactId>
+            <scope>test</scope>
+        </dependency>
+
+    </dependencies>
+
+    <repositories>
+        <!-- Home of some of the cutting edge Geo libs, Apache SIS and its counterpart Geotoolkit -->
+        <!-- Versionning there is NOT consistent with the maven repo ! -->
+        <repository>
+            <id>geomatys</id>
+            <name>Geomatys GeoToolkit Repository</name>
+            <url>https://nexus.geomatys.com/repository/maven-public</url>
+            <snapshots><enabled>false</enabled></snapshots>
+            <releases><enabled>true</enabled></releases>
+        </repository>
+    </repositories>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>com.google.cloud.tools</groupId>
+                <artifactId>jib-maven-plugin</artifactId>
+                <configuration>
+                    <!-- we don't want jib to execute on this module -->
+                    <skip>true</skip>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+</project>
